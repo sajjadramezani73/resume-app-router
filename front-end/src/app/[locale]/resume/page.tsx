@@ -1,18 +1,17 @@
 import Title from '@/components/titlePage'
-import { getDictionary } from '@/i18n/get-dictionary'
-import { Locale } from '@/i18n/i18n-config'
 import LoadSvgIcon from '@/utils/LoadSvgIcon'
 import { Suspense } from 'react'
 import ExperiencesLoading from './ExperiencesLoading'
 import Experiences from './Experiences'
 import EducationsLoading from './EducationsLoading'
 import Educations from './Educations'
+import { getI18n } from '@/locales/server'
 
-const Resume = async ({ params: { lang } }: { params: { lang: Locale } }) => {
-  const dictionary = await getDictionary(lang)
+const Resume = async () => {
+  const t = await getI18n()
   return (
     <div className="h-full flex flex-col">
-      <Title>{dictionary.resume}</Title>
+      <Title>{t('resume')}</Title>
       <div className="pt-7 flex-grow overflow-hidden overflow-y-auto no-scroll">
         <div
           className={`flex items-center pb-7 mb-7 border-b border-center-image`}
@@ -24,7 +23,7 @@ const Resume = async ({ params: { lang } }: { params: { lang: Locale } }) => {
             color="var(--color-primary)"
           />
           <p className="text-base font-bold text-captionDark dark:text-lightCaptionLight ms-2 capitalize">
-            {dictionary.experience}
+            {t('experience')}
           </p>
         </div>
         <Suspense fallback={<ExperiencesLoading />}>
@@ -41,7 +40,7 @@ const Resume = async ({ params: { lang } }: { params: { lang: Locale } }) => {
             color="var(--color-primary)"
           />
           <p className="text-base font-bold text-captionDark dark:text-lightCaptionLight ms-2 capitalize">
-            {dictionary.education}
+            {t('education')}
           </p>
         </div>
         <Suspense fallback={<EducationsLoading />}>

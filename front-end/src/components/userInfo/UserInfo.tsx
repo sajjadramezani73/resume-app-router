@@ -1,18 +1,19 @@
-import { ILanguageProps } from '@/type/types'
 import SocialNetworks from './components/SocialNetworks'
 import LoadSvgIcon from '@/utils/LoadSvgIcon'
-import { getDictionary } from '@/i18n/get-dictionary'
 import { getAbout } from '@/service/queries'
 import { avatar } from '@/utils/AvatarSet'
 import Image from 'next/image'
+import { getI18n } from '@/locales/server'
+import { Switch } from '../Switch'
 
-const UserInfo = async ({ language }: ILanguageProps) => {
-  const dictionary = await getDictionary(language)
+const UserInfo = async () => {
+  const t = await getI18n()
 
   const { aboutMe: about } = await getAbout()
 
   return (
     <div className="w-full h-full flex flex-col justify-between items-center pt-10 md:pt-20">
+      {/* <Switch /> */}
       <div className="text-center">
         <div className="w-[180px] h-[180px] rounded-full overflow-hidden border mx-auto relative">
           <Image
@@ -34,7 +35,7 @@ const UserInfo = async ({ language }: ILanguageProps) => {
         className={`border-t border-b md:border-b-0 p-4 w-full flex justify-center items-center gap-x-2 hover:gap-x-3 duration-300 cursor-pointer border-center-image group`}
       >
         <p className="text-base text-captionDark dark:text-lightCaptionLight font-bold uppercase">
-          {dictionary.downloadCV}
+          {t('downloadCV')}
         </p>
         <LoadSvgIcon
           name="download"

@@ -1,5 +1,4 @@
 import AboutItemLoading from '@/components/aboutItem/AboutItemLoading'
-import React from 'react'
 
 const LoadingAbout = () => {
   return (

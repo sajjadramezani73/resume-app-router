@@ -1,23 +1,23 @@
 import SidebarItem from './SidebarItem'
-import { getDictionary } from '@/i18n/get-dictionary'
 import { ILanguageProps } from '@/type/types'
+import { getI18n } from '@/locales/server'
 
-const SidebarItems = async ({ language }: ILanguageProps) => {
-  const dictionary = await getDictionary(language)
+const SidebarItems = async () => {
+  const t = await getI18n()
 
   const routeLinks = [
     {
-      title: dictionary.about,
+      title: t('about'),
       icon: 'user',
       href: 'about',
     },
     {
-      title: dictionary.resume,
+      title: t('resume'),
       icon: 'file',
       href: 'resume',
     },
     {
-      title: dictionary.projects,
+      title: t('projects'),
       icon: 'project',
       href: 'projects',
     },

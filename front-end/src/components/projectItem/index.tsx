@@ -1,10 +1,8 @@
 import { projectAvatar } from '@/utils/ProjectAvatar'
 import Image from 'next/image'
 import Button from '../button'
-import { ILanguageProps } from '@/type/types'
-import { getDictionary } from '@/i18n/get-dictionary'
+import { getI18n } from '@/locales/server'
 
-// import Button from '../ui/button/Button'
 interface Props {
   project: {
     title: string
@@ -14,11 +12,10 @@ interface Props {
     links: { id: number; link: string }[]
     images: { id: string; path: string }[]
   }
-  language: ILanguageProps
 }
 
-const ProjectItem = async ({ project, language }: any) => {
-  const dictionary = await getDictionary(language)
+const ProjectItem = async ({ project }: Props) => {
+  const t = await getI18n()
   return (
     <div
       className={`flex flex-col sm:flex-row mb-4 pb-4 border-b last:border-0 border-center-image`}
@@ -35,7 +32,7 @@ const ProjectItem = async ({ project, language }: any) => {
         <p className="font-semibold text-captionDark dark:text-lightCaptionLight mb-3 capitalize">
           {project?.title}
         </p>
-        <p className="text-caption dark:text-lightCaption text-xs font-medium leading-6 text-justify sm:text-right capitalize">
+        <p className="text-caption dark:text-lightCaption text-xs font-medium leading-6 text-justify sm:text-start capitalize">
           {project?.briefDescription}
         </p>
         <div className="flex flex-wrap gap-x-2 gap-y-1 mt-2">
@@ -52,7 +49,7 @@ const ProjectItem = async ({ project, language }: any) => {
         </div>
         <div className="flex justify-end pt-4">
           <Button
-            title={dictionary.viewOnline}
+            title={t('viewOnline')}
             className="sm:!w-auto px-4 h-8 text-xs pt-1 capitalize"
             type="link"
             link={project?.links[0]?.link}

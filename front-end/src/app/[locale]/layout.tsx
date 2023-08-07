@@ -1,9 +1,9 @@
-import { Locale } from '@/i18n/i18n-config'
 import './globals.css'
 import type { Metadata } from 'next'
 import Sidebar from '@/components/sidebar/Sidebar'
 import UserInfo from '@/components/userInfo/UserInfo'
 import SidebarItems from '@/components/sidebar/components/SidebarItems'
+import { getCurrentLocale } from '@/locales/server'
 
 export const metadata: Metadata = {
   title: 'sajjad ramezani',
@@ -12,26 +12,25 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  params: { lang },
 }: {
   children: React.ReactNode
-  params: { lang: Locale }
 }) {
+  const locale = getCurrentLocale()
   return (
-    <html lang={lang}>
+    <html lang={locale}>
       <body>
         <div
           className={`${
-            lang === 'fa' ? 'font-iranyekan' : 'font-roboto'
+            locale === 'fa' ? 'font-iranyekan' : 'font-roboto'
           } w-full h-full flex justify-center items-center md:py-[50px] bg-gradient-to-br from-secondary/70 to-primary/70 dark:from-[#17171b] dark:to-[#28282f]`}
         >
           <div
             className={`md:container w-full h-full flex flex-col md:flex-row md:gap-x-4 ${
-              lang === 'fa' ? 'rtl' : 'ltr'
+              locale === 'fa' ? 'rtl' : 'ltr'
             }`}
           >
             <div className="hidden md:block w-[72px] min-w-[72px]">
-              <Sidebar language={lang} />
+              <Sidebar />
             </div>
             <div
               className={`flex justify-between items-center px-4 border-b md:hidden h-[58px] min-h-[58px] bg-white dark:bg-bgDark`}
@@ -42,10 +41,10 @@ export default function RootLayout({
             <div className="flex flex-col md:flex-row flex-grow overflow-hidden md:overflow-visible overflow-y-auto md:overflow-y-visible">
               <div
                 className={`grow min-h-full md:w-4/12 bg-white dark:bg-bgDark md:scale-[1.05] md:rounded ${
-                  lang == 'fa' ? 'shadow-shadowLeft' : 'shadow-shadowRight'
+                  locale == 'fa' ? 'shadow-shadowLeft' : 'shadow-shadowRight'
                 }`}
               >
-                <UserInfo language={lang} />
+                <UserInfo />
               </div>
               <div
                 className="md:w-8/12 bg-white dark:bg-bgDark flex-grow rounded-e p-4 md:p-7 md:ps-10"
@@ -57,7 +56,7 @@ export default function RootLayout({
             <div
               className={`grid grid-cols-3 md:hidden h-16 min-h-[64px] bg-white dark:bg-bgDark border-t`}
             >
-              <SidebarItems language={lang} />
+              <SidebarItems />
             </div>
           </div>
         </div>
