@@ -1,13 +1,23 @@
-import useTransition from '@/hooks/useTransition'
+'use client'
+
+import { useChangeLocale, useCurrentLocale } from '@/locales/client'
 import LoadSvgIcon from '@/utils/LoadSvgIcon'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
+interface Ps {
+  icon: string | undefined
+  language: string | undefined
+  shortLanguage: string | undefined
+}
+
 const SwitchLanguage = () => {
-  const { locale, locales } = useTransition()
+  const locale = useCurrentLocale()
+  const changeLocale = useChangeLocale({})
 
   const [showOption, setShowOption] = useState(false)
-  const [localeList, setLocaleList] = useState([])
+  const [locales, setLocales] = useState(['fa', 'en'])
+  const [localeList, setLocaleList] = useState<Ps[]>([])
 
   useEffect(() => {
     setShowOption(false)
@@ -19,7 +29,7 @@ const SwitchLanguage = () => {
     setLocaleList(newLocales)
   }, [locales])
 
-  const setIcon = (name) => {
+  const setIcon = (name: string) => {
     switch (name) {
       case 'fa':
         return 'iran'
@@ -29,7 +39,7 @@ const SwitchLanguage = () => {
         break
     }
   }
-  const setLanguage = (name) => {
+  const setLanguage = (name: string) => {
     switch (name) {
       case 'fa':
         return 'persian'
@@ -55,14 +65,17 @@ const SwitchLanguage = () => {
         <div className="p-2 absolute top-[30px] start-1.5 z-10 bg-white dark:bg-bgDark border rounded shadow">
           {localeList?.map((item) => {
             return (
-              <Link href="" key={item?.language} locale={item.shortLanguage}>
-                <div className="flex justify-between items-center rtl gap-x-1 p-1 rounded mb-1.5 last:mb-0 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-50/10 duration-200">
-                  <p className="text-sm text-captionDark dark:text-lightCaptionLight capitalize pt-0.5">
-                    {item.language}
-                  </p>
-                  <LoadSvgIcon name={item.icon} size={20} />
-                </div>
-              </Link>
+              <button
+                key={item?.language}
+                className="flex justify-between items-center rtl gap-x-1 p-1 rounded mb-1.5 last:mb-0 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-50/10 duration-200"
+                type="button"
+                onClick={() => changeLocale(item.shortLanguage)}
+              >
+                <p className="text-sm text-captionDark dark:text-lightCaptionLight capitalize pt-0.5">
+                  {item.language}
+                </p>
+                <LoadSvgIcon name={item.icon} size={20} />
+              </button>
             )
           })}
         </div>

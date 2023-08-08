@@ -4,7 +4,6 @@ import { getAbout } from '@/service/queries'
 import { avatar } from '@/utils/AvatarSet'
 import Image from 'next/image'
 import { getI18n } from '@/locales/server'
-import { Switch } from '../Switch'
 
 const UserInfo = async () => {
   const t = await getI18n()
@@ -13,7 +12,6 @@ const UserInfo = async () => {
 
   return (
     <div className="w-full h-full flex flex-col justify-between items-center pt-10 md:pt-20">
-      {/* <Switch /> */}
       <div className="text-center">
         <div className="w-[180px] h-[180px] rounded-full overflow-hidden border mx-auto relative">
           <Image

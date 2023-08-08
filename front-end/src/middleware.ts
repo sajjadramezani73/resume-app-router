@@ -6,7 +6,6 @@ const I18nMiddleware = createI18nMiddleware(['en', 'fa'] as const, 'fa', {
 })
 
 export function middleware(request: NextRequest) {
-
   return I18nMiddleware(request)
 }
 
