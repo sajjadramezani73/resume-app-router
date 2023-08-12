@@ -1,5 +1,3 @@
-console.log('Loaded EN')
-
 export default {
   about: 'about me',
   resume: 'resume',

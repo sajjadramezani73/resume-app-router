@@ -1,6 +1,5 @@
 // import { defineLocale } from '.';
 
-console.log('Loaded FA')
 
 export default {
   about: 'درباره من',

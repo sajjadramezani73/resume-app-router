@@ -1,31 +1,33 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useChangeLocale, useCurrentLocale } from '@/locales/client'
 import LoadSvgIcon from '@/utils/LoadSvgIcon'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 interface Ps {
-  icon: string | undefined
-  language: string | undefined
-  shortLanguage: string | undefined
+  icon: string
+  language: string
+  shortLanguage: string
 }
 
 const SwitchLanguage = () => {
+  const router = useRouter()
   const locale = useCurrentLocale()
   const changeLocale = useChangeLocale({})
 
   const [showOption, setShowOption] = useState(false)
-  const [locales, setLocales] = useState(['fa', 'en'])
+  const [locales] = useState<string[]>(['fa', 'en'])
   const [localeList, setLocaleList] = useState<Ps[]>([])
 
   useEffect(() => {
     setShowOption(false)
-    const newLocales = locales?.map((item) => ({
+    const newLocales = locales.map((item) => ({
       icon: setIcon(item),
       language: setLanguage(item),
       shortLanguage: item,
     }))
+
     setLocaleList(newLocales)
   }, [locales])
 
@@ -36,9 +38,10 @@ const SwitchLanguage = () => {
       case 'en':
         return 'england'
       default:
-        break
+        return 'iran'
     }
   }
+
   const setLanguage = (name: string) => {
     switch (name) {
       case 'fa':
@@ -46,7 +49,7 @@ const SwitchLanguage = () => {
       case 'en':
         return 'english'
       default:
-        break
+        return 'persian'
     }
   }
 
@@ -69,7 +72,9 @@ const SwitchLanguage = () => {
                 key={item?.language}
                 className="flex justify-between items-center rtl gap-x-1 p-1 rounded mb-1.5 last:mb-0 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-50/10 duration-200"
                 type="button"
-                onClick={() => changeLocale(item.shortLanguage)}
+                onClick={() => {
+                  changeLocale(item.shortLanguage === 'fa' ? 'fa' : 'en')
+                }}
               >
                 <p className="text-sm text-captionDark dark:text-lightCaptionLight capitalize pt-0.5">
                   {item.language}
