@@ -1,13 +1,24 @@
-import { useThemeAction } from '@/store/themeSlice'
-import LoadSvgIcon from '@/utils/LoadSvgIcon'
+/* eslint-disable @next/next/no-async-client-component */
+/* eslint-disable react-hooks/rules-of-hooks */
+'use client'
 
-const SwitchTheme = () => {
-  const { theme, toggleTheme } = useThemeAction()
+import LoadSvgIcon from '@/utils/LoadSvgIcon'
+import { getCurrentScheme, toggleTheme } from '@/utils/ThemeHandler'
+import { useRouter } from 'next/navigation'
+
+const SwitchTheme = async () => {
+  const router = useRouter()
+  const theme = await getCurrentScheme()
+
+  const toggle = async () => {
+    await toggleTheme()
+    router.refresh()
+  }
 
   return (
     <span
       className="w-full flex flex-col items-center py-5 cursor-pointer"
-      onClick={() => toggleTheme()}
+      onClick={toggle}
     >
       {theme === 'dark' ? (
         <LoadSvgIcon
