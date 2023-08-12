@@ -4,20 +4,23 @@ import Sidebar from '@/components/sidebar/Sidebar'
 import UserInfo from '@/components/userInfo/UserInfo'
 import SidebarItems from '@/components/sidebar/components/SidebarItems'
 import { getCurrentLocale } from '@/locales/server'
+import { getCurrentScheme } from '@/utils/ThemeHandler'
 
 export const metadata: Metadata = {
   title: 'sajjad ramezani',
   description: 'resume project with next.js app router',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const theme = await getCurrentScheme()
   const locale = getCurrentLocale()
+
   return (
-    <html lang={locale}>
+    <html lang={locale} className={theme === 'dark' ? 'dark' : ''}>
       <body>
         <div
           className={`${

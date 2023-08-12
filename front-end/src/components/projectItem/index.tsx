@@ -2,6 +2,7 @@ import { projectAvatar } from '@/utils/ProjectAvatar'
 import Image from 'next/image'
 import Button from '../button'
 import { getI18n } from '@/locales/server'
+import { getCurrentScheme } from '@/utils/ThemeHandler'
 
 interface Props {
   project: {
@@ -16,9 +17,13 @@ interface Props {
 
 const ProjectItem = async ({ project }: Props) => {
   const t = await getI18n()
+  const theme = await getCurrentScheme()
+
   return (
     <div
-      className={`flex flex-col sm:flex-row mb-4 pb-4 border-b last:border-0 border-center-image`}
+      className={`flex flex-col sm:flex-row mb-4 pb-4 border-b last:border-0 ${
+        theme === 'dark' ? 'border-center-image-dark' : 'border-center-image'
+      }`}
     >
       <div className="sm:w-44 sm:min-w-[176px] aspect-[2/1] sm:h-48 rounded border overflow-hidden relative">
         <Image

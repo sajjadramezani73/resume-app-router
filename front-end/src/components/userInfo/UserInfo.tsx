@@ -4,9 +4,11 @@ import { getAbout } from '@/service/queries'
 import { avatar } from '@/utils/AvatarSet'
 import Image from 'next/image'
 import { getI18n } from '@/locales/server'
+import { getCurrentScheme } from '@/utils/ThemeHandler'
 
 const UserInfo = async () => {
   const t = await getI18n()
+  const theme = await getCurrentScheme()
 
   const { aboutMe: about } = await getAbout()
 
@@ -26,19 +28,27 @@ const UserInfo = async () => {
         </p>
         <p className="text-base text-primary font-medium">{about?.job}</p>
         <div className="w-full flex justify-center items-center gap-x-4 mt-8">
-          <SocialNetworks socialNetworks={about?.socialsNetwork} />
+          <SocialNetworks
+            socialNetworks={about?.socialsNetwork}
+            theme={theme}
+          />
         </div>
       </div>
       <div
-        className={`border-t border-b md:border-b-0 p-4 w-full flex justify-center items-center gap-x-2 hover:gap-x-3 duration-300 cursor-pointer border-center-image group`}
+        className={`border-t border-b md:border-b-0 p-4 w-full flex justify-center items-center gap-x-2 hover:gap-x-3 duration-300 cursor-pointer group  ${
+          theme === 'dark' ? 'border-center-image-dark' : 'border-center-image'
+        }`}
       >
         <p className="text-base text-captionDark dark:text-lightCaptionLight font-bold uppercase">
           {t('downloadCV')}
         </p>
         <LoadSvgIcon
           name="download"
-          color="var(--color-captionDark)"
-          // color={theme === 'dark' ? "var(--color-lightCaptionLight)" : "var(--color-captionDark)"}
+          color={
+            theme === 'dark'
+              ? 'var(--color-lightCaptionLight)'
+              : 'var(--color-captionDark)'
+          }
           size={16}
           weight={2}
         />

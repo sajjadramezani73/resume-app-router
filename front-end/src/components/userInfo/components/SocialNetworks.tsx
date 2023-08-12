@@ -1,13 +1,17 @@
 'use client'
 
-// import { useThemeAction } from '@/store/themeSlice';
 import LoadSvgIcon from '@/utils/LoadSvgIcon'
+import { CookieValueTypes } from 'cookies-next'
 import { useEffect, useState } from 'react'
 
-const SocialNetworks = ({ socialNetworks }: { socialNetworks: string[] }) => {
-  // const { theme } = useThemeAction()
-
-  const [arraySocials, setArraySocials] = useState([])
+const SocialNetworks = ({
+  socialNetworks,
+  theme,
+}: {
+  socialNetworks: string[]
+  theme: string | CookieValueTypes
+}) => {
+  const [arraySocials, setArraySocials] = useState<string[]>([])
 
   useEffect(() => {
     socialNetworks && setArraySocials(Object.keys(socialNetworks))
@@ -17,11 +21,18 @@ const SocialNetworks = ({ socialNetworks }: { socialNetworks: string[] }) => {
     <>
       {arraySocials?.map((item) => {
         return (
-          <a key={item} href={socialNetworks[item]} target="_blank">
+          <a
+            key={item}
+            href={socialNetworks[item as unknown as number]}
+            target="_blank"
+          >
             <LoadSvgIcon
               name={item}
-              color="var(--color-captionDark)"
-              // color={theme === 'dark' ? "var(--color-lightCaptionLight)" : "var(--color-captionDark)"}
+              color={
+                theme === 'dark'
+                  ? 'var(--color-lightCaptionLight)'
+                  : 'var(--color-captionDark)'
+              }
               size={18}
             />
           </a>
