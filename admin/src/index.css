@@ -106,3 +106,25 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+clearHighLight {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a,
+div {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled {
+  opacity: 0.5;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+.ltr {
+  direction: ltr;
+}

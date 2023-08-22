@@ -1,5 +1,7 @@
+import Layout from "./container/layout/Layout";
+
 const App = () => {
-  return <div className="">سلام</div>;
+  return <Layout />;
 };
 
 export default App;
