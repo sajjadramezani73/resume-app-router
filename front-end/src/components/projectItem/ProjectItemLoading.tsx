@@ -1,7 +1,12 @@
-const ProjectItemLoading = () => {
+import { getCurrentScheme } from '@/utils/ThemeHandler'
+
+const ProjectItemLoading = async () => {
+  const theme = await getCurrentScheme()
   return (
     <div
-      className={`flex flex-col sm:flex-row mb-4 pb-4 border-b last:border-0 border-center-image`}
+      className={`flex flex-col sm:flex-row mb-4 pb-4 border-b last:border-0 ${
+        theme === 'dark' ? 'border-center-image-dark' : 'border-center-image'
+      }`}
     >
       <div className="sm:w-44 sm:min-w-[176px] aspect-[2/1] sm:h-48 rounded bg-gray-100 dark:bg-gray-50/20 animate-pulse"></div>
       <div className="flex-grow px-3 pt-3 sm:pt-1">

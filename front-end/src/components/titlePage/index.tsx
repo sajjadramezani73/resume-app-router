@@ -1,12 +1,22 @@
-// import useTransition from "@/hooks/useTransition";
-// import { useThemeAction } from "@/store/themeSlice";
+import { getCurrentLocale } from '@/locales/server'
+import { getCurrentScheme } from '@/utils/ThemeHandler'
 
-const Title = ({ children }: { children: string }) => {
-  // const { locale } = useTransition()
-  // const { theme } = useThemeAction()
+const Title = async ({ children }: { children: string }) => {
+  const theme = await getCurrentScheme()
+  const locale = getCurrentLocale()
+
   return (
     <p
-      className={`pb-7 text-xl font-bold text-captionDark dark:text-lightCaptionLight capitalize relative border-b border-bottom-image-to-right`}
+      className={`pb-7 text-xl font-bold text-captionDark dark:text-lightCaptionLight capitalize relative border-b 
+        ${
+          locale == 'fa'
+            ? theme === 'dark'
+              ? 'border-bottom-image-to-left-dark'
+              : 'border-bottom-image-to-left'
+            : theme === 'dark'
+            ? 'border-bottom-image-to-right-dark'
+            : 'border-bottom-image-to-right'
+        } `}
     >
       {children}
       <span className="absolute top-1 -start-2.5 w-7 h-7 rounded-full bg-primary/5 dark:bg-primary/10"></span>

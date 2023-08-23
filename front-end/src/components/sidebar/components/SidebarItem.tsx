@@ -1,18 +1,26 @@
+/* eslint-disable @next/next/no-async-client-component */
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
 import LoadSvgIcon from '@/utils/LoadSvgIcon'
+import { getCurrentScheme } from '@/utils/ThemeHandler'
 import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
 
-const SidebarItem = ({ item, isLink = true }: any) => {
+const SidebarItem = async ({ item, isLink = true }: any) => {
   const segment = useSelectedLayoutSegment()
+  const theme = await getCurrentScheme()
 
   return (
     <>
       {isLink ? (
         <Link href={item.href}>
           <span
-            className={`w-full flex flex-col items-center py-3 border-b border-center-image`}
+            className={`w-full flex flex-col items-center py-3 border-b ${
+              theme === 'dark'
+                ? 'border-center-image-dark'
+                : 'border-center-image'
+            }`}
           >
             <LoadSvgIcon
               name={item.icon}
@@ -20,6 +28,8 @@ const SidebarItem = ({ item, isLink = true }: any) => {
               color={
                 segment === item.href
                   ? 'var(--color-primary)'
+                  : theme === 'dark'
+                  ? 'var(--color-lightCaptionLight)'
                   : 'var(--color-captionDark)'
               }
               weight={1.5}

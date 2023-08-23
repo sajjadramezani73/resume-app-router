@@ -1,17 +1,18 @@
+import { cookies } from 'next/headers'
+
 export const getAbout = async () => {
+  const cookieStore = cookies()
+  const locale = cookieStore.get('Next-Locale') ?? { value: 'fa' }
+
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/about/getAbout`,
     {
       cache: 'no-store',
-      headers: { location: 'en' },
+      headers: { location: locale.value },
     }
   )
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
 
-  // Recommendation: handle errors
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data')
   }
 
@@ -19,19 +20,17 @@ export const getAbout = async () => {
 }
 
 export const getExperiences = async () => {
+  const cookieStore = cookies()
+  const locale = cookieStore.get('Next-Locale') ?? { value: 'fa' }
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/experience/getExperiences`,
     {
       cache: 'no-store',
-      headers: { location: 'en' },
+      headers: { location: locale.value },
     }
   )
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
 
-  // Recommendation: handle errors
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data')
   }
 
@@ -39,19 +38,17 @@ export const getExperiences = async () => {
 }
 
 export const getEducations = async () => {
+  const cookieStore = cookies()
+  const locale = cookieStore.get('Next-Locale') ?? { value: 'fa' }
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/education/getEducations`,
     {
       cache: 'no-store',
-      headers: { location: 'en' },
+      headers: { location: locale.value },
     }
   )
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
 
-  // Recommendation: handle errors
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data')
   }
 
@@ -59,19 +56,17 @@ export const getEducations = async () => {
 }
 
 export const getProjects = async () => {
+  const cookieStore = cookies()
+  const locale = cookieStore.get('Next-Locale') ?? { value: 'fa' }
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/project/getProjects`,
     {
       cache: 'no-store',
-      headers: { location: 'en' },
+      headers: { location: locale.value },
     }
   )
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
 
-  // Recommendation: handle errors
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data')
   }
 
