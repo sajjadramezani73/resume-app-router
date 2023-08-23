@@ -49,6 +49,82 @@ const SvgIcon: FC<LoadSvgIconProps> = ({
           </svg>
         );
 
+      case "arrow-up":
+        return (
+          <svg
+            width={size}
+            height={size}
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13 30L25 18L37 30"
+              stroke={color}
+              stroke-width={weight}
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        );
+
+      case "arrow-down":
+        return (
+          <svg
+            width={size}
+            height={size}
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M36 18L24 30L12 18"
+              stroke={color}
+              stroke-width={weight}
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        );
+
+      case "arrow-right":
+        return (
+          <svg
+            width={size}
+            height={size}
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19 12L31 24L19 36"
+              stroke={color}
+              stroke-width={weight}
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        );
+
+      case "arrow-left":
+        return (
+          <svg
+            width={size}
+            height={size}
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M31 36L19 24L31 12"
+              stroke={color}
+              stroke-width={weight}
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        );
+
       default:
         break;
     }

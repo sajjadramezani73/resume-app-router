@@ -33,7 +33,14 @@ export default withMT({
       tiny: ".9375rem",
       base: "1rem",
     },
-    extend: {},
+    extend: {
+      boxShadow: {
+        left: "-5px 0px 9px -8px rgba(0,0,0,0.3)",
+        right: "5px 0px 9px -8px rgba(0,0,0,0.3)",
+        bottom: "0px 5px 9px -8px rgba(0,0,0,0.3)",
+        top: "0px -5px 9px -8px rgba(0,0,0,0.3)",
+      },
+    },
   },
   plugins: [
     plugin(function ({ addComponents }) {
