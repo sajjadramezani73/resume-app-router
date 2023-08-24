@@ -33,6 +33,9 @@ export default withMT({
       tiny: ".9375rem",
       base: "1rem",
     },
+    fontFamily: {
+      iranyekan: ["iranyekan"],
+    },
     extend: {
       boxShadow: {
         left: "-5px 0px 9px -8px rgba(0,0,0,0.3)",
