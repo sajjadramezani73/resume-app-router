@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../container/sidebar/Sidebar";
+import AvatarMenu from "../container/avatar/Avatar";
 
 const Dashboard = () => {
   return (
@@ -11,7 +12,11 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="flex-grow">
-        <div className="h-20 bg-primary"></div>
+        <div className="h-20 bg-primary">
+          <div className="h-full flex justify-end items-center pl-8">
+            <AvatarMenu />
+          </div>
+        </div>
         <div className="">
           <Outlet />
         </div>
