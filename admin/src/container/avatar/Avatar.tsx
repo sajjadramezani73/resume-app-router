@@ -9,6 +9,7 @@ import {
 
 import avatarImg from "../../assets/images/avatar.jpg";
 import SvgIcon from "../../utils/SvgIcon";
+import { Link } from "react-router-dom";
 
 const AvatarMenu = () => {
   return (
@@ -22,12 +23,14 @@ const AvatarMenu = () => {
         />
       </MenuHandler>
       <MenuList className="font-iranyekan">
-        <MenuItem className="flex items-center gap-2">
-          <SvgIcon name="user" size={18} color="var(--color-caption)" />
-          <Typography variant="small" className="font-normal">
-            درباره من
-          </Typography>
-        </MenuItem>
+        <Link to="/dashboard">
+          <MenuItem className="flex items-center gap-2">
+            <SvgIcon name="user" size={18} color="var(--color-caption)" />
+            <Typography variant="small" className="font-normal">
+              درباره من
+            </Typography>
+          </MenuItem>
+        </Link>
         <MenuItem className="flex items-center gap-2 ">
           <SvgIcon
             name="power"
