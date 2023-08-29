@@ -1,8 +1,8 @@
-import { ThemeProvider } from "@material-tailwind/react";
-import Layout from "./container/layout/Layout";
-import { QueryClientProvider, QueryClient } from "react-query";
+import { ThemeProvider } from '@material-tailwind/react'
+import Layout from './container/layout/Layout'
+import { QueryClientProvider, QueryClient } from 'react-query'
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient()
 
 const App = () => {
   const customTheme = {
@@ -10,7 +10,7 @@ const App = () => {
       styles: {
         base: {
           list: {
-            fontFamily: "iranyekan",
+            fontFamily: 'iranyekan',
           },
         },
       },
@@ -19,36 +19,43 @@ const App = () => {
       styles: {
         variants: {
           h1: {
-            fontFamily: "iranyekan",
+            fontFamily: 'iranyekan',
           },
           h2: {
-            fontFamily: "iranyekan",
+            fontFamily: 'iranyekan',
           },
           h3: {
-            fontFamily: "iranyekan",
+            fontFamily: 'iranyekan',
           },
           h4: {
-            fontFamily: "iranyekan",
+            fontFamily: 'iranyekan',
           },
           h5: {
-            fontFamily: "iranyekan",
+            fontFamily: 'iranyekan',
           },
           h6: {
-            fontFamily: "iranyekan",
+            fontFamily: 'iranyekan',
           },
           lead: {
-            fontFamily: "iranyekan",
+            fontFamily: 'iranyekan',
           },
           paragraph: {
-            fontFamily: "iranyekan",
+            fontFamily: 'iranyekan',
           },
           small: {
-            fontFamily: "iranyekan",
+            fontFamily: 'iranyekan',
           },
         },
       },
     },
-  };
+    tooltip: {
+      styles: {
+        base: {
+          fontFamily: 'iranyekan',
+        },
+      },
+    },
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -56,7 +63,7 @@ const App = () => {
         <Layout />
       </ThemeProvider>
     </QueryClientProvider>
-  );
-};
+  )
+}
 
-export default App;
+export default App

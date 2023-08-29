@@ -5,11 +5,11 @@ import {
   MenuItem,
   Avatar,
   Typography,
-} from "@material-tailwind/react";
+} from '@material-tailwind/react'
 
-import avatarImg from "../../assets/images/avatar.jpg";
-import SvgIcon from "../../utils/SvgIcon";
-import { Link } from "react-router-dom";
+import avatarImg from '../../assets/images/avatar.jpg'
+import SvgIcon from '../../utils/SvgIcon'
+import { Link } from 'react-router-dom'
 
 const AvatarMenu = () => {
   return (
@@ -44,7 +44,7 @@ const AvatarMenu = () => {
         </MenuItem>
       </MenuList>
     </Menu>
-  );
-};
+  )
+}
 
-export default AvatarMenu;
+export default AvatarMenu

@@ -177,6 +177,108 @@ const SvgIcon: FC<LoadSvgIconProps> = ({
           </svg>
         )
 
+      case 'edit':
+        return (
+          <svg
+            width={size}
+            height={size}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21.7312 2.26884C20.706 1.24372 19.044 1.24372 18.0189 2.26884L16.8617 3.426L20.574 7.13831L21.7312 5.98116C22.7563 4.95603 22.7563 3.29397 21.7312 2.26884Z"
+              fill={color}
+              strokeWidth={weight}
+            />
+            <path
+              d="M19.5134 8.19897L15.801 4.48666L3.65021 16.6375C3.03342 17.2543 2.58003 18.015 2.33101 18.851L1.53123 21.5359C1.45261 21.7998 1.52496 22.0856 1.71969 22.2803C1.91442 22.4751 2.2002 22.5474 2.46413 22.4688L5.14902 21.669C5.98499 21.42 6.74574 20.9666 7.36253 20.3498L19.5134 8.19897Z"
+              fill={color}
+              strokeWidth={weight}
+            />
+          </svg>
+        )
+
+      case 'trash':
+        return (
+          <svg
+            width={size}
+            height={size}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2 6H22"
+              stroke={color}
+              strokeWidth={weight}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M19.8402 6.20996L18.8502 20.14C18.8184 20.6472 18.5933 21.1228 18.2212 21.4689C17.8491 21.815 17.3583 22.0051 16.8502 22H7.15021C6.64328 22.0011 6.15439 21.812 5.78021 21.47C5.40831 21.1232 5.18294 20.6474 5.15021 20.14L4.16016 6.20996"
+              stroke={color}
+              strokeWidth={weight}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M12 9.7002V18.7002"
+              stroke={color}
+              strokeWidth={weight}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M15 10.6699V17.6699"
+              stroke={color}
+              strokeWidth={weight}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M9 10.6699V17.6699"
+              stroke={color}
+              strokeWidth={weight}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M10 2H14C14.5292 2.00393 15.0356 2.21589 15.4099 2.59012C15.7841 2.96434 15.9961 3.47078 16 4V6H8V4C8.00393 3.47078 8.21592 2.96434 8.59015 2.59012C8.96437 2.21589 9.47078 2.00393 10 2V2Z"
+              stroke={color}
+              strokeWidth={weight}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )
+
+      case 'eye':
+        return (
+          <svg
+            width={size}
+            height={size}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2.03555 12.3224C1.96647 12.1151 1.9664 11.8907 2.03536 11.6834C3.42373 7.50972 7.36079 4.5 12.0008 4.5C16.6387 4.5 20.5742 7.50692 21.9643 11.6776C22.0334 11.8849 22.0335 12.1093 21.9645 12.3166C20.5761 16.4903 16.6391 19.5 11.9991 19.5C7.3612 19.5 3.42564 16.4931 2.03555 12.3224Z"
+              stroke={color}
+              strokeWidth={weight}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z"
+              stroke={color}
+              strokeWidth={weight}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )
+
       default:
         break
     }

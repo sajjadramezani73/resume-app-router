@@ -1,11 +1,11 @@
-import { Route, Routes } from "react-router-dom";
-import Splash from "../../pages/Splash";
-import Dashboard from "../../pages/Dashboard";
-import About from "../../pages/About";
-import Educations from "../../pages/Educations";
-import Experineces from "../../pages/Experineces";
-import Projects from "../../pages/Projects";
-import Login from "../../pages/Login";
+import { Route, Routes } from 'react-router-dom'
+import Splash from '../../pages/Splash'
+import Dashboard from '../../pages/Dashboard'
+import About from '../../pages/About'
+import Educations from '../../pages/Educations'
+import Experineces from '../../pages/Experineces'
+import Projects from '../../pages/Projects'
+import Login from '../../pages/Login'
 
 const Layout = () => {
   return (
@@ -19,7 +19,7 @@ const Layout = () => {
       </Route>
       <Route path="/login" element={<Login />} />
     </Routes>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

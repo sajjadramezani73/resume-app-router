@@ -1,11 +1,11 @@
-import SidebarLinks from "./components/SidebarLinks";
+import SidebarLinks from './components/SidebarLinks'
 
 const Sidebar = () => {
   return (
     <>
       <SidebarLinks />
     </>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

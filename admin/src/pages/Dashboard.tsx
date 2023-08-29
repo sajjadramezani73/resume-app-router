@@ -1,6 +1,6 @@
-import { Outlet } from "react-router-dom";
-import Sidebar from "../container/sidebar/Sidebar";
-import AvatarMenu from "../container/avatar/Avatar";
+import { Outlet } from 'react-router-dom'
+import Sidebar from '../container/sidebar/Sidebar'
+import AvatarMenu from '../container/avatar/Avatar'
 
 const Dashboard = () => {
   return (
@@ -22,7 +22,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
