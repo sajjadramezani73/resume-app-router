@@ -1,5 +1,8 @@
 import { ThemeProvider } from "@material-tailwind/react";
 import Layout from "./container/layout/Layout";
+import { QueryClientProvider, QueryClient } from "react-query";
+
+const queryClient = new QueryClient();
 
 const App = () => {
   const customTheme = {
@@ -48,9 +51,11 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider value={customTheme}>
-      <Layout />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider value={customTheme}>
+        <Layout />
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 };
 
