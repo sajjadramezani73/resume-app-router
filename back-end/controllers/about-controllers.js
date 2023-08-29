@@ -1,6 +1,32 @@
 const About = require("../model/about");
 const HttpError = require("../model/http-error");
 
+const adminGetAbout = async (req, res, next) => {
+  let about;
+  try {
+    about = await About.findOne({});
+  } catch (err) {
+    const error = new HttpError("Creating about faild", 500);
+    return next(error);
+  }
+
+  const aboutMe = {
+    firstName: about.firstName,
+    lastName: about.lastName,
+    job: about.job,
+    address: about.address,
+    bio: about.bio,
+    gender: about.gender,
+    age: about.age,
+    email: about.email,
+    phone: about.phone,
+    socialsNetwork: about.socialsNetwork,
+    avatar: about.avatar,
+  };
+
+  res.json({ aboutMe: aboutMe });
+};
+
 const getAbout = async (req, res, next) => {
   const { location } = req.headers;
 
@@ -90,6 +116,7 @@ const updeteAbout = async (req, res, next) => {
   res.send(about);
 };
 
+exports.adminGetAbout = adminGetAbout;
 exports.getAbout = getAbout;
 exports.createAbout = createAbout;
 exports.updeteAbout = updeteAbout;

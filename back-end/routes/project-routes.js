@@ -1,12 +1,18 @@
-const express = require('express')
-const router = express()
-const projectControllers = require('../controllers/project-controllers')
-const fileUpload = require('../middleware/file-upload')
+const express = require("express");
+const router = express();
+const projectControllers = require("../controllers/project-controllers");
+const fileUpload = require("../middleware/file-upload");
 
-router.get('/getProjects', projectControllers.getProjects)
+router.get("/adminGetProjects", projectControllers.adminGetProjects);
 
-router.post('/createProject', projectControllers.createProject)
+router.get("/getProjects", projectControllers.getProjects);
 
-router.post('/updateProject', fileUpload.single('avatar'), projectControllers.updateProject)
+router.post("/createProject", projectControllers.createProject);
 
-module.exports = router
+router.post(
+  "/updateProject",
+  fileUpload.single("avatar"),
+  projectControllers.updateProject
+);
+
+module.exports = router;

@@ -1,17 +1,22 @@
-const express = require('express')
-const router = express()
-const aboutControllers = require('../controllers/about-controllers')
-const fileUpload = require('../middleware/file-upload')
-
+const express = require("express");
+const router = express();
+const aboutControllers = require("../controllers/about-controllers");
+const fileUpload = require("../middleware/file-upload");
 
 // router.post('/signup', userControllers.signup)
 
 // router.post('/login', userControllers.login)
 
-router.get('/getAbout', aboutControllers.getAbout)
+router.get("/adminGetAbout", aboutControllers.adminGetAbout);
 
-router.post('/createAbout', aboutControllers.createAbout)
+router.get("/getAbout", aboutControllers.getAbout);
 
-router.post('/updateAbout', fileUpload.single('avatar'), aboutControllers.updeteAbout)
+router.post("/createAbout", aboutControllers.createAbout);
 
-module.exports = router
+router.post(
+  "/updateAbout",
+  fileUpload.single("avatar"),
+  aboutControllers.updeteAbout
+);
+
+module.exports = router;

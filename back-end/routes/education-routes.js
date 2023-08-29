@@ -1,9 +1,11 @@
-const express = require('express')
-const router = express()
-const educationControllers = require('../controllers/education-controllers')
+const express = require("express");
+const router = express();
+const educationControllers = require("../controllers/education-controllers");
 
-router.get('/getEducations', educationControllers.getEducations)
+router.get("/adminGetEducations", educationControllers.adminGetEducations);
 
-router.post('/createEducation', educationControllers.createEducation)
+router.get("/getEducations", educationControllers.getEducations);
 
-module.exports = router
+router.post("/createEducation", educationControllers.createEducation);
+
+module.exports = router;
