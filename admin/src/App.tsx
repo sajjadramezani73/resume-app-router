@@ -55,6 +55,24 @@ const App = () => {
         },
       },
     },
+    dialog: {
+      styles: {
+        base: {
+          container: {
+            fontFamily: 'iranyekan',
+          },
+        },
+      },
+    },
+    button: {
+      styles: {
+        base: {
+          initial: {
+            fontFamily: 'iranyekan',
+          },
+        },
+      },
+    },
   }
 
   return (
