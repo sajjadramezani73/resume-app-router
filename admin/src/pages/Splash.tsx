@@ -1,6 +1,6 @@
+import SvgIcon from '@/utils/SvgIcon'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import SvgIcon from '../utils/SvgIcon'
 
 const Splash = () => {
   const navigate = useNavigate()

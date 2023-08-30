@@ -8,8 +8,8 @@ import {
 } from '@material-tailwind/react'
 
 import avatarImg from '../../assets/images/avatar.jpg'
-import SvgIcon from '../../utils/SvgIcon'
 import { Link } from 'react-router-dom'
+import SvgIcon from '@/utils/SvgIcon'
 
 const AvatarMenu = () => {
   return (

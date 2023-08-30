@@ -1,6 +1,6 @@
+import AvatarMenu from '@/container/avatar/Avatar'
+import Sidebar from '@/container/sidebar/Sidebar'
 import { Outlet } from 'react-router-dom'
-import Sidebar from '../container/sidebar/Sidebar'
-import AvatarMenu from '../container/avatar/Avatar'
 
 const Dashboard = () => {
   return (
@@ -11,13 +11,13 @@ const Dashboard = () => {
           <Sidebar />
         </div>
       </div>
-      <div className="flex-grow">
+      <div className="flex-grow flex flex-col">
         <div className="h-20 bg-primary">
           <div className="h-full flex justify-end items-center pl-8">
             <AvatarMenu />
           </div>
         </div>
-        <div className="p-8">
+        <div className="p-8 flex-grow">
           <Outlet />
         </div>
       </div>

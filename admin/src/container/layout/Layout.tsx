@@ -1,11 +1,11 @@
+import About from '@/pages/About'
+import Dashboard from '@/pages/Dashboard'
+import Educations from '@/pages/Educations'
+import Experineces from '@/pages/Experineces'
+import Login from '@/pages/Login'
+import Projects from '@/pages/Projects'
+import Splash from '@/pages/Splash'
 import { Route, Routes } from 'react-router-dom'
-import Splash from '../../pages/Splash'
-import Dashboard from '../../pages/Dashboard'
-import About from '../../pages/About'
-import Educations from '../../pages/Educations'
-import Experineces from '../../pages/Experineces'
-import Projects from '../../pages/Projects'
-import Login from '../../pages/Login'
 
 const Layout = () => {
   return (

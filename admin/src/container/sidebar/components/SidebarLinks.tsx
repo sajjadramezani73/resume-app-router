@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Card, List, ListItem, ListItemSuffix } from '@material-tailwind/react'
-import SvgIcon from '../../../utils/SvgIcon'
 import { Link } from 'react-router-dom'
+import SvgIcon from '@/utils/SvgIcon'
 
 const SidebarLinks = () => {
   const [links] = useState([
