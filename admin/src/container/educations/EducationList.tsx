@@ -6,6 +6,7 @@ import {
   DialogBody,
   DialogFooter,
   IconButton,
+  Input,
   Tooltip,
   Typography,
 } from '@material-tailwind/react'
@@ -20,6 +21,11 @@ const TABLE_HEAD = ['عنوان', 'مدرک', 'کشور-شهر', 'عملکرد']
 const EducationList = () => {
   const { data, isLoading } = useQuery([QUERY_KEY.EDUCATIONS], getEducations)
   console.log('data', data, isLoading)
+
+  const [educationItem, setEducationItem] = useState<IEducationProps | null>(
+    null
+  )
+  console.log('educationItem', educationItem)
 
   const [open, setOpen] = useState(false)
 
@@ -92,7 +98,7 @@ const EducationList = () => {
                       }
                       className=""
                     >
-                      <IconButton color="blue" size="sm" onClick={handleOpen}>
+                      <IconButton color="blue" size="sm">
                         <SvgIcon name="edit" size={16} color="#fff" />
                       </IconButton>
                     </Tooltip>
@@ -116,7 +122,14 @@ const EducationList = () => {
                       }
                       className=""
                     >
-                      <IconButton color="green" size="sm">
+                      <IconButton
+                        color="green"
+                        size="sm"
+                        onClick={() => {
+                          handleOpen()
+                          setEducationItem(item)
+                        }}
+                      >
                         <SvgIcon name="eye" size={18} color="#fff" />
                       </IconButton>
                     </Tooltip>
@@ -128,15 +141,126 @@ const EducationList = () => {
         </table>
       </Card>
 
-      <Dialog open={open} handler={handleOpen} size="lg">
-        <DialogBody divider>
-          The key to more success is to have a lot of pillows. Put it this way,
-          it took me twenty five years to get these plants, twenty five years of
-          blood sweat and tears, and I&apos;m never giving up, I&apos;m just
-          getting started. I&apos;m up to something. Fan luv.
+      <Dialog
+        className="overflow-hidden"
+        open={open}
+        handler={() => {
+          handleOpen()
+          setEducationItem(null)
+        }}
+        size="lg"
+      >
+        <DialogBody
+          className="p-8 grid grid-cols-2 gap-x-8 gap-y-4 ltr"
+          divider
+        >
+          <div className="col-auto">
+            <Input
+              value={educationItem?.title.en}
+              className=""
+              disabled
+              crossOrigin={undefined}
+            />
+          </div>
+          <div className="col-auto">
+            <Input
+              value={educationItem?.title.fa}
+              disabled
+              className="rtl"
+              crossOrigin={undefined}
+            />
+          </div>
+          <div className="col-auto">
+            <Input
+              value={educationItem?.university.en}
+              className=""
+              disabled
+              crossOrigin={undefined}
+            />
+          </div>
+          <div className="col-auto">
+            <Input
+              value={educationItem?.university.fa}
+              disabled
+              className="rtl"
+              crossOrigin={undefined}
+            />
+          </div>
+          <div className="col-auto">
+            <Input
+              value={educationItem?.location.en}
+              className=""
+              disabled
+              crossOrigin={undefined}
+            />
+          </div>
+          <div className="col-auto">
+            <Input
+              value={educationItem?.location.fa}
+              disabled
+              className="rtl"
+              crossOrigin={undefined}
+            />
+          </div>
+          <div className="col-auto">
+            <Input
+              value={educationItem?.dateStart.en}
+              className=""
+              disabled
+              crossOrigin={undefined}
+            />
+          </div>
+          <div className="col-auto">
+            <Input
+              value={educationItem?.dateStart.fa}
+              disabled
+              className="rtl"
+              crossOrigin={undefined}
+            />
+          </div>
+          <div className="col-auto">
+            <Input
+              value={educationItem?.dateEnd.en}
+              className=""
+              disabled
+              crossOrigin={undefined}
+            />
+          </div>
+          <div className="col-auto">
+            <Input
+              value={educationItem?.dateEnd.fa}
+              disabled
+              className="rtl"
+              crossOrigin={undefined}
+            />
+          </div>
+          <div className="col-auto">
+            <Input
+              value={educationItem?.grade.en}
+              className=""
+              disabled
+              crossOrigin={undefined}
+            />
+          </div>
+          <div className="col-auto">
+            <Input
+              value={educationItem?.grade.fa}
+              disabled
+              className="rtl"
+              crossOrigin={undefined}
+            />
+          </div>
         </DialogBody>
         <DialogFooter className="gap-x-3">
-          <Button variant="filled" color="red" size="sm" onClick={handleOpen}>
+          <Button
+            variant="filled"
+            color="red"
+            size="sm"
+            onClick={() => {
+              handleOpen()
+              setEducationItem(null)
+            }}
+          >
             <p>بستن</p>
           </Button>
           <Button variant="filled" className="bg-primary" size="sm">

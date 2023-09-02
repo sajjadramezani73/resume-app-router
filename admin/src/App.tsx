@@ -73,6 +73,15 @@ const App = () => {
         },
       },
     },
+    input: {
+      styles: {
+        base: {
+          input: {
+            fontFamily: 'iranyekan',
+          },
+        },
+      },
+    },
   }
 
   return (

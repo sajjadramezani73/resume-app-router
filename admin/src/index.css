@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: iranyekan;
+  font-family: 'iranyekan';
   font-style: normal;
   font-weight: 100;
   src: url('./assets/fonts/eot/iranyekanwebthinfanum.eot');
@@ -15,7 +15,7 @@
 }
 
 @font-face {
-  font-family: iranyekan;
+  font-family: 'iranyekan';
   font-style: normal;
   font-weight: 300;
   src: url('./assets/fonts/eot/iranyekanweblightfanum.eot');
@@ -27,7 +27,7 @@
 }
 
 @font-face {
-  font-family: iranyekan;
+  font-family: 'iranyekan';
   font-style: normal;
   font-weight: 400;
   src: url('./assets/fonts/eot/iranyekanwebregularfanum.eot');
@@ -39,7 +39,7 @@
 }
 
 @font-face {
-  font-family: iranyekan;
+  font-family: 'iranyekan';
   font-style: normal;
   font-weight: 500;
   src: url('./assets/fonts/eot/iranyekanwebmediumfanum.eot');
@@ -51,7 +51,7 @@
 }
 
 @font-face {
-  font-family: iranyekan;
+  font-family: 'iranyekan';
   font-style: normal;
   font-weight: 700;
   src: url('./assets/fonts/eot/iranyekanwebboldfanum.eot');
@@ -63,7 +63,7 @@
 }
 
 @font-face {
-  font-family: iranyekan;
+  font-family: 'iranyekan';
   font-style: normal;
   font-weight: 800;
   src: url('./assets/fonts/eot/iranyekanwebextraboldfanum.eot');
@@ -75,7 +75,7 @@
 }
 
 @font-face {
-  font-family: iranyekan;
+  font-family: 'iranyekan';
   font-style: normal;
   font-weight: 900;
   src: url('./assets/fonts/eot/iranyekanwebblackfanum.eot');
@@ -93,7 +93,7 @@ body,
 }
 
 body {
-  font-family: iranyekan;
+  font-family: 'iranyekan';
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -102,6 +102,7 @@ body {
 }
 
 * {
+  font-family: 'iranyekan';
   margin: 0;
   padding: 0;
   box-sizing: border-box;
