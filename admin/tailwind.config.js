@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import withMT from '@material-tailwind/react/utils/withMT'
 import plugin from 'tailwindcss/plugin'
 import colors from 'tailwindcss/colors'
 const customColors = {
@@ -11,8 +10,9 @@ const customColors = {
   border: '#07091920',
 }
 
-export default withMT({
+export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  important: '#root',
   theme: {
     screens: {
       sm: '480px',
@@ -45,6 +45,10 @@ export default withMT({
       },
     },
   },
+  corePlugins: {
+    // Remove the Tailwind CSS preflight styles so it can use Material UI's preflight instead (CssBaseline).
+    preflight: false,
+  },
   plugins: [
     plugin(function ({ addComponents }) {
       addComponents({
@@ -54,7 +58,7 @@ export default withMT({
       })
     }),
   ],
-})
+}
 
 const mapColors = (colors) => {
   let object = {}
