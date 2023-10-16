@@ -1,15 +1,4 @@
 import { useQuery } from 'react-query'
-import {
-  Button,
-  Card,
-  Dialog,
-  DialogBody,
-  DialogFooter,
-  IconButton,
-  Input,
-  Tooltip,
-  Typography,
-} from '@material-tailwind/react'
 import { getEducations } from '@/services/queries'
 import { QUERY_KEY } from '@/constants/constants'
 import SvgIcon from '@/utils/SvgIcon'
@@ -33,7 +22,7 @@ const EducationList = () => {
 
   return (
     <>
-      <Card className="w-full overflow-hidden">
+      {/* <Card className="w-full overflow-hidden">
         <table className="w-full min-w-max table-auto">
           <thead>
             <tr>
@@ -267,7 +256,7 @@ const EducationList = () => {
             <p>ویرایش</p>
           </Button>
         </DialogFooter>
-      </Dialog>
+      </Dialog> */}
     </>
   )
 }

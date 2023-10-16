@@ -1,49 +1,72 @@
 import {
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
   Avatar,
+  Divider,
+  IconButton,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Stack,
   Typography,
-} from '@material-tailwind/react'
-
+} from '@mui/material'
 import avatarImg from '../../assets/images/avatar.jpg'
-import { Link } from 'react-router-dom'
-import SvgIcon from '@/utils/SvgIcon'
+import { useState } from 'react'
+import PersonIcon from '@mui/icons-material/Person'
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew'
 
 const AvatarMenu = () => {
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
+  const open = Boolean(anchorEl)
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
   return (
-    <Menu placement="bottom-start">
-      <MenuHandler>
-        <Avatar
-          variant="circular"
-          alt=""
-          className="cursor-pointer"
-          src={avatarImg}
-        />
-      </MenuHandler>
-      <MenuList className="font-iranyekan">
-        <Link to="/dashboard">
-          <MenuItem className="flex items-center gap-2">
-            <SvgIcon name="user" size={18} color="var(--color-caption)" />
-            <Typography variant="small" className="font-normal">
-              درباره من
-            </Typography>
-          </MenuItem>
-        </Link>
-        <MenuItem className="flex items-center gap-2 ">
-          <SvgIcon
-            name="power"
-            size={18}
-            weight={3}
-            color="var(--color-caption)"
-          />
-          <Typography variant="small" className="font-normal">
-            خروج
-          </Typography>
+    <>
+      <IconButton onClick={handleClick}>
+        <Avatar sx={{ width: 50, height: 50 }} src={avatarImg} />
+      </IconButton>
+
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        onClick={handleClose}
+        transformOrigin={{ horizontal: 'left', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+        sx={{
+          '& .MuiPaper-root': {
+            width: 200,
+          },
+        }}
+      >
+        <Stack
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          spacing={1}
+          py={1}
+        >
+          <Avatar sx={{ width: 40, height: 40 }} src={avatarImg} />
+          <Typography variant="subtitle2">سجاد رمضانی</Typography>
+        </Stack>
+        <Divider />
+        <MenuItem onClick={handleClose} sx={{ paddingY: 1.5 }}>
+          <ListItemIcon>
+            <PersonIcon />
+          </ListItemIcon>
+          <Typography variant="subtitle2">درباره من</Typography>
         </MenuItem>
-      </MenuList>
-    </Menu>
+        <MenuItem onClick={handleClose} sx={{ paddingY: 1.5 }}>
+          <ListItemIcon>
+            <PowerSettingsNewIcon />
+          </ListItemIcon>
+          <Typography variant="subtitle2">خروج از حساب کاربری</Typography>
+        </MenuItem>
+      </Menu>
+    </>
   )
 }
 
