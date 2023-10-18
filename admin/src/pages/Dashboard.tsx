@@ -1,4 +1,5 @@
 import AvatarMenu from '@/container/avatar/Avatar'
+import Sidebar from '@/container/sidebar/Sidebar'
 import { Outlet } from 'react-router-dom'
 
 const Dashboard = () => {
@@ -6,7 +7,9 @@ const Dashboard = () => {
     <div className="min-h-full flex bg-body">
       <div className="w-[300px] min-w-[300px] shadow-left bg-white">
         <div className="h-20 bg-primary/80"></div>
-        <div className="p-4 pr-0">{/* <Sidebar /> */}</div>
+        <div className="p-4 pr-0">
+          <Sidebar />
+        </div>
       </div>
       <div className="flex-grow flex flex-col">
         <div className="h-20 bg-primary">
