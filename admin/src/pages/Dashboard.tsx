@@ -17,7 +17,7 @@ const Dashboard = () => {
             <AvatarMenu />
           </div>
         </div>
-        <div className="p-8 flex-grow">
+        <div className="flex-grow">
           <Outlet />
         </div>
       </div>

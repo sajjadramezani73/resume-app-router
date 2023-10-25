@@ -24,7 +24,6 @@ const EducationList = () => {
       <Table>
         <TableHead>
           <TableRow className="bg-gray-400">
-            <TableCell />
             {TABLE_HEAD.map((item) => (
               <TableCell key={item} align="right">
                 {item}
@@ -36,9 +35,6 @@ const EducationList = () => {
           {data?.educations.map((item: IEducationProps) => (
             <EducationItem key={item._id} item={item} />
           ))}
-          {/* {rows.map((row) => (
-            <Row key={row.name} row={row} />
-          ))} */}
         </TableBody>
       </Table>
     </TableContainer>
