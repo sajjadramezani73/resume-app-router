@@ -4,8 +4,6 @@ import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRena
 import { TableRow, TableCell, IconButton, Tooltip } from '@mui/material'
 
 const EducationItem = ({ item }: { item: IEducationProps }) => {
-  console.log(item)
-
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
