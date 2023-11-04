@@ -17,7 +17,6 @@ const TABLE_HEAD = ['عنوان', 'مدرک', 'کشور-شهر', 'عملکرد']
 
 const EducationList = () => {
   const { data, isLoading } = useQuery([QUERY_KEY.EDUCATIONS], getEducations)
-  console.log('data', data, isLoading)
 
   return (
     <TableContainer component={Paper}>

@@ -5,17 +5,28 @@ import { CssBaseline } from '@mui/material'
 import theme from './muiConfig/theme'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
+import { CacheProvider } from '@emotion/react'
+import { prefixer } from 'stylis'
+import rtlPlugin from 'stylis-plugin-rtl'
+import createCache from '@emotion/cache'
 
 const queryClient = new QueryClient()
 
 const App = () => {
+  // Create rtl cache
+  const cacheRtl = createCache({
+    key: 'muirtl',
+    stylisPlugins: [prefixer, rtlPlugin],
+  })
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <StyledEngineProvider injectFirst>
           <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Layout />
+            <CacheProvider value={cacheRtl}>
+              <CssBaseline />
+              <Layout />
+            </CacheProvider>
           </ThemeProvider>
         </StyledEngineProvider>
       </QueryClientProvider>
