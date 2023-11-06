@@ -7,10 +7,10 @@ const EducationItem = ({ item }: { item: IEducationProps }) => {
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-        <TableCell align="right">{item.title.fa}</TableCell>
-        <TableCell align="right">{item.grade.fa}</TableCell>
-        <TableCell align="right">{item.location.fa}</TableCell>
-        <TableCell align="right">
+        <TableCell className="text-right">{item.title.fa}</TableCell>
+        <TableCell className="text-right">{item.grade.fa}</TableCell>
+        <TableCell className="text-right">{item.location.fa}</TableCell>
+        <TableCell className="text-right">
           <Tooltip title="حذف" arrow>
             <IconButton size="small" className="text-red-500">
               <DeleteIcon />

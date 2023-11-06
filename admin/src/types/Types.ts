@@ -4,7 +4,7 @@ export interface ISidebarItem {
 }
 
 export interface IEducationProps {
-  _id: string
+  _id?: string
   title: {
     fa: string
     en: string

@@ -11,7 +11,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material'
-import EducationItem from './EducationItem'
+import EducationItem from './components/EducationItem'
 
 const TABLE_HEAD = ['عنوان', 'مدرک', 'کشور-شهر', 'عملکرد']
 
@@ -24,7 +24,7 @@ const EducationList = () => {
         <TableHead>
           <TableRow className="bg-gray-400">
             {TABLE_HEAD.map((item) => (
-              <TableCell key={item} align="right">
+              <TableCell key={item} className="text-right">
                 {item}
               </TableCell>
             ))}
