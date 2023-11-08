@@ -17,6 +17,7 @@ const Step1 = () => {
         as={TextField}
         size="small"
         label="Title"
+        className="ltr"
       />
       <Field
         type="text"
@@ -31,6 +32,22 @@ const Step1 = () => {
         as={TextField}
         size="small"
         label="University"
+        className="ltr"
+      />
+      <Field
+        type="text"
+        name="location.fa"
+        as={TextField}
+        size="small"
+        label="آدرس"
+      />
+      <Field
+        type="text"
+        name="location.en"
+        as={TextField}
+        size="small"
+        label="Location"
+        className="ltr"
       />
     </div>
   )
