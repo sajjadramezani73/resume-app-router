@@ -1,52 +1,27 @@
 import { TextField } from '@mui/material'
-import { Field } from 'formik'
 
 const Step1 = () => {
   return (
     <div className="grid grid-cols-2 gap-4">
-      <Field
-        type="text"
-        name="title.fa"
-        as={TextField}
-        size="small"
-        label="عنوان"
-      />
-      <Field
-        type="text"
-        name="title.en"
-        as={TextField}
-        size="small"
+      <TextField label="عنوان" variant="outlined" size="small" />
+      <TextField
         label="Title"
+        variant="outlined"
+        size="small"
         className="ltr"
       />
-      <Field
-        type="text"
-        name="university.fa"
-        as={TextField}
-        size="small"
-        label="دانشگاه"
-      />
-      <Field
-        type="text"
-        name="university.en"
-        as={TextField}
-        size="small"
+      <TextField label="دانشگاه" variant="outlined" size="small" />
+      <TextField
         label="University"
+        variant="outlined"
+        size="small"
         className="ltr"
       />
-      <Field
-        type="text"
-        name="location.fa"
-        as={TextField}
-        size="small"
-        label="آدرس"
-      />
-      <Field
-        type="text"
-        name="location.en"
-        as={TextField}
-        size="small"
+      <TextField label="آدرس" variant="outlined" size="small" />
+      <TextField
         label="Location"
+        variant="outlined"
+        size="small"
         className="ltr"
       />
     </div>

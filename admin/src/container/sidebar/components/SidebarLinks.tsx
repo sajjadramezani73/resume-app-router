@@ -18,10 +18,7 @@ const SidebarLinks = () => {
     {
       id: 2,
       title: 'تحصیلات',
-      children: [
-        { title: 'افزودن جدید', href: '' },
-        { title: 'لیست سوابق تحصیلی', href: 'dashboard/educations' },
-      ],
+      children: [{ title: 'لیست سوابق تحصیلی', href: 'dashboard/educations' }],
     },
     {
       id: 3,

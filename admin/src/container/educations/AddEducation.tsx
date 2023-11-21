@@ -1,21 +1,15 @@
 import React, { useState } from 'react'
-import {
-  Box,
-  Button,
-  Card,
-  Step,
-  StepLabel,
-  Stepper,
-  Typography,
-} from '@mui/material'
-import { Form, Formik } from 'formik'
+import { Button, Card, Step, StepLabel, Stepper } from '@mui/material'
 import Step1 from './components/Step1'
 import Step2 from './components/Step2'
-import { IEducationProps } from '@/types/Types'
+import { createEducations } from '@/services/queries'
+import { useEducationActions } from '@/store/educationSlice'
 
 const steps = [1, 2]
 
 const AddEducation = () => {
+  const { updateEducation } = useEducationActions()
+
   const [initialValues] = useState({
     title: {
       fa: '',
@@ -68,9 +62,7 @@ const AddEducation = () => {
     setActiveStep(0)
   }
 
-  const renderComponent = (activeStep: number, values: IEducationProps) => {
-    console.log('values', values)
-
+  const renderComponent = (activeStep: number) => {
     switch (activeStep) {
       case 0:
         return <Step1 />
@@ -81,80 +73,62 @@ const AddEducation = () => {
         break
     }
   }
+
+  const handleSubmit = (values: any) => {
+    createEducations(values)
+      .then((res) => {
+        handleReset()
+        updateEducation({ showForm: false })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   return (
-    <Card className="p-8">
-      <Formik
-        initialValues={initialValues}
-        //  validate={values => {
-        //    const errors = {};
-        //    if (!values.email) {
-        //      errors.email = 'Required';
-        //    } else if (
-        //      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        //    ) {
-        //      errors.email = 'Invalid email address';
-        //    }
-        //    return errors;
-        //  }}
-        onSubmit={(values) => {
-          console.log('value', values)
-        }}
-      >
-        {({ values }) => (
-          <Form>
-            <Stepper activeStep={activeStep}>
-              {steps.map((label, index) => {
-                const stepProps: { completed?: boolean } = {}
-                const labelProps: {
-                  optional?: React.ReactNode
-                } = {}
-                if (isStepSkipped(index)) {
-                  stepProps.completed = false
-                }
-                return (
-                  <Step key={label} {...stepProps}>
-                    <StepLabel {...labelProps}></StepLabel>
-                  </Step>
-                )
-              })}
-            </Stepper>
-            {activeStep === steps.length ? (
-              <>
-                <Typography sx={{ mt: 2, mb: 1 }}>
-                  All steps completed - you&apos;re finished
-                </Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                  <Box sx={{ flex: '1 1 auto' }} />
-                  <Button onClick={handleReset}>Reset</Button>
-                </Box>
-              </>
+    <>
+      <Card className="p-8">
+        <Stepper activeStep={activeStep}>
+          {steps.map((label, index) => {
+            const stepProps: { completed?: boolean } = {}
+            const labelProps: {
+              optional?: React.ReactNode
+            } = {}
+            if (isStepSkipped(index)) {
+              stepProps.completed = false
+            }
+            return (
+              <Step key={label} {...stepProps}>
+                <StepLabel {...labelProps}></StepLabel>
+              </Step>
+            )
+          })}
+        </Stepper>
+        <>
+          {<div className="py-8 px-4">{renderComponent(activeStep)}</div>}
+
+          <div className="flex justify-between pt-2">
+            <Button
+              variant="outlined"
+              disabled={activeStep === 0}
+              onClick={handleBack}
+            >
+              برگشت
+            </Button>
+
+            {activeStep === steps.length - 1 ? (
+              <Button variant="contained" type="submit">
+                ارسال
+              </Button>
             ) : (
-              <>
-                {
-                  <div className="py-8 px-4">
-                    {renderComponent(activeStep, values)}
-                  </div>
-                }
-
-                <div className="flex justify-between pt-2">
-                  <Button
-                    color="inherit"
-                    disabled={activeStep === 0}
-                    onClick={handleBack}
-                  >
-                    برگشت
-                  </Button>
-
-                  <Button onClick={handleNext}>
-                    {activeStep === steps.length - 1 ? 'تمام' : 'بعدی'}
-                  </Button>
-                </div>
-              </>
+              <Button variant="contained" onClick={handleNext}>
+                بعدی
+              </Button>
             )}
-          </Form>
-        )}
-      </Formik>
-    </Card>
+          </div>
+        </>
+      </Card>
+    </>
   )
 }
 

@@ -1,3 +1,4 @@
+import { IEducationProps } from '@/types/Types'
 import service from './Api'
 
 export const getAbout = async () => {
@@ -17,5 +18,10 @@ export const getEducations = async () => {
 
 export const getProjects = async () => {
   const res = await service.get('/api/project/adminGetProjects')
+  return res?.data
+}
+
+export const createEducations = async (params: IEducationProps) => {
+  const res = await service.post('/api/education/createEducation', params)
   return res?.data
 }
