@@ -8,7 +8,10 @@ import { useEducationActions } from '@/store/educationSlice'
 const steps = [1, 2]
 
 const AddEducation = () => {
-  const { updateEducation } = useEducationActions()
+  const { updateEducation, education, updateAddEducation } =
+    useEducationActions()
+
+  console.log('education', education)
 
   const [initialValues] = useState({
     title: {
@@ -62,12 +65,26 @@ const AddEducation = () => {
     setActiveStep(0)
   }
 
+  const onChangeHandler = (e: { target: { name: string; value: string } }) => {
+    console.log(e.target.name.split('.'), e.target.value)
+    const title = e.target.name.split('.')[0]
+    const lang = e.target.name.split('.')[1]
+    const obj = { name: title, amount: { [lang]: e.target.value } }
+
+    updateAddEducation(obj)
+  }
+
   const renderComponent = (activeStep: number) => {
     switch (activeStep) {
       case 0:
-        return <Step1 />
+        return <Step1 onChangeHandler={(event) => onChangeHandler(event)} />
       case 1:
-        return <Step2 />
+        return (
+          <Step2
+            onChangeHandler={(event) => onChangeHandler(event)}
+            onSelectHandler={(event) => onChangeHandler(event)}
+          />
+        )
 
       default:
         break
