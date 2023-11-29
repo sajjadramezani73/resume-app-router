@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Card, Step, StepLabel, Stepper } from '@mui/material'
 import Step1 from './components/Step1'
 import Step2 from './components/Step2'
 import { createEducations } from '@/services/queries'
 import { useEducationActions } from '@/store/educationSlice'
+import LoadingButton from '@mui/lab/LoadingButton'
 
 const steps = [1, 2]
 
@@ -13,34 +14,42 @@ const AddEducation = () => {
 
   console.log('education', education)
 
-  const [initialValues] = useState({
-    title: {
-      fa: '',
-      en: '',
-    },
-    university: {
-      fa: '',
-      en: '',
-    },
-    location: {
-      fa: '',
-      en: '',
-    },
-    dateStart: {
-      fa: '',
-      en: '',
-    },
-    dateEnd: {
-      fa: '',
-      en: '',
-    },
-    grade: {
-      fa: '',
-      en: '',
-    },
-  })
   const [activeStep, setActiveStep] = React.useState(0)
   const [skipped, setSkipped] = React.useState(new Set<number>())
+  const [disabled, setDisabled] = useState({
+    step1: true,
+    step2: true,
+  })
+  const [loading, setLoading] = useState(false)
+
+  // check for desabled button step 1 and step 2
+  useEffect(() => {
+    if (activeStep === 0) {
+      // for step 1
+      education.addEducation.title.fa === '' ||
+      education.addEducation.title.en === '' ||
+      education.addEducation.university.fa === '' ||
+      education.addEducation.university.en === '' ||
+      education.addEducation.location.fa === '' ||
+      education.addEducation.location.en === ''
+        ? setDisabled({ ...disabled, step1: true })
+        : setDisabled({ ...disabled, step1: false })
+    }
+
+    if (activeStep === 1) {
+      // for step 2
+      education.addEducation.dateStart.fa === '' ||
+      education.addEducation.dateStart.en === '' ||
+      education.addEducation.dateEnd.fa === '' ||
+      education.addEducation.dateEnd.en === '' ||
+      education.addEducation.grade.fa === '' ||
+      education.addEducation.grade.en === ''
+        ? setDisabled({ ...disabled, step2: true })
+        : setDisabled({ ...disabled, step2: false })
+    }
+  }, [education.addEducation])
+
+  console.log(disabled)
 
   const isStepSkipped = (step: number) => {
     return skipped.has(step)
@@ -65,6 +74,7 @@ const AddEducation = () => {
     setActiveStep(0)
   }
 
+  // save data form in redux store
   const onChangeHandler = (e: { target: { name: string; value: string } }) => {
     console.log(e.target.name.split('.'), e.target.value)
     const title = e.target.name.split('.')[0]
@@ -91,14 +101,18 @@ const AddEducation = () => {
     }
   }
 
-  const handleSubmit = (values: any) => {
-    createEducations(values)
+  const handleSubmit = () => {
+    setLoading(true)
+    createEducations(education.addEducation)
       .then((res) => {
+        console.log(res)
         handleReset()
         updateEducation({ showForm: false })
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err)
+        setLoading(false)
       })
   }
 
@@ -134,11 +148,29 @@ const AddEducation = () => {
             </Button>
 
             {activeStep === steps.length - 1 ? (
-              <Button variant="contained" type="submit">
-                ارسال
-              </Button>
+              <>
+                {loading ? (
+                  <LoadingButton
+                    loading
+                    variant="contained"
+                    className="w-16"
+                  ></LoadingButton>
+                ) : (
+                  <Button
+                    variant="contained"
+                    disabled={disabled.step2}
+                    onClick={handleSubmit}
+                  >
+                    ارسال
+                  </Button>
+                )}
+              </>
             ) : (
-              <Button variant="contained" onClick={handleNext}>
+              <Button
+                variant="contained"
+                disabled={disabled.step1}
+                onClick={handleNext}
+              >
                 بعدی
               </Button>
             )}
