@@ -61,6 +61,38 @@ const createEducation = async (req, res, next) => {
   res.json({ education: createEducation });
 };
 
+const deleteEducation = async (req, res, next) => {
+  const { id } = req.body;
+
+  let existingEducation;
+  try {
+    existingEducation = await Education.findOne({ _id: id });
+  } catch (err) {
+    const error = new HttpError("deleted faild !", 500);
+    return next(error);
+  }
+
+  if (!existingEducation) {
+    res.status(422).json({
+      success: 0,
+      errorMessage: "سابقه تحصیلی با این آی دی یافت نشد",
+    });
+    return next();
+  }
+
+  try {
+    await Education.findOneAndDelete({ _id: id });
+  } catch (err) {
+    const error = new HttpError("deleted faild !", 500);
+    return next(error);
+  }
+
+  res
+    .status(201)
+    .json({ success: 1, errorMessage: "سابقه تحصیلی با موفقیت حذف شد." });
+};
+
 exports.adminGetEducations = adminGetEducations;
 exports.getEducations = getEducations;
 exports.createEducation = createEducation;
+exports.deleteEducation = deleteEducation;
