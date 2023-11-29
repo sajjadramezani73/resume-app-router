@@ -25,3 +25,8 @@ export const createEducations = async (params: IEducationProps) => {
   const res = await service.post('/api/education/createEducation', params)
   return res?.data
 }
+
+export const deleteEducation = async (params: { id: string | undefined }) => {
+  const res = await service.post('/api/education/deleteEducation', params)
+  return res?.data
+}

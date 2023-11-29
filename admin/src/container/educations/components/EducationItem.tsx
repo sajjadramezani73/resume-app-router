@@ -1,9 +1,42 @@
+import { QUERY_KEY } from '@/constants/constants'
+import { deleteEducation } from '@/services/queries'
 import { IEducationProps } from '@/types/Types'
 import DeleteIcon from '@mui/icons-material/Delete'
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded'
-import { TableRow, TableCell, IconButton, Tooltip } from '@mui/material'
+import {
+  TableRow,
+  TableCell,
+  IconButton,
+  Tooltip,
+  Alert,
+  Snackbar,
+} from '@mui/material'
+import { useState } from 'react'
+import { useQueryClient } from 'react-query'
 
 const EducationItem = ({ item }: { item: IEducationProps }) => {
+  const queryClient = useQueryClient()
+  const [openAlert, setOpenAlert] = useState({
+    success: false,
+    error: false,
+  })
+
+  const handleClose = () => {
+    setOpenAlert({ success: false, error: false })
+  }
+
+  const deleteEducationHandler = async (id: string | undefined) => {
+    const result = await deleteEducation({ id: id })
+    console.log(result)
+
+    if (result.success === 1) {
+      setOpenAlert({ success: true, error: false })
+      queryClient.invalidateQueries(QUERY_KEY.EDUCATIONS)
+    } else {
+      setOpenAlert({ success: false, error: true })
+    }
+  }
+
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -12,7 +45,11 @@ const EducationItem = ({ item }: { item: IEducationProps }) => {
         <TableCell className="text-right">{item.location.fa}</TableCell>
         <TableCell className="text-right">
           <Tooltip title="حذف" arrow>
-            <IconButton size="small" className="text-red-500">
+            <IconButton
+              size="small"
+              className="text-red-500"
+              onClick={() => deleteEducationHandler(item._id)}
+            >
               <DeleteIcon />
             </IconButton>
           </Tooltip>
@@ -23,6 +60,25 @@ const EducationItem = ({ item }: { item: IEducationProps }) => {
           </Tooltip>
         </TableCell>
       </TableRow>
+
+      <Snackbar
+        open={openAlert.success}
+        autoHideDuration={3000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity="success" variant="filled">
+          سابقه تحصیلی با موفقیت حذف شد
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={openAlert.error}
+        autoHideDuration={3000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity="error" variant="filled">
+          مشکلی پیش آمده استو مجددا امتحان کنید
+        </Alert>
+      </Snackbar>
     </>
   )
 }
