@@ -6,19 +6,22 @@ import { useEducationActions } from '@/store/educationSlice'
 import AddEducation from '@/container/educations/AddEducation'
 
 const Educations = () => {
-  const { education, updateEducation } = useEducationActions()
+  const { education, updateEducation, resetEducation } = useEducationActions()
   console.log('education', education)
 
   return (
     <>
-      <Card className="p-8 rounded-none flex justify-between items-center">
+      <Card className="p-8 rounded-none flex justify-between items-center h-[100px]">
         <p className="text-titr text-[18px] font-bold">تحصیلات</p>
         {education?.education.showForm ? (
           <Button
             sx={{ '& .MuiButton-endIcon': { m: 0 } }}
             variant="contained"
             endIcon={<ChevronLeftIcon />}
-            onClick={() => updateEducation({ showForm: false })}
+            onClick={() => {
+              updateEducation({ showForm: false })
+              resetEducation()
+            }}
           >
             برگشت به لیست
           </Button>

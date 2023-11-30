@@ -93,6 +93,13 @@ const { actions, reducer } = createSlice({
 
       state.addEducation = { ...state.addEducation, ...newObj }
     },
+    updateEditEducation: (state, action) => {
+      state.addEducation = { ...state.addEducation, ...action.payload }
+    },
+    resetEducation: (state) => {
+      state.education = initialState.education
+      state.addEducation = initialState.addEducation
+    },
   },
 })
 
@@ -106,6 +113,9 @@ export const useEducationActions = function () {
       dispatch(actions.updateEducation(value)),
     updateAddEducation: (value: object) =>
       dispatch(actions.updateAddEducation(value)),
+    updateEditEducation: (value: object) =>
+      dispatch(actions.updateEditEducation(value)),
+    resetEducation: () => dispatch(actions.resetEducation()),
   }
 }
 export default reducer

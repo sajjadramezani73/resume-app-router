@@ -1,5 +1,6 @@
 import { QUERY_KEY } from '@/constants/constants'
 import { deleteEducation } from '@/services/queries'
+import { useEducationActions } from '@/store/educationSlice'
 import { IEducationProps } from '@/types/Types'
 import DeleteIcon from '@mui/icons-material/Delete'
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded'
@@ -15,6 +16,8 @@ import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 
 const EducationItem = ({ item }: { item: IEducationProps }) => {
+  const { title, university, location, dateStart, dateEnd, grade } = item
+  const { updateEducation, updateEditEducation } = useEducationActions()
   const queryClient = useQueryClient()
   const [openAlert, setOpenAlert] = useState({
     success: false,
@@ -37,6 +40,18 @@ const EducationItem = ({ item }: { item: IEducationProps }) => {
     }
   }
 
+  const handleEdit = () => {
+    updateEditEducation({
+      title,
+      university,
+      location,
+      dateStart,
+      dateEnd,
+      grade,
+    })
+    updateEducation({ showForm: true })
+  }
+
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -54,7 +69,11 @@ const EducationItem = ({ item }: { item: IEducationProps }) => {
             </IconButton>
           </Tooltip>
           <Tooltip title="ویرایش" arrow>
-            <IconButton size="small" className="text-blue-500">
+            <IconButton
+              size="small"
+              className="text-blue-500"
+              onClick={handleEdit}
+            >
               <DriveFileRenameOutlineRoundedIcon />
             </IconButton>
           </Tooltip>

@@ -4,7 +4,7 @@ export const degreeEducation = {
     'Associate degree',
     'Bachelor’s degree',
     'Master’s degree',
-    'Doctoral degrees',
-    'Professional degrees',
+    'Doctoral degree',
+    'Professional degree',
   ],
 }
