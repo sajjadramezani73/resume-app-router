@@ -1,5 +1,4 @@
 import About from '@/pages/About'
-import AddEducation from '@/pages/AddEducation'
 import Dashboard from '@/pages/Dashboard'
 import Educations from '@/pages/Educations'
 import Experineces from '@/pages/Experineces'
@@ -15,7 +14,6 @@ const Layout = () => {
       <Route path="/dashboard" element={<Dashboard />}>
         <Route index element={<About />} />
         <Route path="educations" element={<Educations />} />
-        <Route path="add-education" element={<AddEducation />} />
         <Route path="experineces" element={<Experineces />} />
         <Route path="projects" element={<Projects />} />
       </Route>
