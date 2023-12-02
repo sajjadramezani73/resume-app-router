@@ -23,10 +23,7 @@ const SidebarLinks = () => {
     {
       id: 3,
       title: 'تجربه کاری',
-      children: [
-        { title: 'افزودن جدید', href: '' },
-        { title: 'لیست سوابق کاری', href: 'dashboard/experineces' },
-      ],
+      children: [{ title: 'لیست سوابق کاری', href: 'dashboard/experineces' }],
     },
     {
       id: 4,
