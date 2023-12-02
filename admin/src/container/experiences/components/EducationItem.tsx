@@ -1,7 +1,7 @@
 import { QUERY_KEY } from '@/constants/constants'
 import { deleteEducation } from '@/services/queries'
 import { useEducationActions } from '@/store/educationSlice'
-import { IEducationProps } from '@/types/Types'
+import { IExperienceProps } from '@/types/Types'
 import DeleteIcon from '@mui/icons-material/Delete'
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded'
 import {
@@ -15,10 +15,21 @@ import {
 import { useState } from 'react'
 import { useQueryClient } from 'react-query'
 
-const EducationItem = ({ item }: { item: IEducationProps }) => {
-  const { title, university, location, dateStart, dateEnd, grade } = item
-  const { updateEducation, updateEditEducation } = useEducationActions()
-  const queryClient = useQueryClient()
+const ExperienceItem = ({ item }: { item: IExperienceProps }) => {
+  const {
+    _id,
+    title,
+    company,
+    jobType,
+    jobTime,
+    dateStart,
+    dateEnd,
+    description,
+    companyLink,
+    skill,
+  } = item
+  // const { updateEducation, updateEditEducation } = useEducationActions()
+  // const queryClient = useQueryClient()
   const [openAlert, setOpenAlert] = useState({
     success: false,
     error: false,
@@ -29,41 +40,40 @@ const EducationItem = ({ item }: { item: IEducationProps }) => {
   }
 
   const deleteEducationHandler = async (id: string | undefined) => {
-    const result = await deleteEducation({ id: id })
-    console.log(result)
-
-    if (result.success === 1) {
-      setOpenAlert({ success: true, error: false })
-      queryClient.invalidateQueries(QUERY_KEY.EDUCATIONS)
-    } else {
-      setOpenAlert({ success: false, error: true })
-    }
+    // const result = await deleteEducation({ id: id })
+    // console.log(result)
+    // if (result.success === 1) {
+    //   setOpenAlert({ success: true, error: false })
+    //   queryClient.invalidateQueries(QUERY_KEY.EDUCATIONS)
+    // } else {
+    //   setOpenAlert({ success: false, error: true })
+    // }
   }
 
   const handleEdit = () => {
-    updateEditEducation({
-      title,
-      university,
-      location,
-      dateStart,
-      dateEnd,
-      grade,
-    })
-    updateEducation({ showForm: true })
+    // updateEditEducation({
+    //   title,
+    //   university,
+    //   location,
+    //   dateStart,
+    //   dateEnd,
+    //   grade,
+    // })
+    // updateEducation({ showForm: true })
   }
 
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-        <TableCell className="text-right">{item.title.fa}</TableCell>
-        <TableCell className="text-right">{item.grade.fa}</TableCell>
-        <TableCell className="text-right">{item.location.fa}</TableCell>
+        <TableCell className="text-right">{title.fa}</TableCell>
+        <TableCell className="text-right">{company.fa}</TableCell>
+        <TableCell className="text-right">{jobType.fa}</TableCell>
         <TableCell className="text-right">
           <Tooltip title="حذف" arrow>
             <IconButton
               size="small"
               className="text-red-500"
-              onClick={() => deleteEducationHandler(item._id)}
+              onClick={() => deleteEducationHandler(_id)}
             >
               <DeleteIcon />
             </IconButton>
@@ -103,4 +113,4 @@ const EducationItem = ({ item }: { item: IEducationProps }) => {
   )
 }
 
-export default EducationItem
+export default ExperienceItem
