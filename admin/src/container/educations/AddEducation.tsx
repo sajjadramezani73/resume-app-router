@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Card, Step, StepLabel, Stepper } from '@mui/material'
 import Step1 from './components/Step1'
 import Step2 from './components/Step2'
@@ -12,10 +12,8 @@ const AddEducation = () => {
   const { updateEducation, education, updateAddEducation } =
     useEducationActions()
 
-  console.log('education', education)
-
-  const [activeStep, setActiveStep] = React.useState(0)
-  const [skipped, setSkipped] = React.useState(new Set<number>())
+  const [activeStep, setActiveStep] = useState(0)
+  const [skipped, setSkipped] = useState(new Set<number>())
   const [disabled, setDisabled] = useState({
     step1: true,
     step2: true,
@@ -49,8 +47,6 @@ const AddEducation = () => {
     }
   }, [education.addEducation])
 
-  console.log(disabled)
-
   const isStepSkipped = (step: number) => {
     return skipped.has(step)
   }
@@ -76,7 +72,6 @@ const AddEducation = () => {
 
   // save data form in redux store
   const onChangeHandler = (e: { target: { name: string; value: string } }) => {
-    console.log(e.target.name.split('.'), e.target.value)
     const title = e.target.name.split('.')[0]
     const lang = e.target.name.split('.')[1]
     const obj = { name: title, amount: { [lang]: e.target.value } }

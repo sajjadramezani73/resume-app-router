@@ -96,7 +96,7 @@ const EducationItem = ({ item }: { item: IEducationProps }) => {
         onClose={handleClose}
       >
         <Alert onClose={handleClose} severity="error" variant="filled">
-          مشکلی پیش آمده استو مجددا امتحان کنید
+          مشکلی پیش آمده است. مجددا امتحان کنید
         </Alert>
       </Snackbar>
     </>

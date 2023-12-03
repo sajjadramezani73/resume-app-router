@@ -7,7 +7,6 @@ import AddEducation from '@/container/educations/AddEducation'
 
 const Educations = () => {
   const { education, updateEducation, resetEducation } = useEducationActions()
-  console.log('education', education)
 
   return (
     <>

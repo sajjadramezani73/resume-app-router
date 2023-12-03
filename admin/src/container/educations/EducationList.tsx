@@ -16,7 +16,7 @@ import EducationItem from './components/EducationItem'
 const TABLE_HEAD = ['عنوان', 'مدرک', 'کشور-شهر', 'عملکرد']
 
 const EducationList = () => {
-  const { data, isLoading } = useQuery([QUERY_KEY.EDUCATIONS], getEducations)
+  const { data } = useQuery([QUERY_KEY.EDUCATIONS], getEducations)
 
   return (
     <TableContainer component={Paper}>
