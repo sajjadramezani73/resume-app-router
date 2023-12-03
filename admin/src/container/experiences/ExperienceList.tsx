@@ -11,13 +11,12 @@ import {
   TableBody,
 } from '@mui/material'
 import { useQuery } from 'react-query'
-import ExperienceItem from './components/EducationItem'
+import ExperienceItem from './components/ExperienceItem'
 
 const TABLE_HEAD = ['عنوان', 'شرکت', 'نوع فعالیت', 'عملکرد']
 
 const ExperienceList = () => {
-  const { data, isLoading } = useQuery([QUERY_KEY.EXPERIENCES], getExperiences)
-  console.log('data', data)
+  const { data } = useQuery([QUERY_KEY.EXPERIENCES], getExperiences)
 
   return (
     <TableContainer component={Paper}>

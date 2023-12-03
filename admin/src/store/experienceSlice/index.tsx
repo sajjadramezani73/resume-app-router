@@ -46,7 +46,11 @@ export interface IExperienceState {
       fa: string
       en: string
     }
-    description: string
+    description: {
+      fa: string
+      en: string
+    }
+    companyLink: string
     skill: string[]
   }
 }
@@ -80,7 +84,11 @@ const initialState: IExperienceState = {
       fa: '',
       en: '',
     },
-    description: '',
+    description: {
+      fa: '',
+      en: '',
+    },
+    companyLink: '',
     skill: [],
   },
 }

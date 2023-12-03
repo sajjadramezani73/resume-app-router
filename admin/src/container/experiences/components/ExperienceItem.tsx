@@ -39,7 +39,7 @@ const ExperienceItem = ({ item }: { item: IExperienceProps }) => {
     setOpenAlert({ success: false, error: false })
   }
 
-  const deleteEducationHandler = async (id: string | undefined) => {
+  const deleteExperienceHandler = async (id: string | undefined) => {
     // const result = await deleteEducation({ id: id })
     // console.log(result)
     // if (result.success === 1) {
@@ -73,7 +73,7 @@ const ExperienceItem = ({ item }: { item: IExperienceProps }) => {
             <IconButton
               size="small"
               className="text-red-500"
-              onClick={() => deleteEducationHandler(_id)}
+              onClick={() => deleteExperienceHandler(_id)}
             >
               <DeleteIcon />
             </IconButton>
@@ -97,7 +97,7 @@ const ExperienceItem = ({ item }: { item: IExperienceProps }) => {
         onClose={handleClose}
       >
         <Alert onClose={handleClose} severity="success" variant="filled">
-          سابقه تحصیلی با موفقیت حذف شد
+          سابقه شغلی با موفقیت حذف شد
         </Alert>
       </Snackbar>
       <Snackbar
@@ -106,7 +106,7 @@ const ExperienceItem = ({ item }: { item: IExperienceProps }) => {
         onClose={handleClose}
       >
         <Alert onClose={handleClose} severity="error" variant="filled">
-          مشکلی پیش آمده استو مجددا امتحان کنید
+          مشکلی پیش آمده است. مجددا امتحان کنید
         </Alert>
       </Snackbar>
     </>
