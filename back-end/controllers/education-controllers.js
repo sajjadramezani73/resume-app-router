@@ -62,7 +62,7 @@ const createEducation = async (req, res, next) => {
 };
 
 const deleteEducation = async (req, res, next) => {
-  const { id } = req.body;
+  const { id } = req.params;
 
   let existingEducation;
   try {
