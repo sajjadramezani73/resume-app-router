@@ -1,19 +1,22 @@
 import About from '@/pages/About'
 import Dashboard from '@/pages/Dashboard'
-import Educations from '@/pages/Educations'
 import Experineces from '@/pages/Experineces'
 import Login from '@/pages/Login'
 import Projects from '@/pages/Projects'
 import Splash from '@/pages/Splash'
+import EducationPage from '@/pages/education/create-education'
+import EducationListPage from '@/pages/education/education-list'
 import { Route, Routes } from 'react-router-dom'
 
-const Layout = () => {
+const MainLayout = () => {
   return (
     <Routes>
       <Route path="/" element={<Splash />} />
       <Route path="/dashboard" element={<Dashboard />}>
         <Route index element={<About />} />
-        <Route path="educations" element={<Educations />} />
+        <Route path="education/:id" element={<EducationPage />} />
+        <Route path="create-education" element={<EducationPage />} />
+        <Route path="education-list" element={<EducationListPage />} />
         <Route path="experineces" element={<Experineces />} />
         <Route path="projects" element={<Projects />} />
       </Route>
@@ -22,4 +25,4 @@ const Layout = () => {
   )
 }
 
-export default Layout
+export default MainLayout

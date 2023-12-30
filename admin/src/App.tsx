@@ -1,4 +1,3 @@
-import Layout from './container/layout/Layout'
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles'
 import { CssBaseline } from '@mui/material'
@@ -11,6 +10,7 @@ import rtlPlugin from 'stylis-plugin-rtl'
 import createCache from '@emotion/cache'
 import { setupAxios } from './services/axios/axios'
 import axios from 'axios'
+import MainLayout from './layouts/mainLayout'
 
 const App = () => {
   setupAxios(axios)
@@ -29,7 +29,7 @@ const App = () => {
           <ThemeProvider theme={theme}>
             <CacheProvider value={cacheRtl}>
               <CssBaseline />
-              <Layout />
+              <MainLayout />
             </CacheProvider>
           </ThemeProvider>
         </StyledEngineProvider>

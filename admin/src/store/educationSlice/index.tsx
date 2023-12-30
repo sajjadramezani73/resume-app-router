@@ -15,9 +15,6 @@ function getPropertyByKey(obj: IEducationState, key: EducationKeys) {
 }
 
 export interface IEducationState {
-  education: {
-    showForm: boolean
-  }
   addEducation: {
     title: {
       fa: string
@@ -47,9 +44,6 @@ export interface IEducationState {
 }
 
 const initialState: IEducationState = {
-  education: {
-    showForm: false,
-  },
   addEducation: {
     title: {
       fa: '',
@@ -82,9 +76,6 @@ const { actions, reducer } = createSlice({
   name: 'education',
   initialState: initialState,
   reducers: {
-    updateEducation: (state, action) => {
-      state.education = { ...state.education, ...action.payload }
-    },
     updateAddEducation: (state, action) => {
       const { name, amount } = action.payload
       const usedObj = getPropertyByKey(state, name)
@@ -97,7 +88,6 @@ const { actions, reducer } = createSlice({
       state.addEducation = { ...state.addEducation, ...action.payload }
     },
     resetEducation: (state) => {
-      state.education = initialState.education
       state.addEducation = initialState.addEducation
     },
   },
@@ -109,8 +99,6 @@ export const useEducationActions = function () {
 
   return {
     education,
-    updateEducation: (value: object) =>
-      dispatch(actions.updateEducation(value)),
     updateAddEducation: (value: object) =>
       dispatch(actions.updateAddEducation(value)),
     updateEditEducation: (value: object) =>

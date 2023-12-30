@@ -1,20 +1,19 @@
 import { useEffect, useState } from 'react'
 import { Button, Card, Step, StepLabel, Stepper } from '@mui/material'
-import Step1 from './components/Step1'
-import Step2 from './components/Step2'
+import Step1 from '../components/Step1'
+import Step2 from '../components/Step2'
 import { useEducationActions } from '@/store/educationSlice'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { useMutate } from '@/services/axios/useRequest'
+import { Keys } from '@/constants/Keys'
 import { Paths } from '@/constants/Paths'
 import { useQueryClient } from 'react-query'
-import { Keys } from '@/constants/keys'
 
 const steps = [1, 2]
 
-const AddEducation = () => {
+const CreateEducation = ({ mode }: { mode?: string }) => {
   const cache = useQueryClient()
-  const { updateEducation, education, updateAddEducation } =
-    useEducationActions()
+  const { education, updateAddEducation } = useEducationActions()
 
   const [activeStep, setActiveStep] = useState(0)
   const [skipped, setSkipped] = useState(new Set<number>())
@@ -107,7 +106,6 @@ const AddEducation = () => {
       cache.invalidateQueries(Keys.education.education)
       // formRef.current.resetFields()
       handleReset()
-      updateEducation({ showForm: false })
       console.log(data)
     },
     errorCallback: () => {
@@ -187,4 +185,4 @@ const AddEducation = () => {
   )
 }
 
-export default AddEducation
+export default CreateEducation

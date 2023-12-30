@@ -1,5 +1,5 @@
-import AvatarMenu from '@/container/avatar/Avatar'
-import Sidebar from '@/container/sidebar/Sidebar'
+import AvatarMenu from '@/layouts/avatar'
+import Sidebar from '@/layouts/sidebar'
 import { Outlet } from 'react-router-dom'
 
 const Dashboard = () => {

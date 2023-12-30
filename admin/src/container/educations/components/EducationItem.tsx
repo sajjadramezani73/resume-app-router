@@ -18,7 +18,7 @@ import { useQueryClient } from 'react-query'
 
 const EducationItem = ({ item }: { item: IEducationProps }) => {
   const { title, university, location, dateStart, dateEnd, grade } = item
-  const { updateEducation, updateEditEducation } = useEducationActions()
+  const { updateEditEducation } = useEducationActions()
   const queryClient = useQueryClient()
   const [openAlert, setOpenAlert] = useState({
     success: false,
@@ -62,7 +62,6 @@ const EducationItem = ({ item }: { item: IEducationProps }) => {
       dateEnd,
       grade,
     })
-    updateEducation({ showForm: true })
   }
 
   return (
