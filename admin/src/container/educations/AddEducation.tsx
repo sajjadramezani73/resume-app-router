@@ -2,13 +2,17 @@ import { useEffect, useState } from 'react'
 import { Button, Card, Step, StepLabel, Stepper } from '@mui/material'
 import Step1 from './components/Step1'
 import Step2 from './components/Step2'
-import { createEducations } from '@/services/queries'
 import { useEducationActions } from '@/store/educationSlice'
 import LoadingButton from '@mui/lab/LoadingButton'
+import { useMutate } from '@/services/axios/useRequest'
+import { Paths } from '@/constants/Paths'
+import { useQueryClient } from 'react-query'
+import { Keys } from '@/constants/keys'
 
 const steps = [1, 2]
 
 const AddEducation = () => {
+  const cache = useQueryClient()
   const { updateEducation, education, updateAddEducation } =
     useEducationActions()
 
@@ -18,7 +22,6 @@ const AddEducation = () => {
     step1: true,
     step2: true,
   })
-  const [loading, setLoading] = useState(false)
 
   // check for desabled button step 1 and step 2
   useEffect(() => {
@@ -96,19 +99,27 @@ const AddEducation = () => {
     }
   }
 
+  const postEducation = useMutate({
+    method: 'post',
+    url: Paths.education.base,
+    successCallback(data) {
+      // message.success(t('messages.success_default'))
+      cache.invalidateQueries(Keys.education.education)
+      // formRef.current.resetFields()
+      handleReset()
+      updateEducation({ showForm: false })
+      console.log(data)
+    },
+    errorCallback: () => {
+      // message.error(t('messages.error_default'))
+      console.log('errrrrr')
+    },
+  })
+
   const handleSubmit = () => {
-    setLoading(true)
-    createEducations(education.addEducation)
-      .then((res) => {
-        console.log(res)
-        handleReset()
-        updateEducation({ showForm: false })
-        setLoading(false)
-      })
-      .catch((err) => {
-        console.log(err)
-        setLoading(false)
-      })
+    postEducation.mutate({
+      query: education.addEducation,
+    })
   }
 
   return (
@@ -144,7 +155,7 @@ const AddEducation = () => {
 
             {activeStep === steps.length - 1 ? (
               <>
-                {loading ? (
+                {postEducation.isLoading ? (
                   <LoadingButton
                     loading
                     variant="contained"

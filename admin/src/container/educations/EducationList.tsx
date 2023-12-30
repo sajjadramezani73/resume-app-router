@@ -1,6 +1,3 @@
-import { useQuery } from 'react-query'
-import { getEducations } from '@/services/queries'
-import { QUERY_KEY } from '@/constants/constants'
 import { IEducationProps } from '@/types/Types'
 import {
   Paper,
@@ -12,11 +9,17 @@ import {
   TableRow,
 } from '@mui/material'
 import EducationItem from './components/EducationItem'
+import { useRequest } from '@/services/axios/useRequest'
+import { Keys } from '@/constants/keys'
+import { Paths } from '@/constants/Paths'
 
 const TABLE_HEAD = ['عنوان', 'مدرک', 'کشور-شهر', 'عملکرد']
 
 const EducationList = () => {
-  const { data } = useQuery([QUERY_KEY.EDUCATIONS], getEducations)
+  const { data } = useRequest({
+    queryKey: Keys.education.education,
+    url: Paths.education.all,
+  })
 
   return (
     <TableContainer component={Paper}>

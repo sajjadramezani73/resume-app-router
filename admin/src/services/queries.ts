@@ -1,4 +1,3 @@
-import { IEducationProps } from '@/types/Types'
 import service from './Api'
 
 export const getAbout = async () => {
@@ -11,22 +10,7 @@ export const getExperiences = async () => {
   return res?.data
 }
 
-export const getEducations = async () => {
-  const res = await service.get('/api/education/adminGetEducations')
-  return res?.data
-}
-
 export const getProjects = async () => {
   const res = await service.get('/api/project/adminGetProjects')
-  return res?.data
-}
-
-export const createEducations = async (params: IEducationProps) => {
-  const res = await service.post('/api/education/createEducation', params)
-  return res?.data
-}
-
-export const deleteEducation = async (params: { id: string | undefined }) => {
-  const res = await service.post('/api/education/deleteEducation', params)
   return res?.data
 }

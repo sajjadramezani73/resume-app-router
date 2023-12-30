@@ -1,5 +1,6 @@
-import { QUERY_KEY } from '@/constants/constants'
-import { deleteEducation } from '@/services/queries'
+import { Keys } from '@/constants/Keys'
+import { Paths } from '@/constants/Paths'
+import { useMutate } from '@/services/axios/useRequest'
 import { useEducationActions } from '@/store/educationSlice'
 import { IEducationProps } from '@/types/Types'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -28,16 +29,28 @@ const EducationItem = ({ item }: { item: IEducationProps }) => {
     setOpenAlert({ success: false, error: false })
   }
 
-  const deleteEducationHandler = async (id: string | undefined) => {
-    const result = await deleteEducation({ id: id })
-    console.log(result)
+  const deleteEducation = useMutate({
+    method: 'delete',
+    url: Paths.education.base,
+    successCallback() {
+      // message.success(t('messages.success_delete'));
+      queryClient.invalidateQueries(Keys.education.education)
+      // handleCancel()
+    },
+  })
 
-    if (result.success === 1) {
-      setOpenAlert({ success: true, error: false })
-      queryClient.invalidateQueries(QUERY_KEY.EDUCATIONS)
-    } else {
-      setOpenAlert({ success: false, error: true })
-    }
+  const deleteEducationHandler = async (id: string | undefined) => {
+    // const result = await deleteEducation({ id: id })
+    // console.log(result)
+
+    // if (result.success === 1) {
+    //   setOpenAlert({ success: true, error: false })
+    //   queryClient.invalidateQueries(QUERY_KEY.EDUCATIONS)
+    // } else {
+    //   setOpenAlert({ success: false, error: true })
+    // }
+
+    deleteEducation.mutate({ id })
   }
 
   const handleEdit = () => {
