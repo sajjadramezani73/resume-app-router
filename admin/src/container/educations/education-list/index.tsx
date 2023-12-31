@@ -33,7 +33,7 @@ const EducationList = () => {
           <Table>
             <TableHead>
               <TableRow className="bg-gray-400">
-                {TABLE_HEAD.map((item) => (
+                {TABLE_HEAD?.map((item) => (
                   <TableCell key={item} className="text-right">
                     {item}
                   </TableCell>
@@ -41,7 +41,7 @@ const EducationList = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data?.educations.map((item: IEducationProps) => (
+              {data?.educations?.map((item: IEducationProps) => (
                 <EducationItem key={item._id} item={item} />
               ))}
             </TableBody>

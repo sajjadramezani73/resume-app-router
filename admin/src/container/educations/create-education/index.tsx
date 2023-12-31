@@ -8,12 +8,17 @@ import { useMutate } from '@/services/axios/useRequest'
 import { Keys } from '@/constants/Keys'
 import { Paths } from '@/constants/Paths'
 import { useQueryClient } from 'react-query'
+import { toast } from 'sonner'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const steps = [1, 2]
 
 const CreateEducation = ({ mode }: { mode?: string }) => {
+  const { id } = useParams()
+  const navigate = useNavigate()
   const cache = useQueryClient()
-  const { education, updateAddEducation } = useEducationActions()
+  const { education, updateAddEducation, resetEducation } =
+    useEducationActions()
 
   const [activeStep, setActiveStep] = useState(0)
   const [skipped, setSkipped] = useState(new Set<number>())
@@ -21,6 +26,14 @@ const CreateEducation = ({ mode }: { mode?: string }) => {
     step1: true,
     step2: true,
   })
+
+  useEffect(() => {
+    if (mode === 'edit') {
+      console.log('')
+    } else {
+      resetEducation()
+    }
+  }, [mode])
 
   // check for desabled button step 1 and step 2
   useEffect(() => {
@@ -70,6 +83,8 @@ const CreateEducation = ({ mode }: { mode?: string }) => {
 
   const handleReset = () => {
     setActiveStep(0)
+    resetEducation()
+    navigate('/dashboard/education-list')
   }
 
   // save data form in redux store
@@ -102,14 +117,26 @@ const CreateEducation = ({ mode }: { mode?: string }) => {
     method: 'post',
     url: Paths.education.base,
     successCallback(data) {
-      // message.success(t('messages.success_default'))
+      toast.success('درخواست شما با موفقیت ثبت شد')
       cache.invalidateQueries(Keys.education.education)
-      // formRef.current.resetFields()
       handleReset()
-      console.log(data)
     },
     errorCallback: () => {
-      // message.error(t('messages.error_default'))
+      toast.error('مشکلی در ثبت درخواست شما به وجود آمده است')
+      console.log('errrrrr')
+    },
+  })
+
+  const editEducation = useMutate({
+    method: 'put',
+    url: Paths.education.base,
+    successCallback() {
+      toast.success('اطلاعات تحصیلی با موفقیت ویرایش شد')
+      cache.invalidateQueries(Keys.education.education)
+      handleReset()
+    },
+    errorCallback: () => {
+      toast.error('مشکلی در ثبت درخواست شما به وجود آمده است')
       console.log('errrrrr')
     },
   })
@@ -120,67 +147,79 @@ const CreateEducation = ({ mode }: { mode?: string }) => {
     })
   }
 
+  const handleEdit = () => {
+    editEducation.mutate({
+      query: education.addEducation,
+      id: id,
+    })
+  }
+
   return (
     <>
-      <Card className="p-8">
-        <Stepper activeStep={activeStep}>
-          {steps.map((label, index) => {
-            const stepProps: { completed?: boolean } = {}
-            const labelProps: {
-              optional?: React.ReactNode
-            } = {}
-            if (isStepSkipped(index)) {
-              stepProps.completed = false
-            }
-            return (
-              <Step key={label} {...stepProps}>
-                <StepLabel {...labelProps}></StepLabel>
-              </Step>
-            )
-          })}
-        </Stepper>
-        <>
-          {<div className="py-8 px-4">{renderComponent(activeStep)}</div>}
-
-          <div className="flex justify-between pt-2">
-            <Button
-              variant="outlined"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-            >
-              برگشت
-            </Button>
-
-            {activeStep === steps.length - 1 ? (
-              <>
-                {postEducation.isLoading ? (
-                  <LoadingButton
-                    loading
-                    variant="contained"
-                    className="w-16"
-                  ></LoadingButton>
-                ) : (
-                  <Button
-                    variant="contained"
-                    disabled={disabled.step2}
-                    onClick={handleSubmit}
-                  >
-                    ارسال
-                  </Button>
-                )}
-              </>
-            ) : (
-              <Button
-                variant="contained"
-                disabled={disabled.step1}
-                onClick={handleNext}
-              >
-                بعدی
-              </Button>
-            )}
-          </div>
-        </>
+      <Card className="p-8 rounded-none flex justify-between items-center h-[100px]">
+        <p className="text-titr text-[18px] font-bold">سابقه تحصیلی جدید</p>
       </Card>
+      <div className="p-8">
+        <Card className="p-8">
+          <Stepper activeStep={activeStep}>
+            {steps.map((label, index) => {
+              const stepProps: { completed?: boolean } = {}
+              const labelProps: {
+                optional?: React.ReactNode
+              } = {}
+              if (isStepSkipped(index)) {
+                stepProps.completed = false
+              }
+              return (
+                <Step key={label} {...stepProps}>
+                  <StepLabel {...labelProps}></StepLabel>
+                </Step>
+              )
+            })}
+          </Stepper>
+          <>
+            {<div className="py-8 px-4">{renderComponent(activeStep)}</div>}
+
+            <div className="flex justify-between pt-2">
+              <Button
+                variant="outlined"
+                disabled={activeStep === 0}
+                onClick={handleBack}
+              >
+                برگشت
+              </Button>
+
+              {activeStep === steps.length - 1 ? (
+                <>
+                  {postEducation.isLoading ? (
+                    <LoadingButton
+                      loading
+                      variant="contained"
+                      className="w-16"
+                    ></LoadingButton>
+                  ) : (
+                    <Button
+                      variant="contained"
+                      disabled={disabled.step2}
+                      onClick={mode === 'edit' ? handleEdit : handleSubmit}
+                    >
+                      ارسال
+                    </Button>
+                  )}
+                </>
+              ) : (
+                <Button
+                  variant="contained"
+                  disabled={disabled.step1}
+                  onClick={handleNext}
+                >
+                  بعدی
+                </Button>
+              )}
+            </div>
+          </>
+        </Card>
+      </div>
     </>
   )
 }
