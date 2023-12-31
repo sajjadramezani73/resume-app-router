@@ -61,6 +61,28 @@ const createEducation = async (req, res, next) => {
   res.json({ education: createEducation });
 };
 
+const getOneEducation = async (req, res, next) => {
+  const { id } = req.params;
+
+  let existingEducation;
+  try {
+    existingEducation = await Education.findOne({ _id: id });
+  } catch (err) {
+    const error = new HttpError("deleted faild !", 500);
+    return next(error);
+  }
+
+  if (!existingEducation) {
+    res.status(422).json({
+      success: 0,
+      errorMessage: "سابقه تحصیلی با این آی دی یافت نشد",
+    });
+    return next();
+  }
+
+  res.json({ education: existingEducation });
+};
+
 const deleteEducation = async (req, res, next) => {
   const { id } = req.params;
 
@@ -92,7 +114,52 @@ const deleteEducation = async (req, res, next) => {
     .json({ success: 1, errorMessage: "سابقه تحصیلی با موفقیت حذف شد." });
 };
 
+const editEducation = async (req, res, next) => {
+  const { id } = req.params;
+  const { title, university, location, dateStart, dateEnd, grade } = req.body;
+
+  let existingEducation;
+  try {
+    existingEducation = await Education.findOne({ _id: id });
+  } catch (err) {
+    const error = new HttpError("deleted faild !", 500);
+    return next(error);
+  }
+
+  if (!existingEducation) {
+    res.status(422).json({
+      success: 0,
+      errorMessage: "سابقه تحصیلی با این آی دی یافت نشد",
+    });
+    return next();
+  }
+
+  try {
+    await Education.findOneAndUpdate(
+      { _id: id },
+      {
+        title: title,
+        university: university,
+        location: location,
+        dateStart: dateStart,
+        dateEnd: dateEnd,
+        grade: grade,
+      },
+      { new: true }
+    );
+  } catch (err) {
+    const error = new HttpError("updated faild !", 500);
+    return next(error);
+  }
+
+  res
+    .status(201)
+    .json({ success: 1, errorMessage: "سابقه تحصیلی با موفقیت ویرایش شد." });
+};
+
 exports.adminGetEducations = adminGetEducations;
 exports.getEducations = getEducations;
 exports.createEducation = createEducation;
+exports.getOneEducation = getOneEducation;
 exports.deleteEducation = deleteEducation;
+exports.editEducation = editEducation;

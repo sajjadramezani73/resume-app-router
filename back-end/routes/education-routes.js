@@ -8,6 +8,10 @@ router.get("/", educationControllers.getEducations);
 
 router.post("/", educationControllers.createEducation);
 
+router.get("/:id", educationControllers.getOneEducation);
+
 router.delete("/:id", educationControllers.deleteEducation);
+
+router.put("/:id", educationControllers.editEducation);
 
 module.exports = router;
