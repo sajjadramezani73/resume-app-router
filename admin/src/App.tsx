@@ -11,6 +11,7 @@ import createCache from '@emotion/cache'
 import { setupAxios } from './services/axios/axios'
 import axios from 'axios'
 import MainLayout from './layouts/mainLayout'
+import { Toaster } from 'sonner'
 
 const App = () => {
   setupAxios(axios)
@@ -30,6 +31,7 @@ const App = () => {
             <CacheProvider value={cacheRtl}>
               <CssBaseline />
               <MainLayout />
+              <Toaster expand={false} position="top-center" richColors />
             </CacheProvider>
           </ThemeProvider>
         </StyledEngineProvider>
