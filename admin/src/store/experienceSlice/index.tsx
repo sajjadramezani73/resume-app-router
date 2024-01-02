@@ -2,25 +2,22 @@ import { createSlice } from '@reduxjs/toolkit'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
 
-// type EducationKeys =
-//   | 'title'
-//   | 'company'
-//   | 'jobType'
-//   | 'jobTime'
-//   | 'dateStart'
-//   | 'dateEnd'
-//   | 'description'
-//   | 'companyLink'
-//   | 'skill'
+type ExperienceKeys =
+  | 'title'
+  | 'company'
+  | 'jobType'
+  | 'jobTime'
+  | 'dateStart'
+  | 'dateEnd'
+  | 'description'
+  | 'companyLink'
+  | 'skill'
 
-// function getPropertyByKey(obj: IEducationState, key: EducationKeys) {
-//   return obj.addEducation[key]
-// }
+function getPropertyByKey(obj: IExperienceState, key: ExperienceKeys) {
+  return obj.addExperience[key]
+}
 
 export interface IExperienceState {
-  experienceForm: {
-    showForm: boolean
-  }
   addExperience: {
     title: {
       fa: string
@@ -56,9 +53,6 @@ export interface IExperienceState {
 }
 
 const initialState: IExperienceState = {
-  experienceForm: {
-    showForm: false,
-  },
   addExperience: {
     title: {
       fa: '',
@@ -97,22 +91,18 @@ const { actions, reducer } = createSlice({
   name: 'experience',
   initialState: initialState,
   reducers: {
-    updateExperience: (state, action) => {
-      state.experienceForm = { ...state.experienceForm, ...action.payload }
-    },
-    // updateAddExperience: (state, action) => {
-    //   const { name, amount } = action.payload
-    //   const usedObj = getPropertyByKey(state, name)
-    //   console.log({ ...usedObj, ...amount })
-    //   const newObj = { [name]: { ...usedObj, ...amount } }
+    updateAddExperience: (state, action) => {
+      const { name, amount } = action.payload
+      const usedObj = getPropertyByKey(state, name)
+      console.log({ ...usedObj, ...amount })
+      const newObj = { [name]: { ...usedObj, ...amount } }
 
-    //   state.addEducation = { ...state.addEducation, ...newObj }
-    // },
+      state.addExperience = { ...state.addExperience, ...newObj }
+    },
     // updateEditEducation: (state, action) => {
     //   state.addEducation = { ...state.addEducation, ...action.payload }
     // },
     resetExperience: (state) => {
-      state.experienceForm = initialState.experienceForm
       state.addExperience = initialState.addExperience
     },
   },
@@ -124,10 +114,8 @@ export const useExperienceActions = function () {
 
   return {
     experience,
-    updateExperience: (value: object) =>
-      dispatch(actions.updateExperience(value)),
-    // updateAddEducation: (value: object) =>
-    //   dispatch(actions.updateAddEducation(value)),
+    updateAddEducation: (value: object) =>
+      dispatch(actions.updateAddExperience(value)),
     // updateEditEducation: (value: object) =>
     //   dispatch(actions.updateEditEducation(value)),
     resetExperience: () => dispatch(actions.resetExperience()),
