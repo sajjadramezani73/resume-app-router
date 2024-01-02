@@ -3,4 +3,8 @@ export const Paths = {
     base: '/education',
     all: '/education/admin/educations',
   },
+  experience: {
+    base: '/experience',
+    all: '/experience/admin/experiences',
+  },
 }
