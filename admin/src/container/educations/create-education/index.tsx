@@ -60,7 +60,7 @@ const CreateEducation = ({ mode }: { mode?: string }) => {
         ? setDisabled({ ...disabled, step2: true })
         : setDisabled({ ...disabled, step2: false })
     }
-  }, [education.addEducation])
+  }, [education.addEducation, activeStep])
 
   const isStepSkipped = (step: number) => {
     return skipped.has(step)
@@ -116,7 +116,7 @@ const CreateEducation = ({ mode }: { mode?: string }) => {
   const postEducation = useMutate({
     method: 'post',
     url: Paths.education.base,
-    successCallback(data) {
+    successCallback() {
       toast.success('درخواست شما با موفقیت ثبت شد')
       cache.invalidateQueries(Keys.education.education)
       handleReset()

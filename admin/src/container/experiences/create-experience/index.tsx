@@ -1,19 +1,66 @@
 import { LoadingButton } from '@mui/lab'
 import { Card, Stepper, Step, StepLabel, Button } from '@mui/material'
-import React, { useState } from 'react'
-import Step1 from './components/Step1'
-import Step2 from './components/Step2'
+import React, { useEffect, useState } from 'react'
+import Step1 from '../components/Step1'
+import Step2 from '../components/Step2'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useQueryClient } from 'react-query'
+import { useExperienceActions } from '@/store/experienceSlice'
 
 const steps = [1, 2]
 
-const AddExperience = () => {
-  const [activeStep, setActiveStep] = useState(1)
+const CreateExperience = ({ mode }: { mode?: string }) => {
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const cache = useQueryClient()
+  const { experience, resetExperience } = useExperienceActions()
+
+  const [activeStep, setActiveStep] = useState(0)
   const [skipped, setSkipped] = useState(new Set<number>())
   const [disabled, setDisabled] = useState({
     step1: true,
     step2: true,
   })
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (mode === 'edit') {
+      console.log('')
+    } else {
+      resetExperience()
+    }
+  }, [mode])
+
+  // check for desabled button step 1 and step 2
+  useEffect(() => {
+    if (activeStep === 0) {
+      // for step 1
+      experience.addExperience.title.fa === '' ||
+      experience.addExperience.title.en === '' ||
+      experience.addExperience.company.fa === '' ||
+      experience.addExperience.company.en === '' ||
+      experience.addExperience.jobType.fa === '' ||
+      experience.addExperience.jobType.en === ''
+        ? setDisabled({ ...disabled, step1: true })
+        : setDisabled({ ...disabled, step1: false })
+    }
+
+    if (activeStep === 1) {
+      // for step 2
+      experience.addExperience.companyLink === '' ||
+      experience.addExperience.description.en === '' ||
+      experience.addExperience.description.en === '' ||
+      experience.addExperience.dateStart.fa === '' ||
+      experience.addExperience.dateStart.en === '' ||
+      experience.addExperience.dateEnd.fa === '' ||
+      experience.addExperience.dateEnd.en === '' ||
+      experience.addExperience.jobTime.fa === '' ||
+      experience.addExperience.jobTime.en === '' ||
+      experience.addExperience.skill.length === 0
+        ? setDisabled({ ...disabled, step2: true })
+        : setDisabled({ ...disabled, step2: false })
+    }
+  }, [experience.addExperience, activeStep])
 
   const isStepSkipped = (step: number) => {
     return skipped.has(step)
@@ -36,6 +83,8 @@ const AddExperience = () => {
 
   const handleReset = () => {
     setActiveStep(0)
+    resetExperience()
+    navigate('/dashboard/experience-list')
   }
 
   // save data form in redux store
@@ -149,4 +198,4 @@ const AddExperience = () => {
   )
 }
 
-export default AddExperience
+export default CreateExperience
