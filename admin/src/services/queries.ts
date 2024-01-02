@@ -5,11 +5,6 @@ export const getAbout = async () => {
   return res?.data
 }
 
-export const getExperiences = async () => {
-  const res = await service.get('/api/experience/adminGetExperiences')
-  return res?.data
-}
-
 export const getProjects = async () => {
   const res = await service.get('/api/project/adminGetProjects')
   return res?.data
