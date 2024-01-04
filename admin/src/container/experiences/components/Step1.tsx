@@ -72,7 +72,7 @@ const Step1 = ({ onChangeHandler, onSelectHandler }: Props) => {
         <InputLabel>job type</InputLabel>
         <Select
           label="job type"
-          name="jobType.fa"
+          name="jobType.en"
           value={experience.addExperience.jobType.en}
           onChange={onSelectHandler}
         >

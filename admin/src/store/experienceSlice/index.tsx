@@ -10,8 +10,8 @@ type ExperienceKeys =
   | 'dateStart'
   | 'dateEnd'
   | 'description'
-  | 'companyLink'
-  | 'skill'
+// | 'companyLink'
+// | 'skill'
 
 function getPropertyByKey(obj: IExperienceState, key: ExperienceKeys) {
   return obj.addExperience[key]
@@ -99,6 +99,9 @@ const { actions, reducer } = createSlice({
 
       state.addExperience = { ...state.addExperience, ...newObj }
     },
+    updateAddExperienceOneProperty: (state, action) => {
+      state.addExperience = { ...state.addExperience, ...action.payload }
+    },
     // updateEditEducation: (state, action) => {
     //   state.addEducation = { ...state.addEducation, ...action.payload }
     // },
@@ -114,8 +117,10 @@ export const useExperienceActions = function () {
 
   return {
     experience,
-    updateAddEducation: (value: object) =>
+    updateAddExperience: (value: object) =>
       dispatch(actions.updateAddExperience(value)),
+    updateAddExperienceOneProperty: (value: object) =>
+      dispatch(actions.updateAddExperienceOneProperty(value)),
     // updateEditEducation: (value: object) =>
     //   dispatch(actions.updateEditEducation(value)),
     resetExperience: () => dispatch(actions.resetExperience()),

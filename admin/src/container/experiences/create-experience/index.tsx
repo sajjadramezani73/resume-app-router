@@ -13,7 +13,10 @@ const CreateExperience = ({ mode }: { mode?: string }) => {
   const { id } = useParams()
   const navigate = useNavigate()
   const cache = useQueryClient()
-  const { experience, resetExperience } = useExperienceActions()
+  const { experience, resetExperience, updateAddExperience } =
+    useExperienceActions()
+
+  console.log('experience', experience)
 
   const [activeStep, setActiveStep] = useState(0)
   const [skipped, setSkipped] = useState(new Set<number>())
@@ -90,10 +93,10 @@ const CreateExperience = ({ mode }: { mode?: string }) => {
   // save data form in redux store
   const onChangeHandler = (e: { target: { name: string; value: string } }) => {
     // console.log(e.target.name.split('.'), e.target.value)
-    // const title = e.target.name.split('.')[0]
-    // const lang = e.target.name.split('.')[1]
-    // const obj = { name: title, amount: { [lang]: e.target.value } }
-    // updateAddEducation(obj)
+    const title = e.target.name.split('.')[0]
+    const lang = e.target.name.split('.')[1]
+    const obj = { name: title, amount: { [lang]: e.target.value } }
+    updateAddExperience(obj)
   }
 
   const renderComponent = (activeStep: number) => {

@@ -39,7 +39,7 @@ const Step2 = ({ onChangeHandler, onSelectHandler }: Props) => {
         <InputLabel>job time</InputLabel>
         <Select
           label="job time"
-          name="jobTime.fa"
+          name="jobTime.en"
           value={experience.addExperience.jobTime.en}
           onChange={onSelectHandler}
         >
@@ -109,7 +109,7 @@ const Step2 = ({ onChangeHandler, onSelectHandler }: Props) => {
         size="small"
         name="companyLink"
         value={experience.addExperience.companyLink}
-        onChange={onChangeHandler}
+        // onChange={onChangeHandler}
       />
       <Autocomplete
         multiple
@@ -119,7 +119,7 @@ const Step2 = ({ onChangeHandler, onSelectHandler }: Props) => {
         defaultValue={[skillExperience[4]]}
         filterSelectedOptions
         renderInput={(params) => <TextField {...params} label="مهارت ها" />}
-        onChange={(event, value) => onChangeHandler(value)}
+        // onChange={(event, value) => onChangeHandler(value)}
       />
     </div>
   )
