@@ -1,7 +1,6 @@
 import { Keys } from '@/constants/Keys'
 import { Paths } from '@/constants/Paths'
 import { useMutate } from '@/services/axios/useRequest'
-import { useEducationActions } from '@/store/educationSlice'
 import { IEducationProps } from '@/types/Types'
 import DeleteIcon from '@mui/icons-material/Delete'
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded'
@@ -11,8 +10,6 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 
 const EducationItem = ({ item }: { item: IEducationProps }) => {
-  const { title, university, location, dateStart, dateEnd, grade } = item
-  const { updateEditEducation } = useEducationActions()
   const queryClient = useQueryClient()
   const navigate = useNavigate()
 
@@ -34,14 +31,6 @@ const EducationItem = ({ item }: { item: IEducationProps }) => {
   }
 
   const handleEdit = () => {
-    updateEditEducation({
-      title,
-      university,
-      location,
-      dateStart,
-      dateEnd,
-      grade,
-    })
     navigate(`/dashboard/education/${item?._id}`)
   }
 
