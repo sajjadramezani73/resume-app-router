@@ -17,7 +17,7 @@ interface Props {
 }
 
 const Step2 = ({ onChangeHandler, onSelectHandler }: Props) => {
-  const { experience } = useExperienceActions()
+  const { experience, updateAddExperienceOneProperty } = useExperienceActions()
   return (
     <div className="grid grid-cols-2 gap-4">
       <FormControl fullWidth variant="outlined" size="small">
@@ -109,17 +109,23 @@ const Step2 = ({ onChangeHandler, onSelectHandler }: Props) => {
         size="small"
         name="companyLink"
         value={experience.addExperience.companyLink}
-        // onChange={onChangeHandler}
+        onChange={(e) =>
+          updateAddExperienceOneProperty({ companyLink: e.target.value })
+        }
       />
       <Autocomplete
         multiple
         size="small"
         options={skillExperience}
         getOptionLabel={(option) => option}
-        defaultValue={[skillExperience[4]]}
+        defaultValue={experience.addExperience.skill}
         filterSelectedOptions
         renderInput={(params) => <TextField {...params} label="مهارت ها" />}
-        // onChange={(event, value) => onChangeHandler(value)}
+        onChange={(event, value) =>
+          updateAddExperienceOneProperty({
+            skill: [...value],
+          })
+        }
       />
     </div>
   )

@@ -6,6 +6,10 @@ import Step2 from '../components/Step2'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useQueryClient } from 'react-query'
 import { useExperienceActions } from '@/store/experienceSlice'
+import { useMutate } from '@/services/axios/useRequest'
+import { Paths } from '@/constants/Paths'
+import { toast } from 'sonner'
+import { Keys } from '@/constants/Keys'
 
 const steps = [1, 2]
 
@@ -92,7 +96,6 @@ const CreateExperience = ({ mode }: { mode?: string }) => {
 
   // save data form in redux store
   const onChangeHandler = (e: { target: { name: string; value: string } }) => {
-    // console.log(e.target.name.split('.'), e.target.value)
     const title = e.target.name.split('.')[0]
     const lang = e.target.name.split('.')[1]
     const obj = { name: title, amount: { [lang]: e.target.value } }
@@ -121,82 +124,113 @@ const CreateExperience = ({ mode }: { mode?: string }) => {
     }
   }
 
+  const postExperience = useMutate({
+    method: 'post',
+    url: Paths.experience.base,
+    successCallback() {
+      toast.success('درخواست شما با موفقیت ثبت شد')
+      cache.invalidateQueries(Keys.experience.experience)
+      handleReset()
+    },
+    errorCallback: () => {
+      toast.error('مشکلی در ثبت درخواست شما به وجود آمده است')
+      console.log('errrrrr')
+    },
+  })
+
+  // const editEducation = useMutate({
+  //   method: 'put',
+  //   url: Paths.education.base,
+  //   successCallback() {
+  //     toast.success('اطلاعات تحصیلی با موفقیت ویرایش شد')
+  //     cache.invalidateQueries(Keys.education.education)
+  //     handleReset()
+  //   },
+  //   errorCallback: () => {
+  //     toast.error('مشکلی در ثبت درخواست شما به وجود آمده است')
+  //     console.log('errrrrr')
+  //   },
+  // })
+
   const handleSubmit = () => {
-    // setLoading(true)
-    // createEducations(education.addEducation)
-    //   .then((res) => {
-    //     console.log(res)
-    //     handleReset()
-    //     updateEducation({ showForm: false })
-    //     setLoading(false)
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //     setLoading(false)
-    //   })
+    postExperience.mutate({
+      query: experience.addExperience,
+    })
   }
+
+  // const handleEdit = () => {
+  //   editEducation.mutate({
+  //     query: education.addEducation,
+  //     id: id,
+  //   })
+  // }
 
   return (
     <>
-      <Card className="p-8">
-        <Stepper activeStep={activeStep}>
-          {steps.map((label, index) => {
-            const stepProps: { completed?: boolean } = {}
-            const labelProps: {
-              optional?: React.ReactNode
-            } = {}
-            if (isStepSkipped(index)) {
-              stepProps.completed = false
-            }
-            return (
-              <Step key={label} {...stepProps}>
-                <StepLabel {...labelProps}></StepLabel>
-              </Step>
-            )
-          })}
-        </Stepper>
-        <>
-          {<div className="py-8 px-4">{renderComponent(activeStep)}</div>}
-
-          <div className="flex justify-between pt-2">
-            <Button
-              variant="outlined"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-            >
-              برگشت
-            </Button>
-
-            {activeStep === steps.length - 1 ? (
-              <>
-                {loading ? (
-                  <LoadingButton
-                    loading
-                    variant="contained"
-                    className="w-16"
-                  ></LoadingButton>
-                ) : (
-                  <Button
-                    variant="contained"
-                    disabled={disabled.step2}
-                    onClick={handleSubmit}
-                  >
-                    ارسال
-                  </Button>
-                )}
-              </>
-            ) : (
-              <Button
-                variant="contained"
-                disabled={disabled.step1}
-                onClick={handleNext}
-              >
-                بعدی
-              </Button>
-            )}
-          </div>
-        </>
+      <Card className="p-8 rounded-none flex justify-between items-center h-[100px]">
+        <p className="text-titr text-[18px] font-bold">سابقه کاری جدید</p>
       </Card>
+      <div className="p-8">
+        <Card className="p-8">
+          <Stepper activeStep={activeStep}>
+            {steps.map((label, index) => {
+              const stepProps: { completed?: boolean } = {}
+              const labelProps: {
+                optional?: React.ReactNode
+              } = {}
+              if (isStepSkipped(index)) {
+                stepProps.completed = false
+              }
+              return (
+                <Step key={label} {...stepProps}>
+                  <StepLabel {...labelProps}></StepLabel>
+                </Step>
+              )
+            })}
+          </Stepper>
+          <>
+            {<div className="py-8 px-4">{renderComponent(activeStep)}</div>}
+
+            <div className="flex justify-between pt-2">
+              <Button
+                variant="outlined"
+                disabled={activeStep === 0}
+                onClick={handleBack}
+              >
+                برگشت
+              </Button>
+
+              {activeStep === steps.length - 1 ? (
+                <>
+                  {postExperience.isLoading ? (
+                    <LoadingButton
+                      loading
+                      variant="contained"
+                      className="w-16"
+                    ></LoadingButton>
+                  ) : (
+                    <Button
+                      variant="contained"
+                      disabled={disabled.step2}
+                      onClick={handleSubmit}
+                    >
+                      ارسال
+                    </Button>
+                  )}
+                </>
+              ) : (
+                <Button
+                  variant="contained"
+                  disabled={disabled.step1}
+                  onClick={handleNext}
+                >
+                  بعدی
+                </Button>
+              )}
+            </div>
+          </>
+        </Card>
+      </div>
     </>
   )
 }
