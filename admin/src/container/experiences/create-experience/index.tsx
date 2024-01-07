@@ -20,15 +20,12 @@ const CreateExperience = ({ mode }: { mode?: string }) => {
   const { experience, resetExperience, updateAddExperience } =
     useExperienceActions()
 
-  console.log('experience', experience)
-
   const [activeStep, setActiveStep] = useState(0)
   const [skipped, setSkipped] = useState(new Set<number>())
   const [disabled, setDisabled] = useState({
     step1: true,
     step2: true,
   })
-  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (mode === 'edit') {
@@ -138,19 +135,19 @@ const CreateExperience = ({ mode }: { mode?: string }) => {
     },
   })
 
-  // const editEducation = useMutate({
-  //   method: 'put',
-  //   url: Paths.education.base,
-  //   successCallback() {
-  //     toast.success('اطلاعات تحصیلی با موفقیت ویرایش شد')
-  //     cache.invalidateQueries(Keys.education.education)
-  //     handleReset()
-  //   },
-  //   errorCallback: () => {
-  //     toast.error('مشکلی در ثبت درخواست شما به وجود آمده است')
-  //     console.log('errrrrr')
-  //   },
-  // })
+  const editExperience = useMutate({
+    method: 'put',
+    url: Paths.experience.base,
+    successCallback() {
+      toast.success('اطلاعات شغلی با موفقیت ویرایش شد')
+      cache.invalidateQueries(Keys.experience.experience)
+      handleReset()
+    },
+    errorCallback: () => {
+      toast.error('مشکلی در ثبت درخواست شما به وجود آمده است')
+      console.log('errrrrr')
+    },
+  })
 
   const handleSubmit = () => {
     postExperience.mutate({
@@ -158,12 +155,12 @@ const CreateExperience = ({ mode }: { mode?: string }) => {
     })
   }
 
-  // const handleEdit = () => {
-  //   editEducation.mutate({
-  //     query: education.addEducation,
-  //     id: id,
-  //   })
-  // }
+  const handleEdit = () => {
+    editExperience.mutate({
+      query: experience.addExperience,
+      id: id,
+    })
+  }
 
   return (
     <>
@@ -212,7 +209,7 @@ const CreateExperience = ({ mode }: { mode?: string }) => {
                     <Button
                       variant="contained"
                       disabled={disabled.step2}
-                      onClick={handleSubmit}
+                      onClick={mode === 'edit' ? handleEdit : handleSubmit}
                     >
                       ارسال
                     </Button>

@@ -93,6 +93,7 @@ const { actions, reducer } = createSlice({
   reducers: {
     updateAddExperience: (state, action) => {
       const { name, amount } = action.payload
+      console.log('first', name, amount)
       const usedObj = getPropertyByKey(state, name)
       console.log({ ...usedObj, ...amount })
       const newObj = { [name]: { ...usedObj, ...amount } }
@@ -102,9 +103,9 @@ const { actions, reducer } = createSlice({
     updateAddExperienceOneProperty: (state, action) => {
       state.addExperience = { ...state.addExperience, ...action.payload }
     },
-    // updateEditEducation: (state, action) => {
-    //   state.addEducation = { ...state.addEducation, ...action.payload }
-    // },
+    updateEditExperience: (state, action) => {
+      state.addExperience = { ...state.addExperience, ...action.payload }
+    },
     resetExperience: (state) => {
       state.addExperience = initialState.addExperience
     },
@@ -121,8 +122,8 @@ export const useExperienceActions = function () {
       dispatch(actions.updateAddExperience(value)),
     updateAddExperienceOneProperty: (value: object) =>
       dispatch(actions.updateAddExperienceOneProperty(value)),
-    // updateEditEducation: (value: object) =>
-    //   dispatch(actions.updateEditEducation(value)),
+    updateEditExperience: (value: object) =>
+      dispatch(actions.updateEditExperience(value)),
     resetExperience: () => dispatch(actions.resetExperience()),
   }
 }
