@@ -8,10 +8,10 @@ router.get("/", experienceControllers.getExperiences);
 
 router.post("/", experienceControllers.createExperience);
 
-// router.get("/:id", educationControllers.getOneEducation);
+router.get("/:id", experienceControllers.getOneExperience);
 
-// router.delete("/:id", educationControllers.deleteEducation);
+router.delete("/:id", experienceControllers.deleteExperience);
 
-// router.put("/:id", educationControllers.editEducation);
+router.put("/:id", experienceControllers.editExperience);
 
 module.exports = router;

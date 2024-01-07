@@ -68,7 +68,7 @@ const getOneEducation = async (req, res, next) => {
   try {
     existingEducation = await Education.findOne({ _id: id });
   } catch (err) {
-    const error = new HttpError("deleted faild !", 500);
+    const error = new HttpError("get one faild !", 500);
     return next(error);
   }
 
@@ -122,7 +122,7 @@ const editEducation = async (req, res, next) => {
   try {
     existingEducation = await Education.findOne({ _id: id });
   } catch (err) {
-    const error = new HttpError("deleted faild !", 500);
+    const error = new HttpError("edited faild !", 500);
     return next(error);
   }
 

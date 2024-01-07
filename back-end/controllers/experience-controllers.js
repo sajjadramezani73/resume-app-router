@@ -74,6 +74,118 @@ const createExperience = async (req, res, next) => {
   res.json({ experience: createExperience });
 };
 
+const getOneExperience = async (req, res, next) => {
+  const { id } = req.params;
+
+  let existingExperience;
+  try {
+    existingExperience = await Experience.findOne({ _id: id });
+  } catch (err) {
+    const error = new HttpError("get One faild !", 500);
+    return next(error);
+  }
+
+  if (!existingExperience) {
+    res.status(422).json({
+      success: 0,
+      errorMessage: "سابقه کاری با این آی دی یافت نشد",
+    });
+    return next();
+  }
+
+  res.json({ experience: existingExperience });
+};
+
+const deleteExperience = async (req, res, next) => {
+  const { id } = req.params;
+
+  let existingExperience;
+  try {
+    existingExperience = await Experience.findOne({ _id: id });
+  } catch (err) {
+    const error = new HttpError("deleted faild !", 500);
+    return next(error);
+  }
+
+  if (!existingExperience) {
+    res.status(422).json({
+      success: 0,
+      errorMessage: "سابقه کاری با این آی دی یافت نشد",
+    });
+    return next();
+  }
+
+  try {
+    await Experience.findOneAndDelete({ _id: id });
+  } catch (err) {
+    const error = new HttpError("deleted faild !", 500);
+    return next(error);
+  }
+
+  res
+    .status(201)
+    .json({ success: 1, errorMessage: "سابقه تحصیلی با موفقیت حذف شد." });
+};
+
+const editExperience = async (req, res, next) => {
+  const { id } = req.params;
+  const {
+    title,
+    company,
+    jobType,
+    jobTime,
+    dateStart,
+    dateEnd,
+    description,
+    companyLink,
+    skill,
+  } = req.body;
+
+  let existingExperience;
+  try {
+    existingExperience = await Experience.findOne({ _id: id });
+  } catch (err) {
+    const error = new HttpError("edited faild !", 500);
+    return next(error);
+  }
+
+  if (!existingExperience) {
+    res.status(422).json({
+      success: 0,
+      errorMessage: "سابقه کاری با این آی دی یافت نشد",
+    });
+    return next();
+  }
+
+  try {
+    await Experience.findOneAndUpdate(
+      { _id: id },
+      {
+        title,
+        company,
+        jobType,
+        jobTime,
+        dateStart,
+        dateEnd,
+        description,
+        companyLink,
+        skill,
+      },
+      { new: true }
+    );
+  } catch (err) {
+    const error = new HttpError("updated faild !", 500);
+    return next(error);
+  }
+
+  res
+    .status(201)
+    .json({ success: 1, errorMessage: "سابقه کاری با موفقیت ویرایش شد." });
+};
+
 exports.adminGetExperiences = adminGetExperiences;
 exports.getExperiences = getExperiences;
 exports.createExperience = createExperience;
+exports.getOneExperience = getOneExperience;
+exports.deleteExperience = deleteExperience;
+exports.editExperience = editExperience;
