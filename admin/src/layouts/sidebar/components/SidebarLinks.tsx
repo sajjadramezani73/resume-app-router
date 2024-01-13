@@ -35,8 +35,8 @@ const SidebarLinks = () => {
       id: 4,
       title: 'پروژه ها',
       children: [
-        { title: 'افزودن جدید', href: '' },
-        { title: 'لیست پروژه ها', href: 'dashboard/projects' },
+        { title: 'افزودن پروژه جدید', href: 'dashboard/create-project' },
+        { title: 'لیست پروژه ها', href: 'dashboard/project-list' },
       ],
     },
   ])
