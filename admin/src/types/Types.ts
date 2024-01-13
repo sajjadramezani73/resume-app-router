@@ -64,3 +64,29 @@ export interface IExperienceProps {
   companyLink: string
   skill: string[]
 }
+
+export interface IProjectProps {
+  _id?: string
+  title: {
+    fa: string
+    en: string
+  }
+  briefDescription: {
+    fa: string
+    en: string
+  }
+  description: {
+    fa: string
+    en: string
+  }
+  skills: string[]
+  links: {
+    id: number
+    link: string
+  }[]
+
+  images: {
+    id: string
+    path: string
+  }[]
+}

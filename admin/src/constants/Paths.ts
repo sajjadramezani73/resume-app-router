@@ -7,4 +7,8 @@ export const Paths = {
     base: '/experience',
     all: '/experience/admin/experiences',
   },
+  project: {
+    base: '/project',
+    all: '/project/admin/projects',
+  },
 }
