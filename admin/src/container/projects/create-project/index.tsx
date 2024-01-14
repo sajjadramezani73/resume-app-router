@@ -2,18 +2,32 @@ import { skillExperience } from '@/enums'
 import { Autocomplete, Button, Card, TextField } from '@mui/material'
 import { useState } from 'react'
 import PermMediaOutlinedIcon from '@mui/icons-material/PermMediaOutlined'
+import { useProjectActions } from '@/store/projectSlice'
 
 const CreateProject = () => {
+  const { project, updateAddProject, updateAddProjectOneProperty } =
+    useProjectActions()
+
+  console.log('project', project)
+
   const [links, setLinks] = useState(['']) // State to store link inputs
 
   const handleAddLink = () => {
-    setLinks([...links, ''])
+    updateAddProjectOneProperty([...project.addProject.links, ''])
   }
 
   const handleLinkChange = (index: number, value: string) => {
     const updatedLinks = [...links]
     updatedLinks[index] = value
     setLinks(updatedLinks)
+  }
+
+  // save data form in redux store
+  const onChangeHandler = (e: { target: { name: string; value: string } }) => {
+    const title = e.target.name.split('.')[0]
+    const lang = e.target.name.split('.')[1]
+    const obj = { name: title, amount: { [lang]: e.target.value } }
+    updateAddProject(obj)
   }
 
   return (
@@ -30,8 +44,8 @@ const CreateProject = () => {
               variant="outlined"
               size="small"
               name="title.fa"
-              // value={experience.addExperience.title.fa}
-              // onChange={onChangeHandler}
+              value={project.addProject.title.fa}
+              onChange={onChangeHandler}
             />
             <TextField
               label="Title"
@@ -39,8 +53,8 @@ const CreateProject = () => {
               size="small"
               className="ltr"
               name="title.en"
-              // value={experience.addExperience.title.en}
-              // onChange={onChangeHandler}
+              value={project.addProject.title.en}
+              onChange={onChangeHandler}
             />
             <TextField
               label="خلاصه توضیحات"
@@ -49,8 +63,8 @@ const CreateProject = () => {
               name="briefDescription.fa"
               multiline
               rows={4}
-              // value={experience.addExperience.title.fa}
-              // onChange={onChangeHandler}
+              value={project.addProject.briefDescription.fa}
+              onChange={onChangeHandler}
             />
             <TextField
               label="briefDescription"
@@ -60,8 +74,8 @@ const CreateProject = () => {
               name="briefDescription.en"
               multiline
               rows={4}
-              // value={experience.addExperience.title.en}
-              // onChange={onChangeHandler}
+              value={project.addProject.briefDescription.en}
+              onChange={onChangeHandler}
             />
             <div className="col-span-2">
               <TextField
@@ -72,8 +86,8 @@ const CreateProject = () => {
                 name="description.fa"
                 multiline
                 rows={4}
-                // value={experience.addExperience.title.en}
-                // onChange={onChangeHandler}
+                value={project.addProject.description.fa}
+                onChange={onChangeHandler}
               />
             </div>
             <div className="col-span-2">
@@ -85,8 +99,8 @@ const CreateProject = () => {
                 name="description.en"
                 multiline
                 rows={4}
-                // value={experience.addExperience.title.en}
-                // onChange={onChangeHandler}
+                value={project.addProject.description.en}
+                onChange={onChangeHandler}
               />
             </div>
             <div className="col-span-2">
@@ -95,21 +109,21 @@ const CreateProject = () => {
                 size="small"
                 options={skillExperience}
                 getOptionLabel={(option) => option}
-                // defaultValue={experience.addExperience.skill}
+                defaultValue={project.addProject.skills}
                 filterSelectedOptions
                 renderInput={(params) => (
                   <TextField {...params} label="مهارت ها" />
                 )}
-                // onChange={(event, value) =>
-                //   updateAddExperienceOneProperty({
-                //     skill: [...value],
-                //   })
-                // }
+                onChange={(event, value) =>
+                  updateAddProjectOneProperty({
+                    skills: [...value],
+                  })
+                }
               />
             </div>
             <div className="col-span-2">
               <div className="grid grid-cols-2 gap-4">
-                {links.map((link, index) => (
+                {project.addProject.links.map((link, index) => (
                   <TextField
                     key={index}
                     label={`لینک ${index + 1}`}
