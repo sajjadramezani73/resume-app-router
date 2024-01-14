@@ -6,8 +6,8 @@ import EducationPage from '@/pages/education/create-education'
 import EducationListPage from '@/pages/education/education-list'
 import ExperiencePage from '@/pages/experience/create-experience'
 import ExperineceListPage from '@/pages/experience/experience-list'
-import ProjectPage from '@/pages/experience/project/create-project'
-import ProjectListPage from '@/pages/experience/project/project-list'
+import ProjectPage from '@/pages/project/create-project'
+import ProjectListPage from '@/pages/project/project-list'
 import { Route, Routes } from 'react-router-dom'
 
 const MainLayout = () => {

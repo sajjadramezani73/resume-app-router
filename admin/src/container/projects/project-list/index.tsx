@@ -21,7 +21,6 @@ const ProjectList = () => {
     queryKey: Keys.project.project,
     url: Paths.project.all,
   })
-  console.log(data)
 
   return (
     <>
