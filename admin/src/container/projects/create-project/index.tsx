@@ -1,25 +1,51 @@
 import { skillExperience } from '@/enums'
 import { Autocomplete, Button, Card, TextField } from '@mui/material'
-import { useState } from 'react'
 import PermMediaOutlinedIcon from '@mui/icons-material/PermMediaOutlined'
 import { useProjectActions } from '@/store/projectSlice'
+import { useMutate } from '@/services/axios/useRequest'
+import { Paths } from '@/constants/Paths'
+import { toast } from 'sonner'
+import { Keys } from '@/constants/Keys'
+import { useQueryClient } from 'react-query'
+import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
-const CreateProject = () => {
-  const { project, updateAddProject, updateAddProjectOneProperty } =
-    useProjectActions()
+const CreateProject = ({ mode }: { mode?: string }) => {
+  const cache = useQueryClient()
+  const navigate = useNavigate()
+  const {
+    project,
+    updateAddProject,
+    updateAddProjectOneProperty,
+    resetProject,
+  } = useProjectActions()
 
   console.log('project', project)
 
-  const [links, setLinks] = useState(['']) // State to store link inputs
+  const [disabled, setDisabled] = useState(false)
+
+  // check for desabled button step 1 and step 2
+  useEffect(() => {
+    project.addProject.title.fa === '' ||
+    project.addProject.title.en === '' ||
+    project.addProject.briefDescription.fa === '' ||
+    project.addProject.briefDescription.en === '' ||
+    project.addProject.description.fa === '' ||
+    project.addProject.description.en === '' ||
+    project.addProject.skills.length === 0 ||
+    project.addProject.links.findIndex((item) => item === '') > -1
+      ? setDisabled(true)
+      : setDisabled(false)
+  }, [project.addProject])
 
   const handleAddLink = () => {
-    updateAddProjectOneProperty([...project.addProject.links, ''])
+    updateAddProjectOneProperty({ links: [...project.addProject.links, ''] })
   }
 
   const handleLinkChange = (index: number, value: string) => {
-    const updatedLinks = [...links]
+    const updatedLinks: string[] = [...project.addProject.links]
     updatedLinks[index] = value
-    setLinks(updatedLinks)
+    updateAddProjectOneProperty({ links: updatedLinks })
   }
 
   // save data form in redux store
@@ -28,6 +54,52 @@ const CreateProject = () => {
     const lang = e.target.name.split('.')[1]
     const obj = { name: title, amount: { [lang]: e.target.value } }
     updateAddProject(obj)
+  }
+
+  const handleReset = () => {
+    resetProject()
+    navigate('/dashboard/project-list')
+  }
+
+  const postProject = useMutate({
+    method: 'post',
+    url: Paths.project.base,
+    successCallback() {
+      toast.success('درخواست شما با موفقیت ثبت شد')
+      cache.invalidateQueries(Keys.project.project)
+      handleReset()
+    },
+    errorCallback: () => {
+      toast.error('مشکلی در ثبت درخواست شما به وجود آمده است')
+      console.log('errrrrr')
+    },
+  })
+
+  // const editExperience = useMutate({
+  //   method: 'put',
+  //   url: Paths.experience.base,
+  //   successCallback() {
+  //     toast.success('اطلاعات شغلی با موفقیت ویرایش شد')
+  //     cache.invalidateQueries(Keys.experience.experience)
+  //     handleReset()
+  //   },
+  //   errorCallback: () => {
+  //     toast.error('مشکلی در ثبت درخواست شما به وجود آمده است')
+  //     console.log('errrrrr')
+  //   },
+  // })
+
+  const handleSubmit = () => {
+    postProject.mutate({
+      query: project.addProject,
+    })
+  }
+
+  const handleEdit = () => {
+    // editExperience.mutate({
+    //   query: experience.addExperience,
+    //   id: id,
+    // })
   }
 
   return (
@@ -157,6 +229,15 @@ const CreateProject = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="flex justify-end mt-4">
+            <Button
+              variant="contained"
+              disabled={disabled}
+              onClick={mode === 'edit' ? handleEdit : handleSubmit}
+            >
+              ارسال
+            </Button>
           </div>
         </Card>
       </div>

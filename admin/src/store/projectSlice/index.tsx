@@ -62,12 +62,12 @@ const { actions, reducer } = createSlice({
     updateAddProjectOneProperty: (state, action) => {
       state.addProject = { ...state.addProject, ...action.payload }
     },
-    // updateEditProject: (state, action) => {
-    //   state.addProject = { ...state.addProject, ...action.payload }
-    // },
-    // resetProject: (state) => {
-    //   state.addProject = initialState.addProject
-    // },
+    updateEditProject: (state, action) => {
+      state.addProject = { ...state.addProject, ...action.payload }
+    },
+    resetProject: (state) => {
+      state.addProject = initialState.addProject
+    },
   },
 })
 
@@ -81,9 +81,9 @@ export const useProjectActions = function () {
       dispatch(actions.updateAddProject(value)),
     updateAddProjectOneProperty: (value: object) =>
       dispatch(actions.updateAddProjectOneProperty(value)),
-    // updateEditProject: (value: object) =>
-    //   dispatch(actions.updateEditProject(value)),
-    // resetProject: () => dispatch(actions.resetProject()),
+    updateEditProject: (value: object) =>
+      dispatch(actions.updateEditProject(value)),
+    resetProject: () => dispatch(actions.resetProject()),
   }
 }
 export default reducer

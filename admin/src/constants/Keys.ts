@@ -8,7 +8,7 @@ export const Keys = {
     experienceOne: 'experienceOne',
   },
   project: {
-    project: 'experience',
-    projectOne: 'experienceOne',
+    project: 'project',
+    projectOne: 'projectOne',
   },
 }
