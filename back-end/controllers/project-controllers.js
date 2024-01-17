@@ -62,6 +62,28 @@ const createProject = async (req, res, next) => {
   res.json({ project: createProject });
 };
 
+const getOneProject = async (req, res, next) => {
+  const { id } = req.params;
+
+  let existingProject;
+  try {
+    existingProject = await Project.findOne({ _id: id });
+  } catch (err) {
+    const error = new HttpError("get One faild !", 500);
+    return next(error);
+  }
+
+  if (!existingProject) {
+    res.status(422).json({
+      success: 0,
+      errorMessage: " پروژه ای با این آی دی یافت نشد",
+    });
+    return next();
+  }
+
+  res.json({ project: existingProject });
+};
+
 const updateProject = async (req, res, next) => {
   const { id } = req.body;
 
@@ -103,4 +125,5 @@ const updateProject = async (req, res, next) => {
 exports.adminGetProjects = adminGetProjects;
 exports.getProjects = getProjects;
 exports.createProject = createProject;
+exports.getOneProject = getOneProject;
 exports.updateProject = updateProject;

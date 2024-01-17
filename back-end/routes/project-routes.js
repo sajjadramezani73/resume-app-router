@@ -5,9 +5,11 @@ const fileUpload = require("../middleware/file-upload");
 
 router.get("/admin/projects", projectControllers.adminGetProjects);
 
-// router.get("/getProjects", projectControllers.getProjects);
+router.get("/", projectControllers.getProjects);
 
-// router.post("/createProject", projectControllers.createProject);
+router.post("/", projectControllers.createProject);
+
+router.get("/:id", projectControllers.getOneProject);
 
 // router.post(
 //   "/updateProject",
