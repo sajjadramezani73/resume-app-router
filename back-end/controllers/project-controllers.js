@@ -122,8 +122,51 @@ const updateProject = async (req, res, next) => {
   });
 };
 
+const editProject = async (req, res, next) => {
+  const { id } = req.params;
+  const { title, briefDescription, description, links, skills } = req.body;
+
+  let existingProject;
+  try {
+    existingProject = await Project.findOne({ _id: id });
+  } catch (err) {
+    const error = new HttpError("edited faild !", 500);
+    return next(error);
+  }
+
+  if (!existingProject) {
+    res.status(422).json({
+      success: 0,
+      errorMessage: "پروژه با این آی دی یافت نشد",
+    });
+    return next();
+  }
+
+  try {
+    await Project.findOneAndUpdate(
+      { _id: id },
+      {
+        title,
+        briefDescription,
+        description,
+        links,
+        skills,
+      },
+      { new: true }
+    );
+  } catch (err) {
+    const error = new HttpError("updated faild !", 500);
+    return next(error);
+  }
+
+  res
+    .status(201)
+    .json({ success: 1, errorMessage: " پروژه با موفقیت ویرایش شد." });
+};
+
 exports.adminGetProjects = adminGetProjects;
 exports.getProjects = getProjects;
 exports.createProject = createProject;
 exports.getOneProject = getOneProject;
 exports.updateProject = updateProject;
+exports.editProject = editProject;

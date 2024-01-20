@@ -11,6 +11,8 @@ router.post("/", projectControllers.createProject);
 
 router.get("/:id", projectControllers.getOneProject);
 
+router.put("/:id", projectControllers.editProject);
+
 // router.post(
 //   "/updateProject",
 //   fileUpload.single("avatar"),
