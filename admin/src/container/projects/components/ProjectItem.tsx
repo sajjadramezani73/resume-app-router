@@ -15,12 +15,12 @@ const ProjectItem = ({ item }: { item: IProjectProps }) => {
 
   console.log(item)
 
-  const deleteExperience = useMutate({
+  const deleteProject = useMutate({
     method: 'delete',
-    url: Paths.experience.base,
+    url: Paths.project.base,
     successCallback() {
-      toast.success('سابقه کاری با موفقیت حذف شد')
-      queryClient.invalidateQueries(Keys.experience.experience)
+      toast.success('پروژه با موفقیت حذف شد')
+      queryClient.invalidateQueries(Keys.project.project)
     },
     errorCallback: () => {
       toast.error('مشکلی در ثبت درخواست شما به وجود آمده است')
@@ -28,8 +28,8 @@ const ProjectItem = ({ item }: { item: IProjectProps }) => {
     },
   })
 
-  const deleteExperienceHandler = async (id: string | undefined) => {
-    // deleteExperience.mutate({ id })
+  const deleteProjectHandler = async (id: string | undefined) => {
+    deleteProject.mutate({ id })
   }
 
   const handleEdit = () => {
@@ -49,7 +49,7 @@ const ProjectItem = ({ item }: { item: IProjectProps }) => {
           <IconButton
             size="small"
             className="text-red-500"
-            onClick={() => deleteExperienceHandler(item._id)}
+            onClick={() => deleteProjectHandler(item._id)}
           >
             <DeleteIcon />
           </IconButton>
