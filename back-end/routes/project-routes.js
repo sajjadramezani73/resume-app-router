@@ -11,6 +11,8 @@ router.post("/", projectControllers.createProject);
 
 router.get("/:id", projectControllers.getOneProject);
 
+router.delete("/:id", projectControllers.deleteProject);
+
 router.put("/:id", projectControllers.editProject);
 
 // router.post(
