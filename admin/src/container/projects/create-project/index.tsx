@@ -7,10 +7,11 @@ import { Paths } from '@/constants/Paths'
 import { toast } from 'sonner'
 import { Keys } from '@/constants/Keys'
 import { useQueryClient } from 'react-query'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 const CreateProject = ({ mode }: { mode?: string }) => {
+  const { id } = useParams()
   const cache = useQueryClient()
   const navigate = useNavigate()
   const {
@@ -23,6 +24,14 @@ const CreateProject = ({ mode }: { mode?: string }) => {
   console.log('project', project)
 
   const [disabled, setDisabled] = useState(false)
+
+  useEffect(() => {
+    if (mode === 'edit') {
+      console.log('')
+    } else {
+      resetProject()
+    }
+  }, [mode])
 
   // check for desabled button step 1 and step 2
   useEffect(() => {
@@ -75,19 +84,19 @@ const CreateProject = ({ mode }: { mode?: string }) => {
     },
   })
 
-  // const editExperience = useMutate({
-  //   method: 'put',
-  //   url: Paths.experience.base,
-  //   successCallback() {
-  //     toast.success('اطلاعات شغلی با موفقیت ویرایش شد')
-  //     cache.invalidateQueries(Keys.experience.experience)
-  //     handleReset()
-  //   },
-  //   errorCallback: () => {
-  //     toast.error('مشکلی در ثبت درخواست شما به وجود آمده است')
-  //     console.log('errrrrr')
-  //   },
-  // })
+  const editProject = useMutate({
+    method: 'put',
+    url: Paths.project.base,
+    successCallback() {
+      toast.success('پروژه با موفقیت ویرایش شد')
+      cache.invalidateQueries(Keys.project.project)
+      handleReset()
+    },
+    errorCallback: () => {
+      toast.error('مشکلی در ثبت درخواست شما به وجود آمده است')
+      console.log('errrrrr')
+    },
+  })
 
   const handleSubmit = () => {
     postProject.mutate({
@@ -96,10 +105,10 @@ const CreateProject = ({ mode }: { mode?: string }) => {
   }
 
   const handleEdit = () => {
-    // editExperience.mutate({
-    //   query: experience.addExperience,
-    //   id: id,
-    // })
+    editProject.mutate({
+      query: project.addProject,
+      id: id,
+    })
   }
 
   return (
