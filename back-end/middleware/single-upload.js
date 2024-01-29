@@ -18,7 +18,7 @@ const singleUpload = multer({
     s3,
     bucket: process.env.LIARA_BUCKET_NAME,
     key: function (req, file, cb) {
-      console.log(file);
+      console.log('upload middleware',file);
       cb(null, file.originalname);
     },
   }),

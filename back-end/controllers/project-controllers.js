@@ -67,7 +67,9 @@ const getOneProject = async (req, res, next) => {
 
   let existingProject;
   try {
-    existingProject = await Project.findOne({ _id: id });
+    existingProject = await Project.findOne({ _id: id })
+      .populate("images")
+      .exec();
   } catch (err) {
     const error = new HttpError("get One faild !", 500);
     return next(error);
@@ -153,7 +155,8 @@ const deleteProject = async (req, res, next) => {
 
 const editProject = async (req, res, next) => {
   const { id } = req.params;
-  const { title, briefDescription, description, links, skills } = req.body;
+  const { title, briefDescription, description, links, skills, images } =
+    req.body;
 
   let existingProject;
   try {
@@ -180,6 +183,7 @@ const editProject = async (req, res, next) => {
         description,
         links,
         skills,
+        images,
       },
       { new: true }
     );
