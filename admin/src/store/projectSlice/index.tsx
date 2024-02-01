@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
+import { IImage } from '@/components/uploader/type'
 
 type ProjectKeys = 'title' | 'briefDescription' | 'description'
 
@@ -24,6 +25,7 @@ export interface IProjectState {
     }
     links: string[]
     skills: string[]
+    images: IImage[]
   }
 }
 
@@ -43,6 +45,7 @@ const initialState: IProjectState = {
     },
     links: [''],
     skills: [],
+    images: [],
   },
 }
 

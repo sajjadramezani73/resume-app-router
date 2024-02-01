@@ -19,7 +19,7 @@ const ProjectPage = () => {
     successCallback(data) {
       console.log('sss', data)
 
-      const { title, briefDescription, description, links, skills } =
+      const { title, briefDescription, description, links, skills, images } =
         data.project
 
       dispatch(
@@ -29,6 +29,7 @@ const ProjectPage = () => {
           description,
           links,
           skills,
+          images: images ?? [],
         })
       )
     },

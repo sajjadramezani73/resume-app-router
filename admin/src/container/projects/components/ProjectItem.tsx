@@ -13,8 +13,6 @@ const ProjectItem = ({ item }: { item: IProjectProps }) => {
   const queryClient = useQueryClient()
   const navigate = useNavigate()
 
-  console.log(item)
-
   const deleteProject = useMutate({
     method: 'delete',
     url: Paths.project.base,

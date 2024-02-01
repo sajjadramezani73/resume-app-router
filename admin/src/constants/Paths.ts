@@ -11,4 +11,7 @@ export const Paths = {
     base: '/project',
     all: '/project/admin/projects',
   },
+  upload: {
+    singleUpload: '/upload/singleUpload',
+  },
 }

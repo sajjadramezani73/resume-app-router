@@ -50,6 +50,7 @@ const createProject = async (req, res, next) => {
     description: description,
     links: links,
     skills: skills,
+    images: images,
   });
 
   try {
@@ -157,6 +158,8 @@ const editProject = async (req, res, next) => {
   const { id } = req.params;
   const { title, briefDescription, description, links, skills, images } =
     req.body;
+
+  console.log("images", req.body);
 
   let existingProject;
   try {

@@ -13,7 +13,8 @@ export function setupAxios(axios: any) {
       config.headers['Access-Control-Allow-Credentials'] = true
       config.headers['Access-Control-Allow-Methods'] =
         'GET,HEAD,OPTIONS,POST,PUT,DELETE,PATCH'
-      config.headers['Content-Type'] = 'application/json'
+      // config.headers['Content-Type'] = 'application/json'
+      // config.headers['Content-Type'] = 'multipart/form-data'
       // config.headers['Accept-Language'] = parsedLanguage;
       // config.headers['Acccept-Encoding'] = 'gzip, deflate, br';
       // config.headers['Access-Control-Max_Age'] = 36000;

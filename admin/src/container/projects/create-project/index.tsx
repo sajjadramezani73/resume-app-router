@@ -1,6 +1,5 @@
 import { skillExperience } from '@/enums'
 import { Autocomplete, Button, Card, TextField } from '@mui/material'
-import PermMediaOutlinedIcon from '@mui/icons-material/PermMediaOutlined'
 import { useProjectActions } from '@/store/projectSlice'
 import { useMutate } from '@/services/axios/useRequest'
 import { Paths } from '@/constants/Paths'
@@ -9,6 +8,7 @@ import { Keys } from '@/constants/Keys'
 import { useQueryClient } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import SingleUpload from '@/components/uploader/singleUpload'
 
 const CreateProject = ({ mode }: { mode?: string }) => {
   const { id } = useParams()
@@ -87,6 +87,7 @@ const CreateProject = ({ mode }: { mode?: string }) => {
   const editProject = useMutate({
     method: 'put',
     url: Paths.project.base,
+    // header: { headers: { 'Content-Type': 'multipart/form-data' } },
     successCallback() {
       toast.success('پروژه با موفقیت ویرایش شد')
       cache.invalidateQueries(Keys.project.project)
@@ -100,13 +101,19 @@ const CreateProject = ({ mode }: { mode?: string }) => {
 
   const handleSubmit = () => {
     postProject.mutate({
-      query: project.addProject,
+      query: {
+        ...project.addProject,
+        images: project.addProject.images.map((item) => item?._id),
+      },
     })
   }
 
   const handleEdit = () => {
     editProject.mutate({
-      query: project.addProject,
+      query: {
+        ...project.addProject,
+        images: project.addProject.images.map((item) => item?._id),
+      },
       id: id,
     })
   }
@@ -230,11 +237,26 @@ const CreateProject = ({ mode }: { mode?: string }) => {
                 <div className="bg-body px-4 py-3 border-b border-x-0 border-t-0 border-solid border-border">
                   <p className="text-sm font-medium">گالری تصاویر</p>
                 </div>
-                <div className="p-4">
-                  <div className="w-32 h-32 border border-dashed border-border rounded flex flex-col justify-center items-center gap-y-2 cursor-pointer">
-                    <PermMediaOutlinedIcon />
-                    <p className="text-xs font-medium">انتخاب تصویر</p>
-                  </div>
+                <div className="p-4 flex items-center gap-4 flex-wrap">
+                  {project.addProject.images.map((item) => (
+                    <div
+                      key={item?._id}
+                      className="w-32 h-32 border border-dashed border-border rounded flex justify-center items-center overflow-hidden"
+                    >
+                      <img
+                        src={item?.url}
+                        alt=""
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
+                  <SingleUpload
+                    handleImage={(value) =>
+                      updateAddProjectOneProperty({
+                        images: [...project.addProject.images, value],
+                      })
+                    }
+                  />
                 </div>
               </div>
             </div>
