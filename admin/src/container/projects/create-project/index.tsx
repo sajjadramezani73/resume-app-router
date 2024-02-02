@@ -9,6 +9,7 @@ import { useQueryClient } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import SingleUpload from '@/components/uploader/singleUpload'
+import Image from '@/components/image'
 
 const CreateProject = ({ mode }: { mode?: string }) => {
   const { id } = useParams()
@@ -68,6 +69,15 @@ const CreateProject = ({ mode }: { mode?: string }) => {
   const handleReset = () => {
     resetProject()
     navigate('/dashboard/project-list')
+  }
+
+  const handleDeleteImage = (id: string) => {
+    const filteredImage = project.addProject.images.filter(
+      (item) => item._id !== id
+    )
+    updateAddProjectOneProperty({
+      images: filteredImage,
+    })
   }
 
   const postProject = useMutate({
@@ -239,14 +249,10 @@ const CreateProject = ({ mode }: { mode?: string }) => {
                 </div>
                 <div className="p-4 flex items-center gap-4 flex-wrap">
                   {project.addProject.images.map((item) => (
-                    <div
-                      key={item?._id}
-                      className="w-32 h-32 border border-dashed border-border rounded flex justify-center items-center overflow-hidden"
-                    >
-                      <img
-                        src={item?.url}
-                        alt=""
-                        className="w-full h-full object-cover"
+                    <div key={item?._id} className="w-32 h-32">
+                      <Image
+                        image={item}
+                        handleDelete={(id: string) => handleDeleteImage(id)}
                       />
                     </div>
                   ))}
