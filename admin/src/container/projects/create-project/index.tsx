@@ -1,5 +1,11 @@
 import { skillExperience } from '@/enums'
-import { Autocomplete, Button, Card, TextField } from '@mui/material'
+import {
+  Autocomplete,
+  Button,
+  Card,
+  IconButton,
+  TextField,
+} from '@mui/material'
 import { useProjectActions } from '@/store/projectSlice'
 import { useMutate } from '@/services/axios/useRequest'
 import { Paths } from '@/constants/Paths'
@@ -10,6 +16,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import SingleUpload from '@/components/uploader/singleUpload'
 import Image from '@/components/image'
+import CloseIcon from '@mui/icons-material/Close'
 
 const CreateProject = ({ mode }: { mode?: string }) => {
   const { id } = useParams()
@@ -50,6 +57,13 @@ const CreateProject = ({ mode }: { mode?: string }) => {
 
   const handleAddLink = () => {
     updateAddProjectOneProperty({ links: [...project.addProject.links, ''] })
+  }
+
+  const handleDeleteLink = (link: string, indexLink: number) => {
+    const filteredLink = project.addProject.links.filter(
+      (item, index) => index !== indexLink
+    )
+    updateAddProjectOneProperty({ links: filteredLink })
   }
 
   const handleLinkChange = (index: number, value: string) => {
@@ -207,7 +221,8 @@ const CreateProject = ({ mode }: { mode?: string }) => {
                 size="small"
                 options={skillExperience}
                 getOptionLabel={(option) => option}
-                defaultValue={project.addProject.skills}
+                value={project.addProject.skills}
+                // defaultValue={project.addProject.skills}
                 filterSelectedOptions
                 renderInput={(params) => (
                   <TextField {...params} label="مهارت ها" />
@@ -222,14 +237,22 @@ const CreateProject = ({ mode }: { mode?: string }) => {
             <div className="col-span-2">
               <div className="grid grid-cols-2 gap-4">
                 {project.addProject.links.map((link, index) => (
-                  <TextField
-                    key={index}
-                    label={`لینک ${index + 1}`}
-                    size="small"
-                    value={link}
-                    onChange={(e) => handleLinkChange(index, e.target.value)}
-                    fullWidth
-                  />
+                  <div className="flex items-center gap-x-0.5">
+                    <TextField
+                      key={index}
+                      label={`لینک ${index + 1}`}
+                      size="small"
+                      value={link}
+                      onChange={(e) => handleLinkChange(index, e.target.value)}
+                      fullWidth
+                    />
+                    <IconButton
+                      size="small"
+                      onClick={() => handleDeleteLink(link, index)}
+                    >
+                      <CloseIcon />
+                    </IconButton>
+                  </div>
                 ))}
               </div>
               <div className="mt-4">
