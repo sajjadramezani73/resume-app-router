@@ -56,8 +56,6 @@ const CreateExperience = ({ mode }: { mode?: string }) => {
       experience.addExperience.description.en === '' ||
       experience.addExperience.dateStart.fa === '' ||
       experience.addExperience.dateStart.en === '' ||
-      experience.addExperience.dateEnd.fa === '' ||
-      experience.addExperience.dateEnd.en === '' ||
       experience.addExperience.jobTime.fa === '' ||
       experience.addExperience.jobTime.en === '' ||
       experience.addExperience.skill.length === 0

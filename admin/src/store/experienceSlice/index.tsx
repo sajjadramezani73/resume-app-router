@@ -43,6 +43,7 @@ export interface IExperienceState {
       fa: string
       en: string
     }
+    soFar: boolean
     description: {
       fa: string
       en: string
@@ -78,6 +79,7 @@ const initialState: IExperienceState = {
       fa: '',
       en: '',
     },
+    soFar: false,
     description: {
       fa: '',
       en: '',

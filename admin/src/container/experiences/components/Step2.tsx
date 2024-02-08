@@ -2,14 +2,17 @@ import { jobTimeExperience, skillExperience } from '@/enums'
 import { useExperienceActions } from '@/store/experienceSlice'
 import {
   Autocomplete,
+  Checkbox,
   FormControl,
+  FormControlLabel,
+  FormGroup,
   InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
   TextField,
 } from '@mui/material'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, SyntheticEvent } from 'react'
 
 interface Props {
   onChangeHandler: (event: ChangeEvent<HTMLInputElement>) => void
@@ -18,6 +21,17 @@ interface Props {
 
 const Step2 = ({ onChangeHandler, onSelectHandler }: Props) => {
   const { experience, updateAddExperienceOneProperty } = useExperienceActions()
+
+  console.log('experience', experience)
+
+  const changeHandler = (
+    _event: SyntheticEvent<Element, Event>,
+    checked: boolean
+  ) => {
+    updateAddExperienceOneProperty({ dateEnd: { fa: '', en: '' } })
+    updateAddExperienceOneProperty({ soFar: checked })
+  }
+  // React.ChangeEvent<HTMLInputElement>
   return (
     <div className="grid grid-cols-2 gap-4">
       <FormControl fullWidth variant="outlined" size="small">
@@ -74,6 +88,7 @@ const Step2 = ({ onChangeHandler, onSelectHandler }: Props) => {
         name="dateEnd.fa"
         value={experience.addExperience.dateEnd.fa}
         onChange={onChangeHandler}
+        disabled={experience.addExperience.soFar}
       />
       <TextField
         size="small"
@@ -82,7 +97,16 @@ const Step2 = ({ onChangeHandler, onSelectHandler }: Props) => {
         name="dateEnd.en"
         value={experience.addExperience.dateEnd.en}
         onChange={onChangeHandler}
+        disabled={experience.addExperience.soFar}
       />
+      <FormGroup className="col-span-2">
+        <FormControlLabel
+          control={<Checkbox defaultChecked />}
+          label="همچنان مشغول به کار هستم"
+          onChange={changeHandler}
+          checked={experience.addExperience.soFar}
+        />
+      </FormGroup>
       <TextField
         label="توضیحات"
         variant="outlined"
