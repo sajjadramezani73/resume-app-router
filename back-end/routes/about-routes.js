@@ -7,7 +7,7 @@ const fileUpload = require("../middleware/file-upload");
 
 // router.post('/login', userControllers.login)
 
-router.get("/adminGetAbout", aboutControllers.adminGetAbout);
+router.get("/admin/about", aboutControllers.adminGetAbout);
 
 router.get("/getAbout", aboutControllers.getAbout);
 

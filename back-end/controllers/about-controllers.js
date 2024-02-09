@@ -10,19 +10,24 @@ const adminGetAbout = async (req, res, next) => {
     return next(error);
   }
 
-  const aboutMe = {
-    firstName: about.firstName,
-    lastName: about.lastName,
-    job: about.job,
-    address: about.address,
-    bio: about.bio,
-    gender: about.gender,
-    age: about.age,
-    email: about.email,
-    phone: about.phone,
-    socialsNetwork: about.socialsNetwork,
-    avatar: about.avatar,
-  };
+  let aboutMe;
+  if (about) {
+    aboutMe = {
+      firstName: about.firstName,
+      lastName: about.lastName,
+      job: about.job,
+      address: about.address,
+      bio: about.bio,
+      gender: about.gender,
+      age: about.age,
+      email: about.email,
+      phone: about.phone,
+      socialsNetwork: about.socialsNetwork,
+      avatar: about.avatar,
+    };
+  } else {
+    aboutMe = {};
+  }
 
   res.json({ aboutMe: aboutMe });
 };
