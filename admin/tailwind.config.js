@@ -34,6 +34,7 @@ export default {
       base: '1rem',
     },
     fontFamily: {
+      roboto: ['roboto'],
       iranyekan: ['iranyekan'],
     },
     extend: {

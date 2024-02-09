@@ -86,6 +86,54 @@
     url('./assets/fonts/ttf/iranyekanwebblackfanum.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'roboto';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 900;
+  src: url('./assets/fonts/ttf/Roboto-Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'roboto';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 800;
+  src: url('./assets/fonts/ttf/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'roboto';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url('./assets/fonts/ttf/Roboto-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'roboto';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('./assets/fonts/ttf/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'roboto';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300;
+  src: url('./assets/fonts/ttf/Roboto-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'roboto';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100;
+  src: url('./assets/fonts/ttf/Roboto-Thin.ttf') format('truetype');
+}
+
 html,
 body,
 #root {
