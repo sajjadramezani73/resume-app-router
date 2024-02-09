@@ -1,7 +1,8 @@
-import About from '@/pages/About'
 import Dashboard from '@/pages/Dashboard'
 import Login from '@/pages/Login'
 import Splash from '@/pages/Splash'
+import AboutListPage from '@/pages/about/about-list'
+import AboutPage from '@/pages/about/create-about'
 import EducationPage from '@/pages/education/create-education'
 import EducationListPage from '@/pages/education/education-list'
 import ExperiencePage from '@/pages/experience/create-experience'
@@ -15,7 +16,8 @@ const MainLayout = () => {
     <Routes>
       <Route path="/" element={<Splash />} />
       <Route path="/dashboard" element={<Dashboard />}>
-        <Route index element={<About />} />
+        <Route index element={<AboutListPage />} />
+        <Route path="create-about" element={<AboutPage />} />
         <Route path="education/:id" element={<EducationPage />} />
         <Route path="create-education" element={<EducationPage />} />
         <Route path="education-list" element={<EducationListPage />} />

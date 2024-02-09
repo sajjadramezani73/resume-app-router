@@ -11,7 +11,7 @@ const SidebarLinks = () => {
   const [links] = useState([
     {
       id: 1,
-      title: 'داشبود',
+      title: 'درباره من',
       children: [],
       href: 'dashboard',
     },

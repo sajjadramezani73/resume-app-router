@@ -1,4 +1,8 @@
 export const Paths = {
+  about: {
+    base: '/about',
+    all: '/about/admin/about',
+  },
   education: {
     base: '/education',
     all: '/education/admin/educations',

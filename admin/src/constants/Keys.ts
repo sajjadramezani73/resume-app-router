@@ -1,4 +1,7 @@
 export const Keys = {
+  about: {
+    about: 'about',
+  },
   education: {
     education: 'education',
     educationOne: 'educationOne',
