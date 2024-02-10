@@ -1,21 +1,38 @@
 import { Keys } from '@/constants/Keys'
 import { Paths } from '@/constants/Paths'
 import { useRequest } from '@/services/axios/useRequest'
-import { Card } from '@mui/material'
+import { Button, Card } from '@mui/material'
 import UserAvatar from '../components/avatar'
+import { useEffect, useState } from 'react'
+import SvgIcon from '@/utils/SvgIcon'
+import { Link } from 'react-router-dom'
 
 const AboutList = () => {
+  const [arraySocials, setArraySocials] = useState<string[]>([])
+
   const { data } = useRequest({
     queryKey: Keys.about.about,
     url: Paths.about.all,
   })
 
-  console.log('data', data.aboutMe)
+  useEffect(() => {
+    data?.aboutMe?.socialsNetwork
+      ? setArraySocials(Object.keys(data?.aboutMe?.socialsNetwork))
+      : setArraySocials([])
+  }, [data])
+  console.log('data', data?.aboutMe)
+
+  // console.log('arraySocials', arraySocials)
 
   return (
     <>
       <Card className="p-8 rounded-none flex justify-between items-center h-[100px]">
         <p className="text-titr text-[18px] font-bold">درباره من</p>
+        <Link to="/dashboard/create-about">
+          <Button size="small" variant="contained">
+            ویرایش اطلاعات
+          </Button>
+        </Link>
       </Card>
       <div className="p-8">
         <Card className="p-8">
@@ -75,6 +92,22 @@ const AboutList = () => {
                 <div className="col-span-3">
                   <p className="font-roboto">{data?.aboutMe?.bio?.en}</p>
                 </div>
+              </div>
+              <div className="border-t porder-x-0 border-b-0 border-solid border-border my-8"></div>
+              <div className="ltr grid gap-y-3">
+                {arraySocials.map((item: string) => (
+                  <div
+                    className="flex justify-start items-center gap-x-3"
+                    key={item}
+                  >
+                    <SvgIcon
+                      name={item}
+                      color="var(--color-caption)"
+                      size={20}
+                    />
+                    <p>{data?.aboutMe?.socialsNetwork[item]}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
