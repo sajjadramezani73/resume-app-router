@@ -87,44 +87,6 @@ const getOneProject = async (req, res, next) => {
   res.json({ project: existingProject });
 };
 
-const updateProject = async (req, res, next) => {
-  const { id } = req.body;
-
-  let existingProject;
-  try {
-    existingProject = await Project.findOne({ _id: id });
-  } catch (err) {
-    const error = new HttpError("update project faild !", 500);
-    return next(error);
-  }
-
-  if (!existingProject) {
-    res
-      .status(422)
-      .json({ success: 0, errorMessage: "پروژه ای با این مشخصات یافت نشد" });
-    return next();
-  }
-
-  let updateProject;
-  if (req.file) {
-    existingProject.images.push({
-      id: new mongoose.Types.ObjectId(),
-      path: req.file.path,
-    });
-  }
-  try {
-    updateProject = await existingProject.save();
-  } catch (err) {
-    const error = new HttpError("Creatupdatinging about faild", 500);
-    return next(error);
-  }
-
-  res.send({
-    project: updateProject,
-    message: "ویرایش اطلاعات پروژه با موفقیت انجام شد",
-  });
-};
-
 const deleteProject = async (req, res, next) => {
   const { id } = req.params;
 
@@ -158,8 +120,6 @@ const editProject = async (req, res, next) => {
   const { id } = req.params;
   const { title, briefDescription, description, links, skills, images } =
     req.body;
-
-  console.log("images", req.body);
 
   let existingProject;
   try {
@@ -204,6 +164,5 @@ exports.adminGetProjects = adminGetProjects;
 exports.getProjects = getProjects;
 exports.createProject = createProject;
 exports.getOneProject = getOneProject;
-exports.updateProject = updateProject;
 exports.deleteProject = deleteProject;
 exports.editProject = editProject;

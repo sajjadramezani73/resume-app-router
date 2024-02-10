@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express();
 const projectControllers = require("../controllers/project-controllers");
-const fileUpload = require("../middleware/file-upload");
 
 router.get("/admin/projects", projectControllers.adminGetProjects);
 
@@ -14,11 +13,5 @@ router.get("/:id", projectControllers.getOneProject);
 router.delete("/:id", projectControllers.deleteProject);
 
 router.put("/:id", projectControllers.editProject);
-
-// router.post(
-//   "/updateProject",
-//   fileUpload.single("avatar"),
-//   projectControllers.updateProject
-// );
 
 module.exports = router;
