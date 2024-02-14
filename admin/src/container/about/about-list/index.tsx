@@ -3,26 +3,17 @@ import { Paths } from '@/constants/Paths'
 import { useRequest } from '@/services/axios/useRequest'
 import { Button, Card } from '@mui/material'
 import UserAvatar from '../components/avatar'
-import { useEffect, useState } from 'react'
 import SvgIcon from '@/utils/SvgIcon'
 import { Link } from 'react-router-dom'
+import { ISocialNetworkProps } from '@/types/Types'
 
 const AboutList = () => {
-  const [arraySocials, setArraySocials] = useState<string[]>([])
-
   const { data } = useRequest({
     queryKey: Keys.about.about,
     url: Paths.about.all,
   })
 
-  useEffect(() => {
-    data?.aboutMe?.socialsNetwork
-      ? setArraySocials(Object.keys(data?.aboutMe?.socialsNetwork))
-      : setArraySocials([])
-  }, [data])
   console.log('data', data?.aboutMe)
-
-  // console.log('arraySocials', arraySocials)
 
   return (
     <>
@@ -95,19 +86,21 @@ const AboutList = () => {
               </div>
               <div className="border-t porder-x-0 border-b-0 border-solid border-border my-8"></div>
               <div className="ltr grid gap-y-3">
-                {arraySocials.map((item: string) => (
-                  <div
-                    className="flex justify-start items-center gap-x-3"
-                    key={item}
-                  >
-                    <SvgIcon
-                      name={item}
-                      color="var(--color-caption)"
-                      size={20}
-                    />
-                    <p>{data?.aboutMe?.socialsNetwork[item]}</p>
-                  </div>
-                ))}
+                {data?.aboutMe?.socialsNetwork?.map(
+                  (item: ISocialNetworkProps) => (
+                    <div
+                      className="flex justify-start items-center gap-x-3"
+                      key={item._id}
+                    >
+                      <SvgIcon
+                        name={item?.icon}
+                        color="var(--color-caption)"
+                        size={20}
+                      />
+                      <p>{item?.link}</p>
+                    </div>
+                  )
+                )}
               </div>
             </div>
           </div>
