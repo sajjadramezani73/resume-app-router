@@ -9,9 +9,9 @@ const fileUpload = require("../middleware/file-upload");
 
 router.get("/admin/about", aboutControllers.adminGetAbout);
 
-router.get("/getAbout", aboutControllers.getAbout);
+router.get("/", aboutControllers.getAbout);
 
-router.post("/createAbout", aboutControllers.createAbout);
+router.post("/", aboutControllers.createAbout);
 
 router.post(
   "/updateAbout",

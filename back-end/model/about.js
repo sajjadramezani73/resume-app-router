@@ -29,7 +29,12 @@ const aboutSchema = new Schema({
   age: { type: String, required: true },
   email: { type: String, required: true },
   phone: { type: String, required: true },
-  socialsNetwork: { type: Map, required: false },
+  socialsNetwork: [
+    {
+      icon: { type: String, required: false },
+      link: { type: String, required: false },
+    },
+  ],
   avatar: { type: String },
 });
 
