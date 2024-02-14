@@ -3,6 +3,45 @@ export interface ISidebarItem {
   href: string
 }
 
+export interface ISocialNetworkProps {
+  icon: string
+  link: string
+  _id?: string
+}
+
+export interface IAboutProps {
+  _id?: string
+  firstName: {
+    fa: string
+    en: string
+  }
+  lastName: {
+    fa: string
+    en: string
+  }
+  job: {
+    fa: string
+    en: string
+  }
+  address: {
+    fa: string
+    en: string
+  }
+  bio: {
+    fa: string
+    en: string
+  }
+  gender: {
+    fa: string
+    en: string
+  }
+  age: string
+  email: string
+  phone: string
+  socialsNetwork: ISocialNetworkProps[]
+  avatar: string
+}
+
 export interface IEducationProps {
   _id?: string
   title: {

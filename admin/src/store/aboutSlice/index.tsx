@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../store'
+import { ISocialNetworkProps } from '@/types/Types'
 
 type AboutKeys = 'firstName' | 'lastName' | 'job' | 'address' | 'bio' | 'gender'
 
@@ -37,6 +38,8 @@ export interface IAboutState {
     age: number | null
     email: string
     phone: string
+
+    socialsNetwork: ISocialNetworkProps[]
   }
 }
 
@@ -69,6 +72,7 @@ const initialState: IAboutState = {
     age: null,
     email: '',
     phone: '',
+    socialsNetwork: [],
   },
 }
 
