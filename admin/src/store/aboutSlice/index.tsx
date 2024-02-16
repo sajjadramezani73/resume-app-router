@@ -35,7 +35,7 @@ export interface IAboutState {
       fa: string
       en: string
     }
-    age: number | null
+    age: string | null
     email: string
     phone: string
 
@@ -69,7 +69,7 @@ const initialState: IAboutState = {
       fa: '',
       en: '',
     },
-    age: null,
+    age: '',
     email: '',
     phone: '',
     socialsNetwork: [],

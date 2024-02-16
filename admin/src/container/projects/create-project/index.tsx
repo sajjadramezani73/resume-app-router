@@ -41,7 +41,7 @@ const CreateProject = ({ mode }: { mode?: string }) => {
     }
   }, [mode])
 
-  // check for desabled button step 1 and step 2
+  // check for desabled button submit
   useEffect(() => {
     project.addProject.title.fa === '' ||
     project.addProject.title.en === '' ||
@@ -59,9 +59,9 @@ const CreateProject = ({ mode }: { mode?: string }) => {
     updateAddProjectOneProperty({ links: [...project.addProject.links, ''] })
   }
 
-  const handleDeleteLink = (link: string, indexLink: number) => {
+  const handleDeleteLink = (indexLink: number) => {
     const filteredLink = project.addProject.links.filter(
-      (item, index) => index !== indexLink
+      (_item, index) => index !== indexLink
     )
     updateAddProjectOneProperty({ links: filteredLink })
   }
@@ -248,7 +248,7 @@ const CreateProject = ({ mode }: { mode?: string }) => {
                     />
                     <IconButton
                       size="small"
-                      onClick={() => handleDeleteLink(link, index)}
+                      onClick={() => handleDeleteLink(index)}
                     >
                       <CloseIcon />
                     </IconButton>
