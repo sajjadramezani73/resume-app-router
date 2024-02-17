@@ -4,7 +4,7 @@ const HttpError = require("../model/http-error");
 const adminGetAbout = async (req, res, next) => {
   let about;
   try {
-    about = await About.findOne({});
+    about = await About.findOne({}).populate("avatar").exec();
   } catch (err) {
     const error = new HttpError("Creating about faild", 500);
     return next(error);
@@ -86,7 +86,7 @@ const createAbout = async (req, res, next) => {
     phone: phone,
     gender: gender,
     socialsNetwork: socialsNetwork,
-    avatar: avatar,
+    avatar: avatar ? avatar : null,
   });
 
   try {

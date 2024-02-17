@@ -35,7 +35,7 @@ const aboutSchema = new Schema({
       link: { type: String, required: false },
     },
   ],
-  avatar: { type: String },
+  avatar: { type: Schema.Types.ObjectId, ref: "File" },
 });
 
 module.exports = mongoose.model("About", aboutSchema);
