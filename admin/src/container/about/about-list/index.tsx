@@ -29,7 +29,12 @@ const AboutList = () => {
         <Card className="p-8">
           <div className="flex items-stretch gap-x-4">
             <div className="border-l border-y-0 border-r-0 border-solid border-border pe-4 flex items-center">
-              <UserAvatar />
+              {data?.aboutMe && (
+                <UserAvatar
+                  avatar={data?.aboutMe?.avatar}
+                  gender={data?.aboutMe?.gender}
+                />
+              )}
             </div>
             <div className="flex-grow">
               <div className="grid grid-cols-3 gap-x-2 gap-y-4">

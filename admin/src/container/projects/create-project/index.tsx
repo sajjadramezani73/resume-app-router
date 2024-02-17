@@ -29,8 +29,6 @@ const CreateProject = ({ mode }: { mode?: string }) => {
     resetProject,
   } = useProjectActions()
 
-  console.log('project', project)
-
   const [disabled, setDisabled] = useState(false)
 
   useEffect(() => {
@@ -227,7 +225,7 @@ const CreateProject = ({ mode }: { mode?: string }) => {
                 renderInput={(params) => (
                   <TextField {...params} label="مهارت ها" />
                 )}
-                onChange={(event, value) =>
+                onChange={(_event, value) =>
                   updateAddProjectOneProperty({
                     skills: [...value],
                   })
@@ -279,13 +277,15 @@ const CreateProject = ({ mode }: { mode?: string }) => {
                       />
                     </div>
                   ))}
-                  <SingleUpload
-                    handleImage={(value) =>
-                      updateAddProjectOneProperty({
-                        images: [...project.addProject.images, value],
-                      })
-                    }
-                  />
+                  <div className="w-32 h-32">
+                    <SingleUpload
+                      handleImage={(value) =>
+                        updateAddProjectOneProperty({
+                          images: [...project.addProject.images, value],
+                        })
+                      }
+                    />
+                  </div>
                 </div>
               </div>
             </div>

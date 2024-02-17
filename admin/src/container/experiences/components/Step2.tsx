@@ -22,8 +22,6 @@ interface Props {
 const Step2 = ({ onChangeHandler, onSelectHandler }: Props) => {
   const { experience, updateAddExperienceOneProperty } = useExperienceActions()
 
-  console.log('experience', experience)
-
   const changeHandler = (
     _event: SyntheticEvent<Element, Event>,
     checked: boolean

@@ -17,8 +17,6 @@ const ProjectPage = () => {
     enabled: !!id,
     refetchOnWindowFocus: false,
     successCallback(data) {
-      console.log('sss', data)
-
       const { title, briefDescription, description, links, skills, images } =
         data.project
 

@@ -61,7 +61,7 @@ const SingleUpload = ({ handleImage }: Props) => {
   return (
     <>
       {uploadImage.isLoading ? (
-        <div className="w-32 h-32 border border-dashed border-border rounded flex justify-center items-center overflow-hidden relative">
+        <div className="w-full h-full border border-dashed border-border rounded flex justify-center items-center overflow-hidden relative">
           <img
             src={selectedPath}
             alt=""
@@ -74,7 +74,7 @@ const SingleUpload = ({ handleImage }: Props) => {
       ) : (
         <>
           <div
-            className="w-32 h-32 border border-dashed border-border rounded flex flex-col justify-center items-center gap-y-2 cursor-pointer"
+            className="w-full h-full border border-dashed border-border rounded flex flex-col justify-center items-center gap-y-2 cursor-pointer"
             onClick={() => inputFileRef?.current?.click()}
           >
             <PermMediaOutlinedIcon />

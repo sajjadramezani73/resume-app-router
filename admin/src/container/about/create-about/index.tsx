@@ -18,6 +18,8 @@ import { toast } from 'sonner'
 import { ISocialNetworkProps } from '@/types/Types'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { Avatar } from '@/utils/AvatarSet'
+import SingleUpload from '@/components/uploader/singleUpload'
 
 const CreateAbout = () => {
   const navigate = useNavigate()
@@ -117,6 +119,7 @@ const CreateAbout = () => {
     editAbout.mutate({
       query: {
         ...about.addAbout,
+        avatar: about?.addAbout?.avatar ? about?.addAbout?.avatar?._id : null,
       },
     })
   }
@@ -129,6 +132,34 @@ const CreateAbout = () => {
       <div className="p-8">
         <Card className="p-8">
           <div className="grid grid-cols-2 gap-4">
+            <div className="col-span-2 flex flex-col justify-center items-center mb-4">
+              <div className="w-48 h-48">
+                {about?.addAbout?.avatar === null ? (
+                  <SingleUpload
+                    handleImage={(value) =>
+                      updateAddAboutOneProperty({ avatar: value })
+                    }
+                  />
+                ) : (
+                  <img
+                    src={about?.addAbout?.avatar?.url}
+                    alt=""
+                    className="rounded w-full h-full object-cover"
+                  />
+                )}
+              </div>
+              <div className="w-full h-10 flex justify-center items-center">
+                {about?.addAbout?.avatar !== null && (
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={() => updateAddAboutOneProperty({ avatar: null })}
+                  >
+                    حذف تصویر
+                  </Button>
+                )}
+              </div>
+            </div>
             <TextField
               label="نام"
               variant="outlined"
