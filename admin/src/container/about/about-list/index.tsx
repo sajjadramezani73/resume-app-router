@@ -13,30 +13,29 @@ const AboutList = () => {
     url: Paths.about.all,
   })
 
-  console.log('data', data?.aboutMe)
-
   return (
     <>
       <Card className="p-8 rounded-none flex justify-between items-center h-[100px]">
         <p className="text-titr text-[18px] font-bold">درباره من</p>
         <Link to="/dashboard/create-about">
-          <Button size="small" variant="contained">
-            ویرایش اطلاعات
+          <Button variant="contained">
+            {data?.aboutMe && Object.keys(data?.aboutMe).length > 0
+              ? 'ویرایش اطلاعات'
+              : 'افزودن اطلاعات'}
           </Button>
         </Link>
       </Card>
       <div className="p-8">
         <Card className="p-8">
-          <div className="flex items-stretch gap-x-4">
-            <div className="border-l border-y-0 border-r-0 border-solid border-border pe-4 flex items-center">
-              {data?.aboutMe && (
+          {data?.aboutMe && Object.keys(data?.aboutMe).length > 0 ? (
+            <div className="flex flex-col gap-x-4">
+              <div className="flex justify-center items-center">
                 <UserAvatar
                   avatar={data?.aboutMe?.avatar}
                   gender={data?.aboutMe?.gender}
                 />
-              )}
-            </div>
-            <div className="flex-grow">
+              </div>
+              <div className="border-t porder-x-0 border-b-0 border-solid border-border my-8"></div>
               <div className="grid grid-cols-3 gap-x-2 gap-y-4">
                 <div className="col-span-1">
                   <p>
@@ -108,7 +107,13 @@ const AboutList = () => {
                 )}
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="flex justify-center">
+              <p className="font-medium text-titr">
+                لطفا اطلاعات شخصی خود را ثبت کنید
+              </p>
+            </div>
+          )}
         </Card>
       </div>
     </>

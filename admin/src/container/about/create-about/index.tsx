@@ -18,14 +18,14 @@ import { toast } from 'sonner'
 import { ISocialNetworkProps } from '@/types/Types'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { Avatar } from '@/utils/AvatarSet'
 import SingleUpload from '@/components/uploader/singleUpload'
+import { Keys } from '@/constants/Keys'
+import { useQueryClient } from 'react-query'
 
 const CreateAbout = () => {
   const navigate = useNavigate()
+  const cache = useQueryClient()
   const { about, updateAddAbout, updateAddAboutOneProperty } = useAboutActions()
-
-  console.log(about)
 
   const [disabled, setDisabled] = useState(false)
 
@@ -100,13 +100,26 @@ const CreateAbout = () => {
     updateAddAboutOneProperty({ socialsNetwork: filteredSocial })
   }
 
-  const editAbout = useMutate({
+  const createAbout = useMutate({
     method: 'post',
     url: Paths.about.base,
     successCallback() {
       toast.success('درخواست شما با موفقیت ثبت شد')
-      // cache.invalidateQueries(Keys.project.project)
-      // handleReset()
+      cache.invalidateQueries(Keys.about.about)
+      navigate('/dashboard')
+    },
+    errorCallback: () => {
+      toast.error('مشکلی در ثبت درخواست شما به وجود آمده است')
+      console.log('errrrrr')
+    },
+  })
+
+  const editAbout = useMutate({
+    method: 'put',
+    url: Paths.about.base,
+    successCallback() {
+      toast.success('اطلاعات شخصی با موفقیت ویرایش شد')
+      cache.invalidateQueries(Keys.about.about)
       navigate('/dashboard')
     },
     errorCallback: () => {
@@ -116,12 +129,19 @@ const CreateAbout = () => {
   })
 
   const handleSubmit = () => {
-    editAbout.mutate({
-      query: {
-        ...about.addAbout,
-        avatar: about?.addAbout?.avatar ? about?.addAbout?.avatar?._id : null,
-      },
-    })
+    if (about.addAbout._id) {
+      editAbout.mutate({
+        query: about.addAbout,
+        id: about.addAbout._id,
+      })
+    } else {
+      createAbout.mutate({
+        query: {
+          ...about.addAbout,
+          avatar: about?.addAbout?.avatar ? about?.addAbout?.avatar?._id : null,
+        },
+      })
+    }
   }
 
   return (

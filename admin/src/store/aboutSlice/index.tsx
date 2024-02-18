@@ -12,6 +12,7 @@ function getPropertyByKey(obj: IAboutState, key: AboutKeys) {
 
 export interface IAboutState {
   addAbout: {
+    _id?: string | null
     firstName: {
       fa: string
       en: string
@@ -47,6 +48,7 @@ export interface IAboutState {
 
 const initialState: IAboutState = {
   addAbout: {
+    _id: null,
     firstName: {
       fa: '',
       en: '',
