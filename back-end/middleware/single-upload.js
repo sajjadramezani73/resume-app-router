@@ -19,7 +19,12 @@ const singleUpload = multer({
     bucket: process.env.LIARA_BUCKET_NAME,
     key: function (req, file, cb) {
       console.log("upload middleware", file);
-      cb(null, file.originalname);
+      const timestamp = Date.now(); // Get current timestamp
+      const fileNameParts = file.originalname.split("."); // Split filename by '.'
+      const extension = fileNameParts.pop(); // Get the file extension
+      const originalFileName = fileNameParts.join("."); // Get the original filename without extension
+      const newFileName = `${originalFileName}_${timestamp}.${extension}`; // Concatenate new filename with timestamp
+      cb(null, newFileName);
     },
   }),
 });
