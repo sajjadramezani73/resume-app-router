@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express();
 const aboutControllers = require("../controllers/about-controllers");
-const fileUpload = require("../middleware/file-upload");
 
 // router.post('/signup', userControllers.signup)
 
@@ -13,10 +12,6 @@ router.get("/", aboutControllers.getAbout);
 
 router.post("/", aboutControllers.createAbout);
 
-router.post(
-  "/updateAbout",
-  fileUpload.single("avatar"),
-  aboutControllers.updeteAbout
-);
+router.put("/:id", aboutControllers.updateAbout);
 
 module.exports = router;

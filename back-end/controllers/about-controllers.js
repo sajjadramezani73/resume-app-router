@@ -13,6 +13,7 @@ const adminGetAbout = async (req, res, next) => {
   let aboutMe;
   if (about) {
     aboutMe = {
+      _id: about._id,
       firstName: about.firstName,
       lastName: about.lastName,
       job: about.job,
@@ -99,29 +100,67 @@ const createAbout = async (req, res, next) => {
   res.json({ about: createAbout });
 };
 
-const updeteAbout = async (req, res, next) => {
-  // console.log(req.file)
-  let about;
+const updateAbout = async (req, res, next) => {
+  const { id } = req.params;
+  const {
+    firstName,
+    lastName,
+    job,
+    address,
+    gender,
+    bio,
+    age,
+    email,
+    phone,
+    socialsNetwork,
+    avatar,
+  } = req.body;
+
+  let existingAbout;
   try {
-    about = await About.findOne({});
+    existingAbout = await About.findOne({ _id: id });
   } catch (err) {
-    const error = new HttpError("updating about faild", 500);
+    const error = new HttpError("edited faild !", 500);
     return next(error);
   }
 
-  if (req.file) {
-    about.avatar = req.file.path;
+  if (!existingAbout) {
+    res.status(422).json({
+      success: 0,
+      errorMessage: "اطلاعاتی با این آی دی یافت نشد",
+    });
+    return next();
   }
+
   try {
-    await about.save();
+    await About.findOneAndUpdate(
+      { _id: id },
+      {
+        firstName,
+        lastName,
+        job,
+        address,
+        gender,
+        bio,
+        age,
+        email,
+        phone,
+        socialsNetwork,
+        avatar,
+      },
+      { new: true }
+    );
   } catch (err) {
-    const error = new HttpError("Creatupdatinging about faild", 500);
+    const error = new HttpError("updated faild !", 500);
     return next(error);
   }
-  res.send(about);
+
+  res
+    .status(201)
+    .json({ success: 1, errorMessage: " اطلاعات با موفقیت ویرایش شد." });
 };
 
 exports.adminGetAbout = adminGetAbout;
 exports.getAbout = getAbout;
 exports.createAbout = createAbout;
-exports.updeteAbout = updeteAbout;
+exports.updateAbout = updateAbout;
