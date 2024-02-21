@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Button from '../button'
 import { getI18n } from '@/locales/server'
 import { getCurrentScheme } from '@/utils/ThemeHandler'
+import { IImageProps } from '@/type/types'
 
 interface Props {
   project: {
@@ -10,8 +11,8 @@ interface Props {
     briefDescription: string
     description: string
     skills: string[]
-    links: { id: number; link: string }[]
-    images: { id: string; path: string }[]
+    links: string[]
+    images: IImageProps[]
   }
 }
 
@@ -41,7 +42,7 @@ const ProjectItem = async ({ project }: Props) => {
           {project?.briefDescription}
         </p>
         <div className="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-          {project?.skills?.map((skill: any) => {
+          {project?.skills?.map((skill: string) => {
             return (
               <span
                 key={skill}
@@ -57,7 +58,7 @@ const ProjectItem = async ({ project }: Props) => {
             title={t('viewOnline')}
             className="sm:!w-auto px-4 h-8 text-xs pt-1 capitalize"
             type="link"
-            link={project?.links[0]?.link}
+            link={project?.links[0]}
           />
         </div>
       </div>

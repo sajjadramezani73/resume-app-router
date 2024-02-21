@@ -19,7 +19,7 @@ const getProjects = async (req, res, next) => {
 
   let projects;
   try {
-    projects = await Project.find({});
+    projects = await Project.find({}).populate("images").exec();
   } catch (err) {
     const error = new HttpError("get projects faild", 500);
     return next(error);
