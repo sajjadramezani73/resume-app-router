@@ -20,7 +20,7 @@ export const getExperiences = async () => {
   const cookieStore = cookies()
   const locale = cookieStore.get('Next-Locale') ?? { value: 'fa' }
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/experience/getExperiences`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/experience`,
     {
       cache: 'no-store',
       headers: { location: locale.value },
@@ -38,7 +38,7 @@ export const getEducations = async () => {
   const cookieStore = cookies()
   const locale = cookieStore.get('Next-Locale') ?? { value: 'fa' }
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/education/getEducations`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/education`,
     {
       cache: 'no-store',
       headers: { location: locale.value },

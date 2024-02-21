@@ -1,6 +1,5 @@
 // import { defineLocale } from '.';
 
-
 export default {
   about: 'درباره من',
   resume: 'رزومه',
@@ -13,4 +12,5 @@ export default {
   experience: 'سوابق شغلی',
   education: 'تحصیلات',
   viewOnline: 'مشاهده آنلاین',
+  soFar: 'تاکنون',
 } as const

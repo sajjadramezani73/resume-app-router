@@ -10,6 +10,7 @@ export default {
   experience: 'experinece',
   education: 'education',
   viewOnline: 'view online',
+  soFar: 'now',
 } as const
 
 // We can also write locales using nested objects

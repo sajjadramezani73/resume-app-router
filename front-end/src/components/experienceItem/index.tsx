@@ -1,3 +1,5 @@
+import { getI18n } from '@/locales/server'
+
 interface Props {
   experience: {
     title: string
@@ -9,14 +11,17 @@ interface Props {
     description: string
     companyLink: string
     skill: string[]
+    soFar: boolean
   }
 }
-const ExperienceItem = ({ experience }: Props) => {
+const ExperienceItem = async ({ experience }: Props) => {
+  const t = await getI18n()
   return (
     <div className="w-full md:flex grid grid-flow-col justify-start group">
       <div className="md:w-44 md:min-w-[176px] md:text-end">
         <p className="text-xs text-captionDark dark:text-lightCaptionLight/70 font-semibold pt-0.5">
-          {experience?.dateStart} - {experience?.dateEnd}
+          {experience?.dateStart} -{' '}
+          {experience?.soFar ? t('soFar') : experience?.dateEnd}
         </p>
         <a
           href={experience?.companyLink}
