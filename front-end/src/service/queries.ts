@@ -4,13 +4,10 @@ export const getAbout = async () => {
   const cookieStore = cookies()
   const locale = cookieStore.get('Next-Locale') ?? { value: 'fa' }
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/about/getAbout`,
-    {
-      cache: 'no-store',
-      headers: { location: locale.value },
-    }
-  )
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/about`, {
+    cache: 'no-store',
+    headers: { location: locale.value },
+  })
 
   if (!res.ok) {
     throw new Error('Failed to fetch data')

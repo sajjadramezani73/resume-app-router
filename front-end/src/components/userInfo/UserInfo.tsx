@@ -1,10 +1,10 @@
 import SocialNetworks from './components/SocialNetworks'
 import LoadSvgIcon from '@/utils/LoadSvgIcon'
 import { getAbout } from '@/service/queries'
-import { avatar } from '@/utils/AvatarSet'
 import Image from 'next/image'
 import { getI18n } from '@/locales/server'
 import { getCurrentScheme } from '@/utils/ThemeHandler'
+import { Avatar } from '@/utils/AvatarSet'
 
 const UserInfo = async () => {
   const t = await getI18n()
@@ -17,7 +17,7 @@ const UserInfo = async () => {
       <div className="text-center">
         <div className="w-[180px] h-[180px] rounded-full overflow-hidden border mx-auto relative">
           <Image
-            src={avatar(about?.avatar)}
+            src={Avatar(about?.avatar, about?.gender)}
             alt="avatar"
             fill={true}
             className="object-fit"

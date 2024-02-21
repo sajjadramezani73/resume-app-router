@@ -1,8 +1,12 @@
+import { IImageProps } from '@/type/types'
+
 // set Avater user or static avater
-export const avatar = (avatar: string) => {
-  if (avatar !== '') {
-    return process.env.NEXT_PUBLIC_SERVER_URL + '/' + avatar
+export const Avatar = (avatar: IImageProps | null, gender: string) => {
+  if (avatar !== null) {
+    return avatar.url
   } else {
-    return './assets/image/man.svg'
+    return gender === 'Male' || gender === 'مرد'
+      ? '/assets/image/man.svg'
+      : './assets/image/woman.svg'
   }
 }

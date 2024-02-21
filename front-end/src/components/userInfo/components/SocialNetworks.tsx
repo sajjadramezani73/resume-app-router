@@ -1,33 +1,24 @@
 'use client'
 
+import { ISocialNetworkProps } from '@/type/types'
 import LoadSvgIcon from '@/utils/LoadSvgIcon'
 import { CookieValueTypes } from 'cookies-next'
-import { useEffect, useState } from 'react'
 
 const SocialNetworks = ({
   socialNetworks,
   theme,
 }: {
-  socialNetworks: string[]
+  socialNetworks: ISocialNetworkProps[]
   theme: string | CookieValueTypes
 }) => {
-  const [arraySocials, setArraySocials] = useState<string[]>([])
-
-  useEffect(() => {
-    socialNetworks && setArraySocials(Object.keys(socialNetworks))
-  }, [socialNetworks])
 
   return (
     <>
-      {arraySocials?.map((item) => {
+      {socialNetworks?.map((item) => {
         return (
-          <a
-            key={item}
-            href={socialNetworks[item as unknown as number]}
-            target="_blank"
-          >
+          <a key={item._id} href={item?.link} target="_blank">
             <LoadSvgIcon
-              name={item}
+              name={item?.icon}
               color={
                 theme === 'dark'
                   ? 'var(--color-lightCaptionLight)'

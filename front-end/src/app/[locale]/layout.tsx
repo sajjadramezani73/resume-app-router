@@ -5,10 +5,12 @@ import UserInfo from '@/components/userInfo/UserInfo'
 import SidebarItems from '@/components/sidebar/components/SidebarItems'
 import { getCurrentLocale } from '@/locales/server'
 import { getCurrentScheme } from '@/utils/ThemeHandler'
+import SwitchLanguage from '@/components/sidebar/components/SwitchLanguage'
+import SwitchTheme from '@/components/sidebar/components/SwitchTheme'
 
 export const metadata: Metadata = {
   title: 'sajjad ramezani',
-  description: 'resume project with next.js app router',
+  description: 'Resume Project With Next.js App Router',
 }
 
 export default async function RootLayout({
@@ -38,8 +40,12 @@ export default async function RootLayout({
             <div
               className={`flex justify-between items-center px-4 border-b md:hidden h-[58px] min-h-[58px] bg-white dark:bg-bgDark`}
             >
-              <span className="w-20">{/* <SwitchLanguage /> */}</span>
-              <span>{/* <SwitchTheme /> */}</span>
+              <span className="w-20">
+                <SwitchLanguage />{' '}
+              </span>
+              <span>
+                <SwitchTheme />{' '}
+              </span>
             </div>
             <div className="flex flex-col md:flex-row flex-grow overflow-hidden md:overflow-visible overflow-y-auto md:overflow-y-visible">
               <div
