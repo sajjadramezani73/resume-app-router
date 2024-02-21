@@ -9,25 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@formatjs/intl-localematcher": "^0.4.0",
-    "@types/node": "20.4.4",
-    "@types/react": "18.2.15",
-    "@types/react-dom": "18.2.7",
-    "autoprefixer": "10.4.14",
-    "cookies-next": "^2.1.2",
-    "eslint": "8.45.0",
-    "eslint-config-next": "13.4.12",
+    "@formatjs/intl-localematcher": "^0.5.4",
+    "@types/node": "20.11.19",
+    "@types/react": "18.2.56",
+    "@types/react-dom": "18.2.19",
+    "autoprefixer": "10.4.17",
+    "cookies-next": "^4.1.1",
+    "eslint": "8.56.0",
+    "eslint-config-next": "14.1.0",
     "negotiator": "^0.6.3",
-    "next": "13.4.12",
-    "next-international": "^0.8.2",
-    "postcss": "8.4.27",
+    "next": "14.1.0",
+    "next-international": "^1.2.4",
+    "postcss": "8.4.35",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "server-only": "^0.0.1",
-    "tailwindcss": "3.3.3",
-    "typescript": "5.1.6"
+    "tailwindcss": "3.4.1",
+    "typescript": "5.3.3"
   },
   "devDependencies": {
-    "@types/negotiator": "^0.6.1"
+    "@types/negotiator": "^0.6.3"
   }
 }
