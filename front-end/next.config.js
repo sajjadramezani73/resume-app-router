@@ -31,6 +31,10 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'localhost',
       },
+      {
+        protocol: 'https',
+        hostname: 'resume-sajjad-ramezani.storage.iran.liara.space',
+      },
     ],
   },
 }
