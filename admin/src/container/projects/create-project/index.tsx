@@ -17,6 +17,7 @@ import { useEffect, useState } from 'react'
 import SingleUpload from '@/components/uploader/singleUpload'
 import Image from '@/components/image'
 import CloseIcon from '@mui/icons-material/Close'
+import TextEditor from '@/components/textEditor'
 
 const CreateProject = ({ mode }: { mode?: string }) => {
   const { id } = useParams()
@@ -30,6 +31,10 @@ const CreateProject = ({ mode }: { mode?: string }) => {
   } = useProjectActions()
 
   const [disabled, setDisabled] = useState(false)
+  const [editorLoaded, setEditorLoaded] = useState(false)
+  useEffect(() => {
+    setEditorLoaded(true)
+  }, [])
 
   useEffect(() => {
     if (mode === 'edit') {
@@ -188,29 +193,27 @@ const CreateProject = ({ mode }: { mode?: string }) => {
               onChange={onChangeHandler}
             />
             <div className="col-span-2">
-              <TextField
-                label="توضیحات"
-                variant="outlined"
-                size="small"
-                className="w-full"
-                name="description.fa"
-                multiline
-                rows={4}
+              <TextEditor
+                placeholder="توضیحات"
                 value={project.addProject.description.fa}
-                onChange={onChangeHandler}
+                onChange={(data: string) => {
+                  onChangeHandler({
+                    target: { name: 'description.fa', value: data },
+                  })
+                }}
+                editorLoaded={editorLoaded}
               />
             </div>
             <div className="col-span-2">
-              <TextField
-                label="description"
-                variant="outlined"
-                size="small"
-                className="ltr w-full"
-                name="description.en"
-                multiline
-                rows={4}
+              <TextEditor
+                placeholder="description"
                 value={project.addProject.description.en}
-                onChange={onChangeHandler}
+                onChange={(data: string) => {
+                  onChangeHandler({
+                    target: { name: 'description.en', value: data },
+                  })
+                }}
+                editorLoaded={editorLoaded}
               />
             </div>
             <div className="col-span-2">

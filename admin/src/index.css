@@ -177,3 +177,7 @@ button:disabled {
 .ltr {
   direction: ltr;
 }
+
+.ck.ck-content {
+  min-height: 200px;
+}
