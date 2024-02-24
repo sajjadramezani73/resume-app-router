@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const adminGetProjects = async (req, res, next) => {
   let projects;
   try {
-    projects = await Project.find({});
+    projects = await Project.find({}).sort({ createdAt: -1 });
   } catch (err) {
     const error = new HttpError("get projects faild", 500);
     return next(error);
@@ -19,7 +19,10 @@ const getProjects = async (req, res, next) => {
 
   let projects;
   try {
-    projects = await Project.find({}).populate("images").exec();
+    projects = await Project.find({})
+      .sort({ createdAt: -1 })
+      .populate("images")
+      .exec();
   } catch (err) {
     const error = new HttpError("get projects faild", 500);
     return next(error);

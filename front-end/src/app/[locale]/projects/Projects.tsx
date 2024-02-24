@@ -6,7 +6,7 @@ const Projects = async () => {
 
   return (
     <>
-      {projects?.reverse().map((item: any) => {
+      {projects?.map((item: any) => {
         return <ProjectItem key={item?._id} project={item} />
       })}
     </>
