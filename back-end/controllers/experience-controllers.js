@@ -4,7 +4,7 @@ const HttpError = require("../model/http-error");
 const adminGetExperiences = async (req, res, next) => {
   let experiences;
   try {
-    experiences = await Experience.find({});
+    experiences = await Experience.find({}).sort({ createdAt: -1 });
   } catch (err) {
     const error = new HttpError("get experience faild", 500);
     return next(error);
@@ -18,7 +18,7 @@ const getExperiences = async (req, res, next) => {
 
   let experiences;
   try {
-    experiences = await Experience.find({});
+    experiences = await Experience.find({}).sort({ createdAt: -1 });
   } catch (err) {
     const error = new HttpError("get experience faild", 500);
     return next(error);

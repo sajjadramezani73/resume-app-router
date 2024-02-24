@@ -30,6 +30,6 @@ const experienceSchema = new Schema({
   },
   companyLink: { type: String },
   skill: { type: [String], default: [] },
-});
+},{timestamps:true});
 
 module.exports = mongoose.model("Experience", experienceSchema);
