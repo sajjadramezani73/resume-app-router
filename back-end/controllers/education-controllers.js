@@ -4,7 +4,7 @@ const HttpError = require("../model/http-error");
 const adminGetEducations = async (req, res, next) => {
   let educations;
   try {
-    educations = await Education.find({});
+    educations = await Education.find({}).sort({ createdAt: -1 });
   } catch (err) {
     const error = new HttpError("get education faild", 500);
     return next(error);
@@ -18,7 +18,7 @@ const getEducations = async (req, res, next) => {
 
   let educations;
   try {
-    educations = await Education.find({});
+    educations = await Education.find({}).sort({ createdAt: -1 });
   } catch (err) {
     const error = new HttpError("get education faild", 500);
     return next(error);
