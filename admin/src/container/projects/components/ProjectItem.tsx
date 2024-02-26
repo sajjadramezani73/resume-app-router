@@ -8,6 +8,9 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import DeleteIcon from '@mui/icons-material/Delete'
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded'
+import HighlightOffIcon from '@mui/icons-material/HighlightOff'
+import TaskAltIcon from '@mui/icons-material/TaskAlt'
+import { red } from '@mui/material/colors'
 
 const ProjectItem = ({ item }: { item: IProjectProps }) => {
   const queryClient = useQueryClient()
@@ -37,9 +40,16 @@ const ProjectItem = ({ item }: { item: IProjectProps }) => {
   return (
     <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
       <TableCell className="text-right">{item.title.fa}</TableCell>
-      <TableCell className="text-right flex gap-2">
+      <TableCell className="text-right">
+        {item.isActive ? (
+          <TaskAltIcon color="success" />
+        ) : (
+          <HighlightOffIcon sx={{ color: red[500] }} />
+        )}
+      </TableCell>
+      <TableCell className="text-right">
         {item?.skills?.map((skill) => (
-          <Chip key={skill} label={skill} />
+          <Chip key={skill} label={skill} className="ml-2 mb-1" />
         ))}
       </TableCell>
       <TableCell className="text-right">

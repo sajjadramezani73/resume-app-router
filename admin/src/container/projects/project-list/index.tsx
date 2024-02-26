@@ -14,7 +14,7 @@ import {
 import ProjectItem from '../components/ProjectItem'
 import { IProjectProps } from '@/types/Types'
 
-const TABLE_HEAD = ['عنوان', 'تکنولوژی', 'عملکرد']
+const TABLE_HEAD = ['عنوان', 'فعال', 'تکنولوژی', 'عملکرد']
 
 const ProjectList = () => {
   const { data } = useRequest({

@@ -128,4 +128,5 @@ export interface IProjectProps {
     id: string
     path: string
   }[]
+  isActive: boolean
 }

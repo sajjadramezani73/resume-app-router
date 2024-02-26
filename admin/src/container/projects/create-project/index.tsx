@@ -3,6 +3,9 @@ import {
   Autocomplete,
   Button,
   Card,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
   IconButton,
   TextField,
 } from '@mui/material'
@@ -13,7 +16,7 @@ import { toast } from 'sonner'
 import { Keys } from '@/constants/Keys'
 import { useQueryClient } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { SyntheticEvent, useEffect, useState } from 'react'
 import SingleUpload from '@/components/uploader/singleUpload'
 import Image from '@/components/image'
 import CloseIcon from '@mui/icons-material/Close'
@@ -81,6 +84,14 @@ const CreateProject = ({ mode }: { mode?: string }) => {
     const lang = e.target.name.split('.')[1]
     const obj = { name: title, amount: { [lang]: e.target.value } }
     updateAddProject(obj)
+  }
+
+  // change isActive property
+  const changeHandlerActive = (
+    _event: SyntheticEvent<Element, Event>,
+    checked: boolean
+  ) => {
+    updateAddProjectOneProperty({ isActive: checked })
   }
 
   const handleReset = () => {
@@ -266,6 +277,14 @@ const CreateProject = ({ mode }: { mode?: string }) => {
                 </Button>
               </div>
             </div>
+            <FormGroup className="col-span-2">
+              <FormControlLabel
+                control={<Checkbox defaultChecked />}
+                label="پروژه نمایش داده شود"
+                onChange={changeHandlerActive}
+                checked={project.addProject.isActive}
+              />
+            </FormGroup>
             <div className="col-span-2">
               <div className="rounded border border-solid border-border">
                 <div className="bg-body px-4 py-3 border-b border-x-0 border-t-0 border-solid border-border">

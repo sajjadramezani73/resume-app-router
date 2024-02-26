@@ -17,8 +17,15 @@ const ProjectPage = () => {
     enabled: !!id,
     refetchOnWindowFocus: false,
     successCallback(data) {
-      const { title, briefDescription, description, links, skills, images } =
-        data.project
+      const {
+        title,
+        briefDescription,
+        description,
+        links,
+        skills,
+        images,
+        isActive,
+      } = data.project
 
       dispatch(
         updateEditProject({
@@ -28,6 +35,7 @@ const ProjectPage = () => {
           links,
           skills,
           images: images ?? [],
+          isActive,
         })
       )
     },

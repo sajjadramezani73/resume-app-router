@@ -26,6 +26,7 @@ export interface IProjectState {
     links: string[]
     skills: string[]
     images: IImage[]
+    isActive: boolean
   }
 }
 
@@ -46,6 +47,7 @@ const initialState: IProjectState = {
     links: [''],
     skills: [],
     images: [],
+    isActive: false,
   },
 }
 
