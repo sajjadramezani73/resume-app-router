@@ -29,6 +29,7 @@ const Step2 = ({ onChangeHandler, onSelectHandler }: Props) => {
     updateAddExperienceOneProperty({ dateEnd: { fa: '', en: '' } })
     updateAddExperienceOneProperty({ soFar: checked })
   }
+
   // React.ChangeEvent<HTMLInputElement>
   return (
     <div className="grid grid-cols-2 gap-4">

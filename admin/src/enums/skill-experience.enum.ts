@@ -8,4 +8,7 @@ export const skillExperience = [
   'Next.js',
   'Redux-toolkit',
   'Context-api',
+  'React query',
+  'Ant Design',
+  'Material ui',
 ]
