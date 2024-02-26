@@ -18,6 +18,7 @@ const projectSchema = new Schema(
     skills: { type: [String], default: [] },
     links: { type: Array, default: [] },
     images: [{ type: Schema.Types.ObjectId, ref: "File" }],
+    isActive: { type: Boolean, default: true },
   },
   { timestamps: true }
 );

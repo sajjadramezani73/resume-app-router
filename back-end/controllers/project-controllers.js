@@ -19,7 +19,7 @@ const getProjects = async (req, res, next) => {
 
   let projects;
   try {
-    projects = await Project.find({})
+    projects = await Project.find({ isActive: true })
       .sort({ createdAt: -1 })
       .populate("images")
       .exec();
@@ -44,8 +44,15 @@ const getProjects = async (req, res, next) => {
 };
 
 const createProject = async (req, res, next) => {
-  const { title, briefDescription, description, images, links, skills } =
-    req.body;
+  const {
+    title,
+    briefDescription,
+    description,
+    images,
+    links,
+    skills,
+    isActive,
+  } = req.body;
 
   const createProject = new Project({
     title: title,
@@ -54,6 +61,7 @@ const createProject = async (req, res, next) => {
     links: links,
     skills: skills,
     images: images,
+    isActive: isActive,
   });
 
   try {
@@ -121,8 +129,15 @@ const deleteProject = async (req, res, next) => {
 
 const editProject = async (req, res, next) => {
   const { id } = req.params;
-  const { title, briefDescription, description, links, skills, images } =
-    req.body;
+  const {
+    title,
+    briefDescription,
+    description,
+    links,
+    skills,
+    images,
+    isActive,
+  } = req.body;
 
   let existingProject;
   try {
@@ -150,6 +165,7 @@ const editProject = async (req, res, next) => {
         links,
         skills,
         images,
+        isActive,
       },
       { new: true }
     );
