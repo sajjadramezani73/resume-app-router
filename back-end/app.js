@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 // import routes
+const authRoutes = require("./routes/auth-routes");
 const aboutRoutes = require("./routes/about-routes");
 const experienceRoutes = require("./routes/experience-routes");
 const educationRoutes = require("./routes/education-routes");
@@ -23,6 +24,7 @@ app.use((req, res, next) => {
 });
 
 // routes
+app.use("/api/auth", authRoutes);
 app.use("/api/about", aboutRoutes);
 app.use("/api/experience", experienceRoutes);
 app.use("/api/education", educationRoutes);
