@@ -1,4 +1,7 @@
 export const Paths = {
+  auth: {
+    login: '/auth/login',
+  },
   about: {
     base: '/about',
     all: '/about/admin/about',

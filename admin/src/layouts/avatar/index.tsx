@@ -12,8 +12,12 @@ import avatarImg from '../../assets/images/avatar.jpg'
 import { useState } from 'react'
 import PersonIcon from '@mui/icons-material/Person'
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew'
+import { useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 const AvatarMenu = () => {
+  const navigate = useNavigate()
+
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -21,6 +25,11 @@ const AvatarMenu = () => {
   }
   const handleClose = () => {
     setAnchorEl(null)
+  }
+
+  const logoutHandler = () => {
+    navigate('/login')
+    Cookies.remove('token')
   }
 
   return (
@@ -59,7 +68,7 @@ const AvatarMenu = () => {
           </ListItemIcon>
           <Typography variant="subtitle2">درباره من</Typography>
         </MenuItem>
-        <MenuItem onClick={handleClose} sx={{ paddingY: 1.5 }}>
+        <MenuItem onClick={logoutHandler} sx={{ paddingY: 1.5 }}>
           <ListItemIcon>
             <PowerSettingsNewIcon />
           </ListItemIcon>

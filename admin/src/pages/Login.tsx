@@ -1,8 +1,41 @@
 import { TextField } from '@mui/material'
 import backgroundLogin from '../assets/images/login-image.png'
 import { LoadingButton } from '@mui/lab'
+import { useState } from 'react'
+import { useMutate } from '@/services/axios/useRequest'
+import { Paths } from '@/constants/Paths'
+import { toast } from 'sonner'
+import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+  const navigate = useNavigate()
+
+  const [authInfo, setAuthInfo] = useState({
+    username: '',
+    password: '',
+  })
+
+  const login = useMutate({
+    method: 'post',
+    url: Paths.auth.login,
+    successCallback(data) {
+      toast.success('با موفقیت وارد شدید')
+      Cookies.set('token', data?.token)
+      navigate('/dashboard')
+    },
+    errorCallback: () => {
+      toast.error('مشکلی در ثبت درخواست شما به وجود آمده است')
+      console.log('errrrrr')
+    },
+  })
+
+  const loginHandler = () => {
+    login.mutate({
+      query: authInfo,
+    })
+  }
+
   return (
     <div className="w-full h-full overflow-hidden px-6 xl:px-[100px] py-[60px] flex justify-center bg-[url(src/assets/images/background.png)] bg-cover">
       <div className="w-full max-w-[400px] lg:w-fit lg:max-w-none bg-white flex justify-center items-stretch rounded-2xl p-3">
@@ -16,8 +49,10 @@ const Login = () => {
               variant="outlined"
               className="w-full"
               size="small"
-              // value={project.addProject.title.fa}
-              // onChange={onChangeHandler}
+              value={authInfo.username}
+              onChange={(e) =>
+                setAuthInfo({ ...authInfo, username: e.target.value })
+              }
             />
             <TextField
               type="password"
@@ -25,10 +60,17 @@ const Login = () => {
               variant="outlined"
               className="w-full"
               size="small"
-              // value={project.addProject.title.fa}
-              // onChange={onChangeHandler}
+              value={authInfo.password}
+              onChange={(e) =>
+                setAuthInfo({ ...authInfo, password: e.target.value })
+              }
             />
-            <LoadingButton loading={false} variant="contained">
+            <LoadingButton
+              disabled={authInfo.username === '' || authInfo.password === ''}
+              loading={login.isLoading}
+              variant="contained"
+              onClick={loginHandler}
+            >
               ورود
             </LoadingButton>
           </div>

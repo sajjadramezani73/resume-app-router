@@ -25,6 +25,7 @@ export function setupAxios(axios: any) {
     },
     (err: any) => {
       // Promise.reject(err)
+      // return err
     }
   )
 
