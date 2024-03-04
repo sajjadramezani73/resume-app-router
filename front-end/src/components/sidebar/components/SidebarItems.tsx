@@ -9,17 +9,17 @@ const SidebarItems = async () => {
     {
       title: t('about'),
       icon: 'user',
-      href: 'about',
+      href: '/about',
     },
     {
       title: t('resume'),
       icon: 'file',
-      href: 'resume',
+      href: '/resume',
     },
     {
       title: t('projects'),
       icon: 'project',
-      href: 'projects',
+      href: '/projects',
     },
   ]
 
