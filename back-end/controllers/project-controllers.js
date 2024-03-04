@@ -43,6 +43,40 @@ const getProjects = async (req, res, next) => {
   res.json({ projects: translatedProjects });
 };
 
+const getOneProjectSite = async (req, res, next) => {
+  const { id } = req.params;
+  const { location } = req.headers;
+
+  let existingProject;
+  try {
+    existingProject = await Project.findOne({ _id: id })
+      .populate("images")
+      .exec();
+  } catch (err) {
+    const error = new HttpError("get One faild !", 500);
+    return next(error);
+  }
+
+  // if (!existingProject) {
+  //   res.status(422).json({
+  //     success: 0,
+  //     errorMessage: " پروژه ای با این آی دی یافت نشد",
+  //   });
+  //   return next();
+  // }
+
+  const translatedPrj = {};
+  Object.keys(existingProject._doc).forEach((prj) => {
+    if (existingProject._doc[prj].hasOwnProperty("fa")) {
+      translatedPrj[prj] = existingProject._doc[prj][location];
+    } else {
+      translatedPrj[prj] = existingProject._doc[prj];
+    }
+  });
+
+  res.json(translatedPrj);
+};
+
 const createProject = async (req, res, next) => {
   const {
     title,
@@ -181,6 +215,7 @@ const editProject = async (req, res, next) => {
 
 exports.adminGetProjects = adminGetProjects;
 exports.getProjects = getProjects;
+exports.getOneProjectSite = getOneProjectSite;
 exports.createProject = createProject;
 exports.getOneProject = getOneProject;
 exports.deleteProject = deleteProject;

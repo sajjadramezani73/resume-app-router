@@ -6,6 +6,8 @@ router.get("/admin/projects", projectControllers.adminGetProjects);
 
 router.get("/", projectControllers.getProjects);
 
+router.get("/detail/:id", projectControllers.getOneProjectSite);
+
 router.post("/", projectControllers.createProject);
 
 router.get("/:id", projectControllers.getOneProject);
