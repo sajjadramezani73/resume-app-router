@@ -1,4 +1,4 @@
-import ProjectItem from '@/components/projectItem'
+import ProjectItem from '@/components/project/projectItem'
 import { getProjects } from '@/service/queries'
 
 const Projects = async () => {

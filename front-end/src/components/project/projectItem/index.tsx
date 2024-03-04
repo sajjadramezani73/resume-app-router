@@ -1,12 +1,14 @@
 import { projectAvatar } from '@/utils/ProjectAvatar'
 import Image from 'next/image'
-import Button from '../button'
+import Button from '../../button'
 import { getI18n } from '@/locales/server'
 import { getCurrentScheme } from '@/utils/ThemeHandler'
 import { IImageProps } from '@/type/types'
+import Link from 'next/link'
 
 interface Props {
   project: {
+    _id: string
     title: string
     briefDescription: string
     description: string
@@ -54,6 +56,7 @@ const ProjectItem = async ({ project }: Props) => {
           })}
         </div>
         <div className="flex justify-end pt-4">
+          <Link href={`/projects/${project?._id}`}>detail</Link>
           <Button
             title={t('viewOnline')}
             className="sm:!w-auto px-4 h-8 text-xs pt-1 capitalize"
