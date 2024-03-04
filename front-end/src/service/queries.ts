@@ -66,3 +66,21 @@ export const getProjects = async () => {
 
   return res.json()
 }
+
+export const getOneProject = async (id: string) => {
+  const cookieStore = cookies()
+  const locale = cookieStore.get('Next-Locale') ?? { value: 'fa' }
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/project/detail/${id}`,
+    {
+      cache: 'no-store',
+      headers: { location: locale.value },
+    }
+  )
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+
+  return res.json()
+}
