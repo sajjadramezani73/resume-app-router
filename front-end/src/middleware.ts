@@ -5,6 +5,9 @@ const I18nMiddleware = createI18nMiddleware({
   locales: ['en', 'fa'],
   defaultLocale: 'fa',
   // urlMappingStrategy: 'rewriteDefault',
+  resolveLocaleFromRequest: (request) => {
+    return 'fa'
+  },
 })
 
 export function middleware(request: NextRequest) {
