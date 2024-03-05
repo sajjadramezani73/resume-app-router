@@ -29,14 +29,14 @@ export default async function RootLayout({
           <div
             className={`${
               locale === 'fa' ? 'font-iranyekan' : 'font-roboto'
-            } w-full h-full flex justify-center items-center md:py-[50px] bg-gradient-to-br from-secondary/70 to-primary/70 dark:from-[#17171b] dark:to-[#28282f]`}
+            } w-full h-full flex justify-center items-center md:py-10 bg-gradient-to-br from-secondary/70 to-primary/70 dark:from-[#17171b] dark:to-[#28282f]`}
           >
             <div
               className={`md:container w-full h-full flex flex-col md:flex-row md:gap-x-4 ${
                 locale === 'fa' ? 'rtl' : 'ltr'
               }`}
             >
-              <div className="hidden md:block w-[72px] min-w-[72px]">
+              <div className="hidden md:block w-[72px] min-w-[72px] py-4">
                 <Sidebar />
               </div>
               <div
@@ -49,19 +49,21 @@ export default async function RootLayout({
                   <SwitchTheme />{' '}
                 </span>
               </div>
-              <div className="flex flex-col md:flex-row flex-grow overflow-hidden md:overflow-visible overflow-y-auto md:overflow-y-visible">
+              <div className="flex flex-col md:flex-row flex-grow overflow-hidden overflow-y-auto md:overflow-y-visible">
                 <div
-                  className={`grow min-h-full md:w-4/12 bg-white dark:bg-bgDark md:scale-[1.05] md:rounded ${
+                  className={`flex-grow min-h-full md:w-4/12 bg-white dark:bg-bgDark md:rounded relative ${
                     locale == 'fa' ? 'shadow-shadowLeft' : 'shadow-shadowRight'
                   }`}
                 >
                   <UserInfo />
                 </div>
-                <div
-                  className="md:w-8/12 bg-white dark:bg-bgDark flex-grow rounded-e p-4 md:p-7 md:ps-10"
-                  id="info_section"
-                >
-                  {children}
+                <div className="md:py-4 md:w-8/12 flex-grow">
+                  <div
+                    className=" h-full bg-white dark:bg-bgDark rounded-e p-4 md:p-7 md:ps-10"
+                    id="info_section"
+                  >
+                    {children}
+                  </div>
                 </div>
               </div>
               <div
