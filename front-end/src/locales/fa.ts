@@ -13,4 +13,8 @@ export default {
   education: 'تحصیلات',
   viewOnline: 'مشاهده آنلاین',
   soFar: 'تاکنون',
+
+  projectDetail: {
+    description: 'توضیحات',
+  },
 } as const

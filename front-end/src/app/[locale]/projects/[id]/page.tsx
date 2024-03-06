@@ -5,6 +5,7 @@ import { getOneProject } from '@/service/queries'
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 import Title from '@/components/titlePage'
 import Slider from '@/components/project/slider'
+import Description from '@/components/project/description'
 
 const ProjectDetail = async ({ params }: { params: Params }) => {
   const theme = await getCurrentScheme()
@@ -22,6 +23,9 @@ const ProjectDetail = async ({ params }: { params: Params }) => {
       <Projects />
     </Suspense> */}
         <Slider images={projectDetail?.images} />
+        <div className="mt-12">
+          <Description description={projectDetail?.description} />
+        </div>
       </div>
     </div>
   )

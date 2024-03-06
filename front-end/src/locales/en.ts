@@ -11,6 +11,10 @@ export default {
   education: 'education',
   viewOnline: 'view online',
   soFar: 'now',
+
+  projectDetail: {
+    description: 'description',
+  },
 } as const
 
 // We can also write locales using nested objects
