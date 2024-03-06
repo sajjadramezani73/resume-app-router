@@ -288,3 +288,55 @@ button:disabled {
 .border-vertical-image-dark {
   border-image: linear-gradient(to bottom, #515151, transparent) 1;
 }
+
+/******** modal ********/
+
+.confirm-pan {
+  transition-delay: 2s;
+  transform: translateY(50px);
+  transition: all ease 0.9s;
+}
+
+.confirm-pan.active {
+  animation: activeTranslate 0.2s forwards;
+}
+
+@keyframes activeTranslate {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/******** modal ********/
+
+/******** swiper ********/
+.common-swiper .swiper-button-prev,
+.common-swiper .swiper-button-next {
+  top: 50%;
+  width: 35px !important;
+  height: 35px !important;
+  background: rgb(0 0 0 / 50%) !important;
+  border-radius: 4px;
+  color: white !important;
+  font-weight: 700;
+  outline: 0;
+  transition: all 0.2s ease;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+}
+
+.common-swiper .swiper-button-prev:hover,
+.common-swiper .swiper-button-next:hover {
+  transform: scale(1.1);
+}
+
+.common-swiper .swiper-button-prev::after,
+.common-swiper .swiper-button-next::after {
+  font-size: 16px !important;
+}
+/******** swiper ********/

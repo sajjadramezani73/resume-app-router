@@ -73,6 +73,7 @@ export default async function RootLayout({
               </div>
             </div>
           </div>
+          <div id="modal-root"></div>
         </LanguageProvider>
       </body>
     </html>
