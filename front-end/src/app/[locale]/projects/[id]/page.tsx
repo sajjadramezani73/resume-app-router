@@ -7,6 +7,7 @@ import Title from '@/components/titlePage'
 import Slider from '@/components/project/slider'
 import Description from '@/components/project/description'
 import Skills from '@/components/project/skills'
+import Links from '@/components/project/links'
 
 const ProjectDetail = async ({ params }: { params: Params }) => {
   const theme = await getCurrentScheme()
@@ -34,6 +35,9 @@ const ProjectDetail = async ({ params }: { params: Params }) => {
         </div>
         <div className="mt-12">
           <Skills skills={projectDetail?.skills} />
+        </div>
+        <div className="mt-12">
+          <Links links={projectDetail?.links} />
         </div>
       </div>
     </div>

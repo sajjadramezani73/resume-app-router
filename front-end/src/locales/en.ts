@@ -10,6 +10,7 @@ export default {
   experience: 'experinece',
   education: 'education',
   viewOnline: 'view online',
+  viewDetail: 'view detail',
   soFar: 'now',
 
   projectDetail: {

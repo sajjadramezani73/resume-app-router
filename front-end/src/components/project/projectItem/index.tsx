@@ -1,6 +1,5 @@
 import { projectAvatar } from '@/utils/ProjectAvatar'
 import Image from 'next/image'
-import Button from '../../button'
 import { getI18n } from '@/locales/server'
 import { getCurrentScheme } from '@/utils/ThemeHandler'
 import { IImageProps } from '@/type/types'
@@ -56,13 +55,12 @@ const ProjectItem = async ({ project }: Props) => {
           })}
         </div>
         <div className="flex justify-end pt-4">
-          <Link href={`/projects/${project?._id}`}>detail</Link>
-          <Button
-            title={t('viewOnline')}
-            className="sm:!w-auto px-4 h-8 text-xs pt-1 capitalize"
-            type="link"
-            link={project?.links[0]}
-          />
+          <Link
+            className="sm:!w-auto w-full px-4 text-sm rounded-lg h-8 flex items-center justify-center pt-0.5 text-white bg-primary capitalize"
+            href={`/projects/${project?._id}`}
+          >
+            {t('viewDetail')}
+          </Link>
         </div>
       </div>
     </div>

@@ -12,6 +12,7 @@ export default {
   experience: 'سوابق شغلی',
   education: 'تحصیلات',
   viewOnline: 'مشاهده آنلاین',
+  viewDetail: 'مشاهده جزئیات',
   soFar: 'تاکنون',
 
   projectDetail: {
