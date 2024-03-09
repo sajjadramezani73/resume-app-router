@@ -6,12 +6,15 @@ import Image from 'next/image'
 import ConfirmModal from '@/components/modals/ConfirmModal'
 import { useState } from 'react'
 import GallerySlider from './GallerySlider'
+import { useCurrentLocale } from '@/locales/client'
 
 interface Props {
   images: IImageProps[]
 }
 
 const Slider = ({ images }: Props) => {
+  const locale = useCurrentLocale()
+
   const [openGallerySlider, setOpenGallerySlider] = useState(false)
   const [imageIndex, setImageIndex] = useState<number>(0)
 
@@ -30,7 +33,7 @@ const Slider = ({ images }: Props) => {
       <div className="w-full overflow-hidden">
         <Swiper
           spaceBetween={12}
-          dir="rtl"
+          dir={locale === 'fa' ? 'rtl' : 'ltr'}
           grabCursor={true}
           slidesPerView={2}
           breakpoints={{
