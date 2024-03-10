@@ -1,6 +1,3 @@
-import { getCurrentLocale } from '@/locales/server'
-import { getCurrentScheme } from '@/utils/ThemeHandler'
-
 import { getOneProject } from '@/service/queries'
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 import Title from '@/components/titlePage'
@@ -10,20 +7,14 @@ import Skills from '@/components/project/skills'
 import Links from '@/components/project/links'
 
 const ProjectDetail = async ({ params }: { params: Params }) => {
-  const theme = await getCurrentScheme()
-  const locale = getCurrentLocale()
-
   const projectDetail = await getOneProject(params?.id)
-  console.log('projectDetail', projectDetail)
 
   return (
     <div className="h-full flex flex-col">
       <Title>{projectDetail?.title}</Title>
 
       <div className="pt-4 flex-grow overflow-hidden overflow-y-auto no-scroll">
-        {/* <Suspense fallback={<ProjectsLoading />}>
-      <Projects />
-    </Suspense> */}
+        {/* <Suspense fallback={<p>loading...</p>}> */}
         <p className="text-captionDark dark:text-lightCaptionLight text-tiny capitalize">
           {projectDetail?.briefDescription}
         </p>
@@ -39,6 +30,7 @@ const ProjectDetail = async ({ params }: { params: Params }) => {
         <div className="mt-12">
           <Links links={projectDetail?.links} />
         </div>
+        {/* </Suspense> */}
       </div>
     </div>
   )
