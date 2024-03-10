@@ -46,4 +46,5 @@ export interface IaxiosConfig {
   'Acccept-Encoding': string
   'Access-Control-Max_Age': number
   'Access-Control-Allow-Headers': string
+  Authorization: string
 }

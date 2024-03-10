@@ -1,11 +1,13 @@
 import { IaxiosConfig } from './model'
+import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom'
 
 const API_URL = import.meta.env.VITE_BASE_URL
 
 export function setupAxios(axios: any) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const navigate = useNavigate()
   axios.defaults.baseURL = API_URL
-  // const currentLanguage = localStorage.getItem('i18nConfig');
-  // const parsedLanguage = currentLanguage ? JSON.parse(currentLanguage).selectedLang : 'en';
 
   axios.interceptors.request.use(
     (config: { headers: IaxiosConfig }) => {
@@ -21,11 +23,16 @@ export function setupAxios(axios: any) {
       config.headers['Access-Control-Allow-Headers'] =
         'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization, access-control-allow-origin, x-app-key, x-role, x-client-version, x-client-id, sentry-trace, client-id, device-id, menu-access, role-permission, user-agent, user'
 
+      const token = Cookies.get('token')
+
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+      }
+
       return config
     },
     (err: any) => {
-      // Promise.reject(err)
-      // return err
+      return Promise.reject(err)
     }
   )
 
@@ -33,53 +40,12 @@ export function setupAxios(axios: any) {
     (response: any) => {
       return response
     },
-    async (error: Error) => {
-      // const originalRequest = error?.config;
-
-      // if (error?.status === 401 && !originalRequest._retry) {
-      //   originalRequest._retry = true;
-      //   const auth = localStorage.getItem('auth');
-
-      //   if (auth) {
-      //     const parsedAuth = JSON.parse(auth);
-
-      //     // async function getRefreshTokenAsync() {
-      //     //   try {
-      //     //     const res = await fetch(`${API_URL}auth/refresh`, {
-      //     //       method: 'POST',
-      //     //       headers: {
-      //     //         Authorization: `Bearer ${parsedAuth.refreshToken}`,
-      //     //         'x-client-id': visitorId,
-      //     //       },
-      //     //     });
-
-      //     //     const response = await res.json();
-      //     //     const isSuccess = res.ok;
-      //     //     return { response, isSuccess };
-      //     //   } catch (error) {
-      //     //     console.log(error);
-      //     //   }
-      //     // }
-
-      //     // async function handleNewTokens() {
-      //     //   const { response: newTokens, isSuccess } = await getRefreshTokenAsync();
-      //     //   if (isSuccess) {
-      //     //     localStorage.setItem('auth', JSON.stringify(newTokens));
-      //     //     axios.defaults.headers.common['Authorization'] = 'Bearer ' + newTokens.accessToken;
-      //     //   } else {
-      //     //     toastFire('error', 'خطای بازیابی توکن');
-      //     //     localStorage.removeItem('currentUser');
-      //     //     localStorage.removeItem('auth');
-      //     //     location.reload();
-      //     //   }
-      //     // }
-      //     // handleNewTokens();
-
-      //     return axios(originalRequest);
-      //   }
-      // }
-
-      console.log(error, 'error')
+    async (error: any) => {
+      if (error.response && error.response.status === 401) {
+        navigate('/login')
+        Cookies.remove('token')
+        return Promise.reject(error)
+      }
       return Promise.reject(error)
     }
   )
