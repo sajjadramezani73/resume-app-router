@@ -20,7 +20,7 @@ const login = async (req, res, next) => {
       { username: username, password: password },
       process.env.SECRET_KEY,
       {
-        expiresIn: "1m",
+        expiresIn: "1d",
       }
     );
   } catch (err) {
@@ -35,29 +35,4 @@ const login = async (req, res, next) => {
   });
 };
 
-// const getIndex = async (req, res, next) => {
-//   const reqToken = req.headers.authorization;
-
-//   console.log("reqToken", reqToken);
-
-//   if (reqToken == undefined) {
-//     res.json({ userValid: false, user: null });
-//   } else {
-//     const token = reqToken.split(" ")[1];
-//     const validToken = jwt.verify(
-//       token,
-//       process.env.SECRET_KEY,
-//       async (err, decoded) => {
-//         if (err) {
-//           res.json({ userValid: false, user: "nulllllll" });
-//         } else {
-//           res.json({ userValid: true, token: "token" });
-//         }
-//         next();
-//       }
-//     );
-//   }
-// };
-
 exports.login = login;
-// exports.getIndex = getIndex;

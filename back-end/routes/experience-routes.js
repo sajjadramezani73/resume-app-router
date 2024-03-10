@@ -1,17 +1,22 @@
 const express = require("express");
 const router = express();
 const experienceControllers = require("../controllers/experience-controllers");
+const checkToken = require("../middleware/auth");
 
-router.get("/admin/experiences", experienceControllers.adminGetExperiences);
+router.get(
+  "/admin/experiences",
+  checkToken,
+  experienceControllers.adminGetExperiences
+);
 
-router.get("/", experienceControllers.getExperiences);
+router.get("/", checkToken, experienceControllers.getExperiences);
 
-router.post("/", experienceControllers.createExperience);
+router.post("/", checkToken, experienceControllers.createExperience);
 
-router.get("/:id", experienceControllers.getOneExperience);
+router.get("/:id", checkToken, experienceControllers.getOneExperience);
 
-router.delete("/:id", experienceControllers.deleteExperience);
+router.delete("/:id", checkToken, experienceControllers.deleteExperience);
 
-router.put("/:id", experienceControllers.editExperience);
+router.put("/:id", checkToken, experienceControllers.editExperience);
 
 module.exports = router;

@@ -1,19 +1,20 @@
 const express = require("express");
 const router = express();
 const projectControllers = require("../controllers/project-controllers");
+const checkToken = require("../middleware/auth");
 
-router.get("/admin/projects", projectControllers.adminGetProjects);
+router.get("/admin/projects", checkToken, projectControllers.adminGetProjects);
 
-router.get("/", projectControllers.getProjects);
+router.get("/", checkToken, projectControllers.getProjects);
 
-router.get("/detail/:id", projectControllers.getOneProjectSite);
+router.get("/detail/:id", checkToken, projectControllers.getOneProjectSite);
 
-router.post("/", projectControllers.createProject);
+router.post("/", checkToken, projectControllers.createProject);
 
-router.get("/:id", projectControllers.getOneProject);
+router.get("/:id", checkToken, projectControllers.getOneProject);
 
-router.delete("/:id", projectControllers.deleteProject);
+router.delete("/:id", checkToken, projectControllers.deleteProject);
 
-router.put("/:id", projectControllers.editProject);
+router.put("/:id", checkToken, projectControllers.editProject);
 
 module.exports = router;
