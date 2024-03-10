@@ -5,7 +5,7 @@ export const getAbout = async () => {
   const locale = cookieStore.get('Next-Locale') ?? { value: 'fa' }
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/about`, {
-    cache: 'no-store',
+    cache: 'no-cache',
     headers: { location: locale.value },
   })
 
@@ -22,7 +22,7 @@ export const getExperiences = async () => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/experience`,
     {
-      cache: 'no-store',
+      cache: 'no-cache',
       headers: { location: locale.value },
     }
   )
@@ -40,7 +40,7 @@ export const getEducations = async () => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/education`,
     {
-      cache: 'no-store',
+      cache: 'no-cache',
       headers: { location: locale.value },
     }
   )
@@ -56,7 +56,7 @@ export const getProjects = async () => {
   const cookieStore = cookies()
   const locale = cookieStore.get('Next-Locale') ?? { value: 'fa' }
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/project`, {
-    cache: 'no-store',
+    cache: 'no-cache',
     headers: { location: locale.value },
   })
 
@@ -73,7 +73,7 @@ export const getOneProject = async (id: string) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/project/detail/${id}`,
     {
-      cache: 'no-store',
+      cache: 'no-cache',
       headers: { location: locale.value },
     }
   )
