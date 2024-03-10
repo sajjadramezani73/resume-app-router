@@ -8,12 +8,14 @@ import {
   Stack,
   Typography,
 } from '@mui/material'
-import avatarImg from '../../assets/images/avatar.jpg'
 import { useState } from 'react'
 import PersonIcon from '@mui/icons-material/Person'
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
+import { useRequest } from '@/services/axios/useRequest'
+import { Keys } from '@/constants/Keys'
+import { Paths } from '@/constants/Paths'
 
 const AvatarMenu = () => {
   const navigate = useNavigate()
@@ -27,6 +29,13 @@ const AvatarMenu = () => {
     setAnchorEl(null)
   }
 
+  const { data } = useRequest({
+    queryKey: Keys.about.about,
+    url: Paths.about.all,
+  })
+
+  console.log('data', data)
+
   const logoutHandler = () => {
     navigate('/login')
     Cookies.remove('token')
@@ -35,7 +44,10 @@ const AvatarMenu = () => {
   return (
     <>
       <IconButton onClick={handleClick}>
-        <Avatar sx={{ width: 50, height: 50 }} src={avatarImg} />
+        <Avatar
+          sx={{ width: 50, height: 50 }}
+          src={data?.aboutMe?.avatar?.url}
+        />
       </IconButton>
 
       <Menu
@@ -58,11 +70,16 @@ const AvatarMenu = () => {
           spacing={1}
           py={1}
         >
-          <Avatar sx={{ width: 40, height: 40 }} src={avatarImg} />
-          <Typography variant="subtitle2">سجاد رمضانی</Typography>
+          <Avatar
+            sx={{ width: 40, height: 40 }}
+            src={data?.aboutMe?.avatar?.url}
+          />
+          <Typography variant="subtitle2">
+            {data?.aboutMe?.firstName.fa + ' ' + data?.aboutMe?.lastName.fa}
+          </Typography>
         </Stack>
         <Divider />
-        <MenuItem onClick={handleClose} sx={{ paddingY: 1.5 }}>
+        <MenuItem onClick={() => navigate('/dashboard')} sx={{ paddingY: 1.5 }}>
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>
