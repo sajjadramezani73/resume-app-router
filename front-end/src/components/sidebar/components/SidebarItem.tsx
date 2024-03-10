@@ -11,6 +11,8 @@ const SidebarItem = async ({ item, isLink = true }: any) => {
   const segment = useSelectedLayoutSegment()
   const theme = await getCurrentScheme()
 
+  console.log('segment', segment)
+
   return (
     <>
       {isLink ? (
@@ -26,7 +28,7 @@ const SidebarItem = async ({ item, isLink = true }: any) => {
               name={item.icon}
               size={20}
               color={
-                segment === item.href
+                `/${segment}` === item.href
                   ? 'var(--color-primary)'
                   : theme === 'dark'
                   ? 'var(--color-lightCaptionLight)'
@@ -36,7 +38,7 @@ const SidebarItem = async ({ item, isLink = true }: any) => {
             />
             <p
               className={`text-xxs font-medium mt-1 ${
-                segment === item.href
+                `/${segment}` === item.href
                   ? 'text-primary'
                   : 'text-captionDark dark:text-lightCaptionLight'
               }`}
