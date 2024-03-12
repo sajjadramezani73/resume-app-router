@@ -11,8 +11,6 @@ const SidebarItem = async ({ item, isLink = true }: any) => {
   const segment = useSelectedLayoutSegment()
   const theme = await getCurrentScheme()
 
-  console.log('segment', segment)
-
   return (
     <>
       {isLink ? (
