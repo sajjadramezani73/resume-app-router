@@ -9,7 +9,7 @@ router.get(
   educationControllers.adminGetEducations
 );
 
-router.get("/", checkToken, educationControllers.getEducations);
+router.get("/", educationControllers.getEducations);
 
 router.post("/", checkToken, educationControllers.createEducation);
 

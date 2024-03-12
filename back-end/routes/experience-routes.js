@@ -9,7 +9,7 @@ router.get(
   experienceControllers.adminGetExperiences
 );
 
-router.get("/", checkToken, experienceControllers.getExperiences);
+router.get("/", experienceControllers.getExperiences);
 
 router.post("/", checkToken, experienceControllers.createExperience);
 

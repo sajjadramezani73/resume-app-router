@@ -5,9 +5,9 @@ const checkToken = require("../middleware/auth");
 
 router.get("/admin/projects", checkToken, projectControllers.adminGetProjects);
 
-router.get("/", checkToken, projectControllers.getProjects);
+router.get("/", projectControllers.getProjects);
 
-router.get("/detail/:id", checkToken, projectControllers.getOneProjectSite);
+router.get("/detail/:id", projectControllers.getOneProjectSite);
 
 router.post("/", checkToken, projectControllers.createProject);
 

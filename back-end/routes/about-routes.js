@@ -5,7 +5,7 @@ const checkToken = require("../middleware/auth");
 
 router.get("/admin/about", checkToken, aboutControllers.adminGetAbout);
 
-router.get("/", checkToken, aboutControllers.getAbout);
+router.get("/", aboutControllers.getAbout);
 
 router.post("/", checkToken, aboutControllers.createAbout);
 
