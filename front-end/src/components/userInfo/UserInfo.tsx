@@ -35,7 +35,7 @@ const UserInfo = async () => {
         </div>
       </div>
       <div
-        className={`border-t border-b md:border-b-0 p-4 w-full flex justify-center items-center gap-x-2 hover:gap-x-3 duration-300 cursor-pointer group  ${
+        className={`border-t border-b md:border-b-0 p-4 w-full flex justify-center items-center gap-x-2 hover:gap-x-3 duration-300 cursor-not-allowed group  ${
           theme === 'dark' ? 'border-center-image-dark' : 'border-center-image'
         }`}
       >

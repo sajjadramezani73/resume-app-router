@@ -23,7 +23,7 @@ const AboutMe = async () => {
       </div>
       <div className="pt-7 md:ps-6 grid gap-y-3">
         <AboutItem title={t('age')} value={about?.age} />
-        <AboutItem title={t('phone')} value={'0' + about?.phone} />
+        <AboutItem title={t('phone')} value={about?.phone} />
         <AboutItem title={t('email')} value={about?.email} />
         <AboutItem title={t('address')} value={about?.address} />
       </div>
