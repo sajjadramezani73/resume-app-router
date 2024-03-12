@@ -5,7 +5,7 @@ import womanAvatar from '../assets/images/woman.svg'
 // set Avater user or static avater
 export const Avatar = (avatar: IImage | null, gender: string) => {
   if (avatar !== null) {
-    return avatar.url
+    return avatar?.url
   } else {
     return gender === 'Male' ? manAvatar : womanAvatar
   }

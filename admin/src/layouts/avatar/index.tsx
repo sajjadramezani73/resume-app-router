@@ -75,7 +75,7 @@ const AvatarMenu = () => {
             src={data?.aboutMe?.avatar?.url}
           />
           <Typography variant="subtitle2">
-            {data?.aboutMe?.firstName.fa + ' ' + data?.aboutMe?.lastName.fa}
+            {data?.aboutMe?.firstName?.fa + ' ' + data?.aboutMe?.lastName?.fa}
           </Typography>
         </Stack>
         <Divider />
