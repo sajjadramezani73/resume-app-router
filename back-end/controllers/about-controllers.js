@@ -44,19 +44,25 @@ const getAbout = async (req, res, next) => {
     return next(error);
   }
 
-  const aboutMe = {
-    firstName: about.firstName[location],
-    lastName: about.lastName[location],
-    job: about.job[location],
-    address: about.address[location],
-    bio: about.bio[location],
-    gender: about.gender[location],
-    age: about.age,
-    email: about.email,
-    phone: about.phone,
-    socialsNetwork: about.socialsNetwork,
-    avatar: about.avatar,
-  };
+  let aboutMe = {};
+
+  if (about) {
+    aboutMe = {
+      firstName: about.firstName[location],
+      lastName: about.lastName[location],
+      job: about.job[location],
+      address: about.address[location],
+      bio: about.bio[location],
+      gender: about.gender[location],
+      age: about.age,
+      email: about.email,
+      phone: about.phone,
+      socialsNetwork: about.socialsNetwork,
+      avatar: about.avatar,
+    };
+  } else {
+    aboutMe = {};
+  }
 
   res.json({ aboutMe: aboutMe });
 };
