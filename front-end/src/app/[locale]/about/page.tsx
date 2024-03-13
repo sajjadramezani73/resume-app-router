@@ -8,7 +8,7 @@ const About = async () => {
   const t = await getI18n()
 
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col">
       <Title>{t('about')}</Title>
       <Suspense fallback={<LoadingAbout />}>
         <AboutMe />
