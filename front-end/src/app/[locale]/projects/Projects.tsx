@@ -1,3 +1,4 @@
+import Empty from '@/components/empty'
 import ProjectItem from '@/components/project/projectItem'
 import { getProjects } from '@/service/queries'
 
@@ -6,9 +7,13 @@ const Projects = async () => {
 
   return (
     <>
-      {projects?.map((item: any) => {
-        return <ProjectItem key={item?._id} project={item} />
-      })}
+      {projects.length > 0 ? (
+        projects?.map((item: any) => {
+          return <ProjectItem key={item?._id} project={item} />
+        })
+      ) : (
+        <Empty />
+      )}
     </>
   )
 }
