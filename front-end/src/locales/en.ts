@@ -12,6 +12,7 @@ export default {
   viewOnline: 'view online',
   viewDetail: 'view detail',
   soFar: 'now',
+  empty: 'there is no content to display',
 
   projectDetail: {
     description: 'description',

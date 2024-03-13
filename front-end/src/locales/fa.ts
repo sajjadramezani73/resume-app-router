@@ -14,6 +14,7 @@ export default {
   viewOnline: 'مشاهده آنلاین',
   viewDetail: 'مشاهده جزئیات',
   soFar: 'تاکنون',
+  empty: 'محتوایی برای نمایش وجود ندارد',
 
   projectDetail: {
     description: 'توضیحات',
