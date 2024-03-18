@@ -24,10 +24,6 @@ const Login = () => {
       Cookies.set('token', data?.token)
       navigate('/dashboard')
     },
-    errorCallback: () => {
-      toast.error('مشکلی در ثبت درخواست شما به وجود آمده است')
-      console.log('errrrrr')
-    },
   })
 
   const loginHandler = () => {

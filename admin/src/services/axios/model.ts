@@ -26,7 +26,6 @@ export interface QueryParam {
 
 export interface ErrorHandler {
   error: ErrorFormat
-  errorCallback: (data: any) => void
   isGetMethod: boolean
   preventDefaultMessage: boolean
 }

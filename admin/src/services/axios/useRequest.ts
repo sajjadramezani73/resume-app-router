@@ -8,31 +8,25 @@ import {
   MutateQuery,
   ErrorFormat,
 } from './model'
+import { toast } from 'sonner'
 //  *** For more info on these hooks refer to confluence ***
 
 const useHandleErrors = ({
   error,
-  errorCallback,
   preventDefaultMessage = false,
 }: ErrorHandler) => {
   const status = error.statusCode
   const text_message = error.message
 
-  // if (status >= 500 && status <= 599) message.error('Interval server Error');
-  // else if (status === 401) message.error('unauthorized');
-  // else if (status === 403) message.error('Forbidden');
-  // else if (!!text_message) {
-  //   message.error(text_message);
-  // } else if (!preventDefaultMessage) {
-  //   message.error('There is an Error');
-  // }
-  if (status >= 500 && status <= 599) console.log('Interval server Error')
-  else if (status === 401) console.log('unauthorized')
-  else if (status === 403) console.log('Forbidden')
-  else if (!!text_message) {
-    console.log(text_message)
+  if (status >= 500 && status <= 599)
+    toast.error('مشکلی از سمت سرور پیش آمده. لطفا دوباره امتحان کنید ...')
+  else if (status === 401)
+    toast.error('شما احراز هویت نشده اید . لطفا وارد حساب کاربری خود شوید')
+  else if (status === 403) toast.error('دسترسی غیر مجاز')
+  else if (text_message) {
+    toast.error(text_message)
   } else if (!preventDefaultMessage) {
-    console.log('There is an Error')
+    toast.error('مشکل نا مشخصی رخ داده است')
   }
 }
 
@@ -97,10 +91,10 @@ const useMutate = ({
       successCallback?.(data)
       // !preventDefaultMessage && Message({type:'success', content:'Your request successed.'});
     },
-    onError: (error: ErrorFormat) => {
+    onError: (error: any) => {
+      errorCallback?.(error)
       useHandleErrors({
-        error,
-        errorCallback,
+        error: error?.response?.data,
         isGetMethod: false,
         preventDefaultMessage,
       })
