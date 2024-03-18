@@ -144,7 +144,7 @@ const Step2 = ({ onChangeHandler, onSelectHandler }: Props) => {
         defaultValue={experience.addExperience.skill}
         filterSelectedOptions
         renderInput={(params) => <TextField {...params} label="مهارت ها" />}
-        onChange={(event, value) =>
+        onChange={(_event, value) =>
           updateAddExperienceOneProperty({
             skill: [...value],
           })

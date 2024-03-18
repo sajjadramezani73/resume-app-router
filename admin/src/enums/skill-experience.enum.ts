@@ -1,6 +1,8 @@
 export const skillExperience = [
   'Html',
   'Css',
+  'html-5',
+  'css-3',
   'Tailwind-css',
   'Bootstrap',
   'JavaScript',
@@ -11,4 +13,5 @@ export const skillExperience = [
   'React query',
   'Ant Design',
   'Material ui',
+  'psd to html',
 ]
