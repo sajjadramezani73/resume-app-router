@@ -20,7 +20,8 @@ const SingleUpload = ({ handleImage }: Props) => {
     if (e.target.files && e.target.files.length > 0) {
       if (
         e.target.files[0].type === 'image/jpeg' ||
-        e.target.files[0].type === 'image/png'
+        e.target.files[0].type === 'image/png' ||
+        e.target.files[0].type === 'image/webp'
       ) {
         const reader = new FileReader()
         reader.onload = (e) => {
