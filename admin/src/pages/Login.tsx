@@ -33,7 +33,7 @@ const Login = () => {
   }
 
   return (
-    <div className="w-full h-full overflow-hidden px-6 xl:px-[100px] py-[60px] flex justify-center bg-[url(src/assets/images/background.png)] bg-cover">
+    <div className="w-full h-full overflow-hidden px-6 xl:px-[100px] py-[60px] flex justify-center bg-[url(/src/assets/images/background.png)] bg-cover">
       <div className="w-full max-w-[400px] lg:w-fit lg:max-w-none bg-white flex justify-center items-stretch rounded-2xl p-3">
         <div className="flex flex-col justify-center w-full lg:w-[350px] xl-w-[380px] lg:pe-3">
           <div className="px-3 lg:px-6 grid grid-cols-1 gap-y-6">
