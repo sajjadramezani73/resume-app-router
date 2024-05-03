@@ -1,30 +1,41 @@
+const withPWA = require('@ducanh2912/next-pwa').default({
+  dest: 'public',
+  cacheOnFrontEndNav: true,
+  aggressiveFrontEndNavCaching: true,
+  reloadOnOnline: true,
+  swcMinify: true,
+  disable: false,
+  workboxOptions: { disableDevLogs: true },
+})
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   output: 'standalone',
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/fa',
-  //       destination: '/about',
-  //       permanent: true,
-  //     },
-  //     {
-  //       source: '/en',
-  //       destination: '/about',
-  //       permanent: true,
-  //     },
-  //   ]
-  // },
-
+  // reactStrictMode: true,
   async redirects() {
     return [
       {
-        source: '/',
+        source: '/fa',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/en',
         destination: '/about',
         permanent: true,
       },
     ]
   },
+
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/',
+  //       destination: '/about',
+  //       permanent: true,
+  //     },
+  //   ]
+  // },
 
   images: {
     remotePatterns: [
@@ -40,4 +51,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+module.exports = withPWA(nextConfig)

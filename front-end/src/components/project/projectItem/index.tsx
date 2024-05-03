@@ -32,7 +32,7 @@ const ProjectItem = async ({ project }: Props) => {
           alt=""
           src={projectAvatar(project?.images)}
           fill={true}
-          className="object-cover sm:object-fill"
+          className="object-cover"
         />
       </div>
       <div className="flex-grow px-3 pt-3 sm:pt-1">

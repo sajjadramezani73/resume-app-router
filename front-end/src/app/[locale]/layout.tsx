@@ -1,5 +1,5 @@
 import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Sidebar from '@/components/sidebar/Sidebar'
 import UserInfo from '@/components/userInfo/UserInfo'
 import SidebarItems from '@/components/sidebar/components/SidebarItems'
@@ -10,8 +10,13 @@ import SwitchTheme from '@/components/sidebar/components/SwitchTheme'
 import { LanguageProvider } from '@/provider/LanguageProvider'
 
 export const metadata: Metadata = {
+  manifest: '/manifest.json',
   title: 'sajjad ramezani',
   description: 'Resume Project With Next.js App Router',
+}
+
+export const viewport: Viewport = {
+  themeColor: '#0ba376',
 }
 
 export default async function RootLayout({
