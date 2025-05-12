@@ -45,8 +45,8 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-  // .connect("mongodb://127.0.0.1:27017/resume")
-  .connect(process.env.MONGODB_URL)
+  .connect("mongodb://127.0.0.1:27017/resume")
+  // .connect(process.env.MONGODB_URL)
   .then(() => {
     app.listen(5000);
   })
