@@ -61,10 +61,12 @@ const SidebarLinks = () => {
               <ListItemText
                 className="text-start"
                 primary={link.title}
-                primaryTypographyProps={{
-                  color: 'titr',
-                  fontWeight: 'medium',
-                  fontSize: '15px',
+                slotProps={{
+                  primary: {
+                    color: 'titr',
+                    fontWeight: 'medium',
+                    fontSize: '15px',
+                  }
                 }}
               />
               {link.id === open ? (
@@ -86,16 +88,18 @@ const SidebarLinks = () => {
                     <ListItemText
                       className="text-start"
                       primary={item.title}
-                      primaryTypographyProps={{
-                        color: 'titr',
-                        fontWeight: 'medium',
-                        fontSize: '14px',
-                      }}
                       sx={{
                         transition: '0.3s',
                         '&:hover': {
                           color: 'secondary.main',
                         },
+                      }}
+                      slotProps={{
+                        primary: {
+                          color: 'titr',
+                          fontWeight: 'medium',
+                          fontSize: '14px',
+                        }
                       }}
                     />
                   </ListItemButton>
@@ -115,17 +119,19 @@ const SidebarLinks = () => {
             <ListItemText
               className="text-start"
               primary={link.title}
-              primaryTypographyProps={{
-                color: 'titr',
-                fontWeight: 'medium',
-                fontSize: '15px',
+              slotProps={{
+                primary: {
+                  color: 'titr',
+                  fontWeight: 'medium',
+                  fontSize: '15px',
+                }
               }}
             />
           </ListItemButton>
         )
       )}
     </List>
-  )
+  );
 }
 
 export default SidebarLinks

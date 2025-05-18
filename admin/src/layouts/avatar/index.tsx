@@ -49,7 +49,6 @@ const AvatarMenu = () => {
           src={data?.aboutMe?.avatar?.url}
         />
       </IconButton>
-
       <Menu
         anchorEl={anchorEl}
         open={open}
@@ -65,11 +64,12 @@ const AvatarMenu = () => {
       >
         <Stack
           direction="column"
-          justifyContent="center"
-          alignItems="center"
           spacing={1}
-          py={1}
-        >
+          sx={{
+            justifyContent: "center",
+            alignItems: "center",
+            py: 1
+          }}>
           <Avatar
             sx={{ width: 40, height: 40 }}
             src={data?.aboutMe?.avatar?.url}
@@ -93,7 +93,7 @@ const AvatarMenu = () => {
         </MenuItem>
       </Menu>
     </>
-  )
+  );
 }
 
 export default AvatarMenu
