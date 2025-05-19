@@ -6,8 +6,11 @@ export const getCurrentScheme = async () => {
   // component (this happens server side). We can use the `cookies` function
   // from the `next/headers` package to access the cookies from the request headers.
   if (typeof window === 'undefined') {
-    return import('next/headers').then(({ cookies }) => {
-      return cookies().has('theme') ? cookies().get('theme')?.value : 'light'
+    return import('next/headers').then(async ({ cookies }) => {
+      const cookieStore = await cookies()
+      return cookieStore.has('theme')
+        ? cookieStore.get('theme')?.value
+        : 'light'
     })
   }
 

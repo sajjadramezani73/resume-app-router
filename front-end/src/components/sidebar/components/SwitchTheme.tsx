@@ -2,16 +2,27 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
+import { useEffect, useState } from 'react'
 import LoadSvgIcon from '@/utils/LoadSvgIcon'
 import { getCurrentScheme, toggleTheme } from '@/utils/ThemeHandler'
 import { useRouter } from 'next/navigation'
 
-const SwitchTheme = async () => {
+const SwitchTheme = () => {
   const router = useRouter()
-  const theme = await getCurrentScheme()
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
+
+  useEffect(() => {
+    const fetchTheme = async () => {
+      const current = await getCurrentScheme()
+      setTheme(current === 'dark' ? 'dark' : 'light')
+    }
+    fetchTheme()
+  }, [])
 
   const toggle = async () => {
     await toggleTheme()
+    const current = await getCurrentScheme()
+    setTheme(current === 'dark' ? 'dark' : 'light')
     router.refresh()
   }
 

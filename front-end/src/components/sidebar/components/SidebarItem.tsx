@@ -2,14 +2,29 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
+import { useEffect, useState } from 'react'
 import LoadSvgIcon from '@/utils/LoadSvgIcon'
 import { getCurrentScheme } from '@/utils/ThemeHandler'
 import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
 
-const SidebarItem = async ({ item, isLink = true }: any) => {
+const SidebarItem = ({ item, isLink = true }: any) => {
   const segment = useSelectedLayoutSegment()
-  const theme = await getCurrentScheme()
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
+
+  useEffect(() => {
+    let mounted = true
+    getCurrentScheme().then((scheme) => {
+      if (mounted && (scheme === 'light' || scheme === 'dark')) {
+        setTheme(scheme)
+      } else if (mounted) {
+        setTheme('light')
+      }
+    })
+    return () => {
+      mounted = false
+    }
+  }, [])
 
   return (
     <>

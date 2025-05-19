@@ -1,13 +1,17 @@
 import { getOneProject } from '@/service/queries'
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 import Title from '@/components/titlePage'
 import Slider from '@/components/project/slider'
 import Description from '@/components/project/description'
 import Skills from '@/components/project/skills'
 import Links from '@/components/project/links'
 
-const ProjectDetail = async ({ params }: { params: Params }) => {
-  const projectDetail = await getOneProject(params?.id)
+const ProjectDetail = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}) => {
+  const { id } = await params
+  const projectDetail = await getOneProject(id)
 
   return (
     <div className="h-full flex flex-col">
