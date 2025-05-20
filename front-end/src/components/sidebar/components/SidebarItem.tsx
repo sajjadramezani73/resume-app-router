@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-async-client-component */
-/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -12,19 +10,27 @@ const SidebarItem = ({ item, isLink = true }: any) => {
   const segment = useSelectedLayoutSegment()
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
-  useEffect(() => {
-    let mounted = true
-    getCurrentScheme().then((scheme) => {
-      if (mounted && (scheme === 'light' || scheme === 'dark')) {
-        setTheme(scheme)
-      } else if (mounted) {
-        setTheme('light')
-      }
-    })
-    return () => {
-      mounted = false
+  getCurrentScheme().then((scheme) => {
+    if (scheme === 'light' || scheme === 'dark') {
+      setTheme(scheme)
+    } else {
+      setTheme('light')
     }
-  }, [])
+  })
+
+  // useEffect(() => {
+  //   let mounted = true
+  //   getCurrentScheme().then((scheme) => {
+  //     if (mounted && (scheme === 'light' || scheme === 'dark')) {
+  //       setTheme(scheme)
+  //     } else if (mounted) {
+  //       setTheme('light')
+  //     }
+  //   })
+  //   return () => {
+  //     mounted = false
+  //   }
+  // }, [])
 
   return (
     <>
