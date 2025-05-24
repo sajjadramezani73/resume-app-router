@@ -9,8 +9,8 @@ const AboutItemLoading = async () => {
         theme === 'dark' ? 'border-center-image-dark' : 'border-center-image'
       }`}
     >
-      <div className="w-12 h-6 bg-gray-100 dark:bg-gray-50/20 rounded-sm animate-pulse"></div>
-      <div className="w-20 h-6 bg-gray-100 dark:bg-gray-50/20 rounded-sm animate-pulse"></div>
+      <div className="w-12 h-6 bg-gray-100 dark:bg-gray-50/20 rounded-xs animate-pulse"></div>
+      <div className="w-20 h-6 bg-gray-100 dark:bg-gray-50/20 rounded-xs animate-pulse"></div>
     </div>
   )
 }

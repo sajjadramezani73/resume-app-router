@@ -15,7 +15,7 @@ const Resume = async () => {
   return (
     <div className="h-full flex flex-col">
       <Title>{t('resume')}</Title>
-      <div className="pt-7 flex-grow overflow-hidden overflow-y-auto no-scroll">
+      <div className="pt-7 grow overflow-hidden overflow-y-auto no-scroll">
         <div
           className={`flex items-center pb-7 mb-7 border-b ${
             theme === 'dark'
@@ -29,7 +29,7 @@ const Resume = async () => {
             weight={2}
             color="var(--color-primary)"
           />
-          <p className="text-base font-bold text-captionDark dark:text-lightCaptionLight ms-2 capitalize">
+          <p className="text-base font-bold text-caption-dark dark:text-light-caption-light ms-2 capitalize">
             {t('experience')}
           </p>
         </div>
@@ -50,7 +50,7 @@ const Resume = async () => {
             weight={2}
             color="var(--color-primary)"
           />
-          <p className="text-base font-bold text-captionDark dark:text-lightCaptionLight ms-2 capitalize">
+          <p className="text-base font-bold text-caption-dark dark:text-light-caption-light ms-2 capitalize">
             {t('education')}
           </p>
         </div>

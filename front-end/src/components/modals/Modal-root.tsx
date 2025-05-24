@@ -15,7 +15,7 @@ const ModalRoot = ({ children, show }: IModalRootProps) => {
   return mounted && show
     ? createPortal(
         <div
-          className={`fixed top-0 left-1/2 z-[999] w-full h-full bg-black/[0.5] -translate-x-1/2 overflow-hidden duration-200
+          className={`fixed top-0 left-1/2 z-999 w-full h-full bg-black/[0.5] -translate-x-1/2 overflow-hidden duration-200
             ${show ? 'opacity-100 visible ' : 'opacity-0 invisible delay-300'}`}
         >
           {children}

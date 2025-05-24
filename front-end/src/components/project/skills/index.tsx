@@ -11,7 +11,7 @@ const Skills = ({ skills }: Props) => {
             return (
               <span
                 key={skill}
-                className="w-max bg-gray-200 dark:bg-lightCaptionLight/70 text-caption text-xxs font-medium px-1.5 pt-1 pb-0.5 rounded capitalize"
+                className="w-max bg-gray-200 dark:bg-light-caption-light/70 text-caption text-xxs font-medium px-1.5 pt-1 pb-0.5 rounded-sm capitalize"
               >
                 {skill}
               </span>

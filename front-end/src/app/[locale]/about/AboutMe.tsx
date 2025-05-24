@@ -12,7 +12,7 @@ const AboutMe = async () => {
   return (
     <>
       {Object.keys(about).length > 0 ? (
-        <div className="grid gris-cols-1 md:grid-cols-2 flex-grow overflow-hidden overflow-y-auto no-scroll">
+        <div className="grid gris-cols-1 md:grid-cols-2 grow overflow-hidden overflow-y-auto no-scroll">
           <div
             className={`pt-7 md:border-e md:pe-6 ${
               theme === 'dark'
@@ -20,7 +20,7 @@ const AboutMe = async () => {
                 : 'border-vertical-image'
             }`}
           >
-            <p className="text-base text-caption dark:text-lightCaption font-medium leading-8 capitalize">
+            <p className="text-base text-caption dark:text-light-caption font-medium leading-8 capitalize">
               {about?.bio}
             </p>
           </div>
@@ -32,7 +32,7 @@ const AboutMe = async () => {
           </div>
         </div>
       ) : (
-        <div className="flex-grow">
+        <div className="grow">
           <Empty />
         </div>
       )}

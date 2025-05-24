@@ -11,7 +11,6 @@ const SocialNetworks = ({
   socialNetworks: ISocialNetworkProps[]
   theme: string | CookieValueTypes
 }) => {
-
   return (
     <>
       {socialNetworks?.map((item) => {
@@ -21,8 +20,8 @@ const SocialNetworks = ({
               name={item?.icon}
               color={
                 theme === 'dark'
-                  ? 'var(--color-lightCaptionLight)'
-                  : 'var(--color-captionDark)'
+                  ? 'var(--color-light-caption-light)'
+                  : 'var(--color-caption-dark)'
               }
               size={18}
             />

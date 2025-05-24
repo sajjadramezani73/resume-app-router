@@ -27,7 +27,7 @@ const ProjectItem = async ({ project }: Props) => {
         theme === 'dark' ? 'border-center-image-dark' : 'border-center-image'
       }`}
     >
-      <div className="sm:w-44 sm:min-w-[176px] aspect-[2/1] sm:h-48 rounded border overflow-hidden relative">
+      <div className="sm:w-44 sm:min-w-[176px] aspect-2/1 sm:h-48 rounded-sm border overflow-hidden relative">
         <Image
           alt=""
           src={projectAvatar(project?.images)}
@@ -35,11 +35,11 @@ const ProjectItem = async ({ project }: Props) => {
           className="object-cover"
         />
       </div>
-      <div className="flex-grow px-3 pt-3 sm:pt-1">
-        <p className="font-semibold text-captionDark dark:text-lightCaptionLight mb-3 capitalize">
+      <div className="grow px-3 pt-3 sm:pt-1">
+        <p className="font-semibold text-caption-dark dark:text-light-caption-light mb-3 capitalize">
           {project?.title}
         </p>
-        <p className="text-caption dark:text-lightCaption text-xs font-medium leading-6 text-justify sm:text-start capitalize">
+        <p className="text-caption dark:text-light-caption text-xs font-medium leading-6 text-justify sm:text-start capitalize">
           {project?.briefDescription}
         </p>
         <div className="flex flex-wrap gap-x-2 gap-y-1 mt-2">
@@ -47,7 +47,7 @@ const ProjectItem = async ({ project }: Props) => {
             return (
               <span
                 key={skill}
-                className="w-max bg-gray-200 dark:bg-lightCaptionLight/70 text-caption text-xxs font-medium px-1.5 pt-1 pb-0.5 rounded capitalize"
+                className="w-max bg-gray-200 dark:bg-light-caption-light/70 text-caption text-xxs font-medium px-1.5 pt-1 pb-0.5 rounded-sm capitalize"
               >
                 {skill}
               </span>
@@ -56,7 +56,7 @@ const ProjectItem = async ({ project }: Props) => {
         </div>
         <div className="flex justify-end pt-4">
           <Link
-            className="sm:!w-auto w-full px-4 text-sm rounded-lg h-8 flex items-center justify-center pt-0.5 text-white bg-primary capitalize"
+            className="sm:w-auto! w-full px-4 text-sm rounded-lg h-8 flex items-center justify-center pt-0.5 text-white bg-primary capitalize"
             href={`/projects/${project?._id}`}
           >
             {t('viewDetail')}

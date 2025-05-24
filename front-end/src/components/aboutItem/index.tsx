@@ -14,7 +14,7 @@ const AboutItem = async ({ title, value }: Props) => {
       }`}
     >
       <p className="text-tiny font-medium text-primary capitalize">{title}</p>
-      <p className="text-tiny font-medium text-caption dark:text-lightCaption">
+      <p className="text-tiny font-medium text-caption dark:text-light-caption">
         {value}
       </p>
     </div>

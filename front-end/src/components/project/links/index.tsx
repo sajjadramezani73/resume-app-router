@@ -13,7 +13,7 @@ const Links = async ({ links }: Props) => {
         <Button
           key={item}
           title={t('viewOnline') + ' - ' + (index + 1)}
-          className="sm:!w-auto px-4 h-8 text-xs pt-1 capitalize"
+          className="sm:w-auto! px-4 h-8 text-xs pt-1 capitalize"
           type="link"
           link={item}
         />

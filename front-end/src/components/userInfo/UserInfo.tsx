@@ -26,7 +26,7 @@ const UserInfo = async () => {
                 className="object-fit"
               />
             </div>
-            <p className="text-[34px] text-captionDark dark:text-lightCaptionLight font-bold mt-6">
+            <p className="text-[34px] text-caption-dark dark:text-light-caption-light font-bold mt-6">
               {about?.firstName + ' ' + about?.lastName}
             </p>
             <p className="text-base text-primary font-medium">{about?.job}</p>
@@ -44,15 +44,15 @@ const UserInfo = async () => {
                 : 'border-center-image'
             }`}
           >
-            <p className="text-base text-captionDark dark:text-lightCaptionLight font-bold uppercase">
+            <p className="text-base text-caption-dark dark:text-light-caption-light font-bold uppercase">
               {t('downloadCV')}
             </p>
             <LoadSvgIcon
               name="download"
               color={
                 theme === 'dark'
-                  ? 'var(--color-lightCaptionLight)'
-                  : 'var(--color-captionDark)'
+                  ? 'var(--color-light-caption-light)'
+                  : 'var(--color-caption-dark)'
               }
               size={16}
               weight={2}

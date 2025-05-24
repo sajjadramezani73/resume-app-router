@@ -7,7 +7,7 @@ const Title = async ({ children }: { children: string }) => {
 
   return (
     <p
-      className={`pb-7 text-xl font-bold text-captionDark dark:text-lightCaptionLight capitalize relative border-b 
+      className={`pb-7 text-xl font-bold text-caption-dark dark:text-light-caption-light capitalize relative border-b 
         ${
           locale == 'fa'
             ? theme === 'dark'

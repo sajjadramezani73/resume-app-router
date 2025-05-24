@@ -50,8 +50,8 @@ const SidebarItem = ({ item, isLink = true }: any) => {
                 `/${segment}` === item.href
                   ? 'var(--color-primary)'
                   : theme === 'dark'
-                  ? 'var(--color-lightCaptionLight)'
-                  : 'var(--color-captionDark)'
+                  ? 'var(--color-light-caption-light)'
+                  : 'var(--color-caption-dark)'
               }
               weight={1.5}
             />
@@ -59,7 +59,7 @@ const SidebarItem = ({ item, isLink = true }: any) => {
               className={`text-xxs font-medium mt-1 ${
                 `/${segment}` === item.href
                   ? 'text-primary'
-                  : 'text-captionDark dark:text-lightCaptionLight'
+                  : 'text-caption-dark dark:text-light-caption-light'
               }`}
             >
               {item.title}
@@ -74,7 +74,7 @@ const SidebarItem = ({ item, isLink = true }: any) => {
             color={
               segment === item.href
                 ? 'var(--color-primary)'
-                : 'var(--color-captionDark)'
+                : 'var(--color-caption-dark)'
             }
             weight={1.5}
           />

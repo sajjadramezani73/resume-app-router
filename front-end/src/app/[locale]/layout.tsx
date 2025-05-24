@@ -34,7 +34,7 @@ export default async function RootLayout({
           <div
             className={`${
               locale === 'fa' ? 'font-iranyekan' : 'font-roboto'
-            } w-full h-full flex justify-center items-center md:py-10 bg-gradient-to-br from-secondary/70 to-primary/70 dark:from-[#17171b] dark:to-[#28282f]`}
+            } w-full h-full flex justify-center items-center md:py-10 bg-linear-to-br from-secondary/70 to-primary/70 dark:from-[#17171b] dark:to-[#28282f]`}
           >
             <div
               className={`md:container w-full h-full flex flex-col md:flex-row md:gap-x-4 ${
@@ -45,7 +45,7 @@ export default async function RootLayout({
                 <Sidebar />
               </div>
               <div
-                className={`flex justify-between items-center px-4 border-b md:hidden h-[58px] min-h-[58px] bg-white dark:bg-bgDark`}
+                className={`flex justify-between items-center px-4 border-b md:hidden h-[58px] min-h-[58px] bg-white dark:bg-bg-dark`}
               >
                 <span className="w-20">
                   <SwitchLanguage />{' '}
@@ -54,17 +54,19 @@ export default async function RootLayout({
                   <SwitchTheme />{' '}
                 </span>
               </div>
-              <div className="flex flex-col md:flex-row flex-grow overflow-hidden overflow-y-auto md:overflow-y-visible">
+              <div className="flex flex-col md:flex-row grow overflow-hidden overflow-y-auto md:overflow-y-visible">
                 <div
-                  className={`flex-grow min-h-full md:w-4/12 bg-white dark:bg-bgDark md:rounded relative ${
-                    locale == 'fa' ? 'shadow-shadowLeft' : 'shadow-shadowRight'
+                  className={`grow min-h-full md:w-4/12 bg-white dark:bg-bg-dark md:rounded-sm relative ${
+                    locale == 'fa'
+                      ? 'shadow-shadow-left'
+                      : 'shadow-shadow-right'
                   }`}
                 >
                   <UserInfo />
                 </div>
-                <div className="md:py-4 md:w-8/12 flex-grow">
+                <div className="md:py-4 md:w-8/12 grow">
                   <div
-                    className=" h-full bg-white dark:bg-bgDark rounded-e p-4 md:p-7 md:ps-10"
+                    className=" h-full bg-white dark:bg-bg-dark rounded-e p-4 md:p-7 md:ps-10"
                     id="info_section"
                   >
                     {children}
@@ -72,7 +74,7 @@ export default async function RootLayout({
                 </div>
               </div>
               <div
-                className={`grid grid-cols-3 md:hidden h-16 min-h-[64px] bg-white dark:bg-bgDark border-t`}
+                className={`grid grid-cols-3 md:hidden h-16 min-h-[64px] bg-white dark:bg-bg-dark border-t`}
               >
                 <SidebarItems />
               </div>

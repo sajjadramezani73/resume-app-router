@@ -56,27 +56,27 @@ const SwitchLanguage = () => {
   return (
     <div className="flex justify-between px-2 relative">
       <div
-        className="w-full flex border dark:border-caption rounded py-1 pe-1.5 ps-0.5 rtl cursor-pointer"
+        className="w-full flex border dark:border-caption rounded-sm py-1 pe-1.5 ps-0.5 rtl cursor-pointer"
         onClick={() => setShowOption(!showOption)}
       >
         <LoadSvgIcon name="downArrow" size={18} />
-        <p className="flex-grow text-xs text-captionDark dark:text-lightCaptionLight text-end pt-0.5 uppercase">
+        <p className="grow text-xs text-caption-dark dark:text-light-caption-light text-end pt-0.5 uppercase">
           {locale}
         </p>
       </div>
       {showOption && (
-        <div className="p-2 absolute top-[30px] start-1.5 z-10 bg-white dark:bg-bgDark border rounded shadow">
+        <div className="p-2 absolute top-[30px] start-1.5 z-10 bg-white dark:bg-bg-dark border rounded-sm shadow-sm">
           {localeList?.map((item) => {
             return (
               <button
                 key={item?.language}
-                className="flex justify-between items-center rtl gap-x-1 p-1 rounded mb-1.5 last:mb-0 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-50/10 duration-200"
+                className="flex justify-between items-center rtl gap-x-1 p-1 rounded-sm mb-1.5 last:mb-0 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-50/10 duration-200"
                 type="button"
                 onClick={() => {
                   changeLocale(item.shortLanguage === 'fa' ? 'fa' : 'en')
                 }}
               >
-                <p className="text-sm text-captionDark dark:text-lightCaptionLight capitalize pt-0.5">
+                <p className="text-sm text-caption-dark dark:text-light-caption-light capitalize pt-0.5">
                   {item.language}
                 </p>
                 <LoadSvgIcon name={item.icon} size={20} />

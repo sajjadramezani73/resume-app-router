@@ -13,11 +13,11 @@ const LoadingAbout = async () => {
             : 'border-vertical-image'
         }`}
       >
-        <div className="w-full h-6 bg-gray-100 dark:bg-gray-50/20 rounded-sm animate-pulse"></div>
-        <div className="w-full h-6 bg-gray-100 dark:bg-gray-50/20 rounded-sm animate-pulse"></div>
-        <div className="w-full h-6 bg-gray-100 dark:bg-gray-50/20 rounded-sm animate-pulse"></div>
-        <div className="w-full h-6 bg-gray-100 dark:bg-gray-50/20 rounded-sm animate-pulse"></div>
-        <div className="w-1/2 h-6 bg-gray-100 dark:bg-gray-50/20 rounded-sm animate-pulse"></div>
+        <div className="w-full h-6 bg-gray-100 dark:bg-gray-50/20 rounded-xs animate-pulse"></div>
+        <div className="w-full h-6 bg-gray-100 dark:bg-gray-50/20 rounded-xs animate-pulse"></div>
+        <div className="w-full h-6 bg-gray-100 dark:bg-gray-50/20 rounded-xs animate-pulse"></div>
+        <div className="w-full h-6 bg-gray-100 dark:bg-gray-50/20 rounded-xs animate-pulse"></div>
+        <div className="w-1/2 h-6 bg-gray-100 dark:bg-gray-50/20 rounded-xs animate-pulse"></div>
       </div>
       <div className="pt-7 md:ps-6 grid gap-y-3">
         <AboutItemLoading />

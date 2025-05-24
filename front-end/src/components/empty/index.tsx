@@ -9,7 +9,7 @@ const Empty = async () => {
       <div className="w-full max-w-[200px] aspect-[1/0.7] relative">
         <Image src={empty} fill alt="empty" />
       </div>
-      <p className="text-xs text-captionDark dark:text-lightCaptionLight">
+      <p className="text-xs text-caption-dark dark:text-light-caption-light">
         {t('empty')}
       </p>
     </div>

@@ -17,9 +17,9 @@ const ProjectDetail = async ({
     <div className="h-full flex flex-col">
       <Title>{projectDetail?.title}</Title>
 
-      <div className="pt-4 flex-grow overflow-hidden overflow-y-auto no-scroll">
+      <div className="pt-4 grow overflow-hidden overflow-y-auto no-scroll">
         {/* <Suspense fallback={<p>loading...</p>}> */}
-        <p className="text-captionDark dark:text-lightCaptionLight text-tiny capitalize">
+        <p className="text-caption-dark dark:text-light-caption-light text-tiny capitalize">
           {projectDetail?.briefDescription}
         </p>
         <div className="mt-12">

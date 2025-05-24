@@ -9,7 +9,7 @@ const ProjectsPage = async () => {
   return (
     <div className="h-full flex flex-col">
       <Title>{t('projects')}</Title>
-      <div className="pt-7 flex-grow overflow-hidden overflow-y-auto no-scroll">
+      <div className="pt-7 grow overflow-hidden overflow-y-auto no-scroll">
         <Suspense fallback={<ProjectsLoading />}>
           <Projects />
         </Suspense>
