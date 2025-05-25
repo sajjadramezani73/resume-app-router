@@ -1,14 +1,12 @@
 @import 'tailwindcss';
 
-/* @import 'swiper/css' layer(utilities);
+@import 'swiper/css' layer(utilities);
 @import 'swiper/css/free-mode' layer(utilities);
-@import 'swiper/css/navigation' layer(utilities); */
+@import 'swiper/css/navigation' layer(utilities);
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --spacing: 0.25rem;
-
   --breakpoint-*: initial;
   --breakpoint-xxs: 360px;
   --breakpoint-xs: 480px;

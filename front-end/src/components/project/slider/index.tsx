@@ -67,7 +67,7 @@ const Slider = ({ images }: Props) => {
           setShow: handleCloseModal,
         }}
       >
-        <div className="bg-white w-full max-w-[90%] h-[90%] rounded-lg">
+        <div className="bg-white w-full max-w-[90%] h-[90%] rounded-lg overflow-hidden">
           <GallerySlider images={images} initialSlide={imageIndex} />
         </div>
       </ConfirmModal>
